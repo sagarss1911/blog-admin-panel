@@ -23,6 +23,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CalendarModule } from 'primeng/calendar';
 import { CustomAdvanceFilterModule } from 'src/app/shared-components/custom-advance-filter/custom-advance-filter.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,7 @@ import { CustomAdvanceFilterModule } from 'src/app/shared-components/custom-adva
     DropdownModule,
     NgSelectModule,
     CalendarModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
   exports: [],
   providers: [
@@ -62,8 +63,8 @@ import { CustomAdvanceFilterModule } from 'src/app/shared-components/custom-adva
       provide: HTTP_INTERCEPTORS,
       useClass: HttpConfigInterceptor,
       multi: true,
-    }
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

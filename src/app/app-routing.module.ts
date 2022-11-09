@@ -16,7 +16,8 @@ const routes: Routes = [
       { path: 'category', loadChildren: () => import('src/app/category/category.module').then(m => m.CategoryModule) },
       { path: 'product-category', loadChildren: () => import('src/app/productcategory/productcategory.module').then(m => m.ProductCategoryModule) },
       { path: 'products', loadChildren: () => import('src/app/products/products.module').then(m => m.ProductsModule) },
-      { path: 'admin-users', loadChildren: () => import('src/app/admin-users/admin-users.module').then(m => m.AdminUsersModule) }
+      { path: 'admin-users', loadChildren: () => import('src/app/admin-users/admin-users.module').then(m => m.AdminUsersModule) },
+      { path: 'subscriber', loadChildren: () => import('src/app/subscriber/subscriber.module').then(m => m.SubscriberModule) }
     ]
   },
   { path: '**', component: NotfoundComponent }

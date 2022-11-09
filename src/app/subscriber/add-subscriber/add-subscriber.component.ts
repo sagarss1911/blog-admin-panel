@@ -11,11 +11,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { findIndex } from 'lodash-es';
 
 @Component({
-  selector: 'add-admin-users',
-  templateUrl: './add-admin-users.html',
-  styleUrls: ['./add-admin-users.css'],
+  selector: 'app-add-subscriber',
+  templateUrl: './add-subscriber.component.html',
+  styleUrls: ['./add-subscriber.component.css'],
 })
-export class AddAdminUsersComponent implements OnInit {
+export class AddSubscriberComponent implements OnInit {
   product: any = { colors: [] };
   base_url = environment.url;
   loading: boolean = false;
@@ -38,7 +38,6 @@ export class AddAdminUsersComponent implements OnInit {
   @ViewChild('productImageFile') productImageFile: any;
   @ViewChild('productcolorImageFile') productcolorImageFile: any;
   public modalRef: BsModalRef;
-
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -57,13 +56,13 @@ export class AddAdminUsersComponent implements OnInit {
       : '';
     if (this.product._id) {
       this.type = 'edit';
-      this.getProductData();
+      this.getSubscriberData();
     }
   }
-  getProductData() {
+  getSubscriberData() {
     this.loading = true;
     return new Promise((resolve, reject) => {
-      this.commonService.getProduct({ _id: this.product._id }).subscribe(
+      this.commonService.getSubscriber({ _id: this.product._id }).subscribe(
         (res: any) => {
           if (res.status == 200 && res.data) {
             this.product = res.data;
@@ -268,7 +267,7 @@ export class AddAdminUsersComponent implements OnInit {
     data.append('body', JSON.stringify(params));
 
     this.loading = true;
-    this.commonService.addProduct(data).subscribe(
+    this.commonService.addSubscriber(data).subscribe(
       (res: any) => {
         this.loading = false;
         if (res.status == 200 && res.data) {

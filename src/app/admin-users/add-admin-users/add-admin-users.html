@@ -15,71 +15,76 @@
 
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="productname">Product Name <span class="c-red">*</span></label>
-                  <input type="text" class="form-control" id="fname" placeholder="Enter Product Name" name="productname"
-                    #productname="ngModel" [(ngModel)]="product.productname" required
-                    [class.is-invalid]="f.submitted && productname.invalid">
-                  <div class="alert alert-danger" *ngIf="(productname.touched || f.submitted) && productname.invalid">
-                    <p>Product Name can't be blank.</p>
+                  <label for="subscriberName">Subscriber Name <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="fname" placeholder="Enter subscriber Name" name="subscriberName"
+                    #subscriberName="ngModel" [(ngModel)]="product.subscriberName" required
+                    [class.is-invalid]="f.submitted && subscriberName.invalid">
+                  <div class="alert alert-danger" *ngIf="(subscriberName.touched || f.submitted) && subscriberName.invalid">
+                    <p>Subscriber Name can't be blank.</p>
                   </div>
                 </div>
               </div>
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="productname">Product Slug <span class="c-red">*</span></label>
-                  <input type="text" class="form-control" id="fname" placeholder="Enter Product Slug" name="productslug"
-                    #productslug="ngModel" [(ngModel)]="product.slug" required
-                    [class.is-invalid]="f.submitted && productname.invalid" (keyup)="generateSlug($event)">
-                  <div class="alert alert-danger" *ngIf="(productslug.touched || f.submitted) && productslug.invalid">
-                    <p>Product Name can't be blank.</p>
+                  <label for="password">Password <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="password" placeholder="Enter Password" name="password"
+                    #password="ngModel" [(ngModel)]="product.password" required
+                    [class.is-invalid]="f.submitted && password.invalid">
+                  <div class="alert alert-danger" *ngIf="(password.touched || f.submitted) && password.invalid">
+                    <p>Password can't be blank.</p>
                   </div>
                 </div>
               </div>
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectionname">SEO Title <span class="c-red">*</span></label>
-                  <input type="text" class="form-control" id="seotitle" placeholder="Enter SEO Title" name="seotitle"
-                    #seotitle="ngModel" [(ngModel)]="product.seotitle" required
-                    [class.is-invalid]="f.submitted && seotitle.invalid">
-                  <div class="alert alert-danger" *ngIf="(seotitle.touched || f.submitted) && seotitle.invalid">
-                    <p>SEO Title can't be blank.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-xl-3 col-md-4">
-                <div class="form-group">
-                  <label for="collectionname">SEO Description <span class="c-red">*</span></label>
-                  <input type="text" class="form-control" id="seodescription" placeholder="Enter SEO Description"
-                    name="seodescription" #seodescription="ngModel" [(ngModel)]="product.seodescription" required
-                    [class.is-invalid]="f.submitted && seodescription.invalid">
+                  <label for="collectionname">Short Description <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="shortDescription" placeholder="Enter Short Description"
+                    name="shortDescription" #shortDescription="ngModel" [(ngModel)]="product.shortDescription" required
+                    [class.is-invalid]="f.submitted && shortDescription.invalid">
                   <div class="alert alert-danger"
-                    *ngIf="(seodescription.touched || f.submitted) && seodescription.invalid">
-                    <p>SEO Description can't be blank.</p>
+                    *ngIf="(shortDescription.touched || f.submitted) && shortDescription.invalid">
+                    <p>Short Description can't be blank.</p>
                   </div>
                 </div>
               </div>
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectiontext">SEO Keywords <span class="c-red">*</span></label>
-                  <input type="text" class="form-control" id="seokeyword" placeholder="Enter Keywords" name="seokeyword"
-                    #seokeyword="ngModel" [(ngModel)]="product.seokeyword" required
-                    [class.is-invalid]="f.submitted && seokeyword.invalid">
-                  <div class="alert alert-danger" *ngIf="(seokeyword.touched || f.submitted) && seokeyword.invalid">
-                    <p>Keywords Text can't be blank.</p>
+                  <label for="collectiontext">Location <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="location" placeholder="Enter Keywords" name="location"
+                    #location="ngModel" [(ngModel)]="product.location" required
+                    [class.is-invalid]="f.submitted && location.invalid">
+                  <div class="alert alert-danger" *ngIf="(location.touched || f.submitted) && location.invalid">
+                    <p>Location can't be blank.</p>
                   </div>
                 </div>
               </div>
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectiontext">Video Link </label>
-                  <input type="text" class="form-control" id="videolink" placeholder="Enter Video Link" name="videolink"
-                    #videolink="ngModel" [(ngModel)]="product.videolink">
+                  <label for="collectiontext">Website </label>
+                  <input type="text" class="form-control" id="website" placeholder="Enter Website" name="website"
+                    #website="ngModel" [(ngModel)]="product.website">
                 </div>
               </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Facebook Link </label>
+                  <input type="text" class="form-control" id="facebookLink" placeholder="Enter Facebook Link" name="facebookLink"
+                    #facebookLink="ngModel" [(ngModel)]="product.facebookLink">
+                </div>
+              </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Twitter Link </label>
+                  <input type="text" class="form-control" id="twitterLink" placeholder="Enter Twitter Link" name="twitterLink"
+                    #twitterLink="ngModel" [(ngModel)]="product.twitterLink">
+                </div>
+              </div>
+
+              
               <div class="col-12 ">
                 <div class="form-group">
                   <div>
-                    <label>Image</label>
+                    <label>Profile Image</label>
                   </div>
 
                   <div class="uploaded-file-block" *ngIf="product.productImageUrl">
@@ -89,9 +94,9 @@
                           aria-hidden="true"></i></div>
                     </div>
                   </div>
-                  <div class="uploaded-file-block" *ngIf="product.image && !product.productImageUrl">
+                  <div class="uploaded-file-block" *ngIf="product.profileImage && !product.productImageUrl">
                     <div class="file-detail-wrap">
-                      <div class="uimage"><img width="100px" [src]="base_url+'/'+product.image" /></div>
+                      <div class="uimage"><img width="100px" [src]="base_url+'/'+product.profileImage" /></div>
 
                     </div>
                   </div>
@@ -105,74 +110,46 @@
                   </button>
                 </div>
               </div>
-              <div class=" col-12 ">
-                <div class=" form-group">
+
+
+              <div class="col-12 ">
+                <div class="form-group">
                   <div>
-                    <label>Optional Images</label>
+                    <label>Cover Image</label>
                   </div>
-                  <div *ngFor='let url of already_uploadedurls;let i=index;'>
-                    <img *ngIf="!url.isdelete" [src]="base_url+'/'+url.image" height="200">
-                    <div *ngIf="!url.isdelete" class="close-btn-wrapper"
-                      (click)="clearAlreadyUploadedFile(url.baseimage)"><i class="fa fa-times-circle"
-                        aria-hidden="true"></i></div>
+
+                  <div class="uploaded-file-block" *ngIf="product.CoverImageUrl">
+                    <div class="file-detail-wrap">
+                      <div class="uimage"><img width="100px" [src]="product.CoverImageUrl" /></div>
+                      <div class="close-btn-wrapper" (click)="clearCoverCLFile()"><i class="fa fa-times-circle"
+                          aria-hidden="true"></i></div>
+                    </div>
                   </div>
-                  <div *ngFor='let url of urls;let i=index;'>
-                    <img *ngIf="!url.isdelete" [src]="url.url" height="200">
-                    <div *ngIf="!url.isdelete" class="close-btn-wrapper" (click)="clearOptionalFile(i)"><i
-                        class="fa fa-times-circle" aria-hidden="true"></i></div>
+                  <div class="uploaded-file-block" *ngIf="product.coverImage && !product.CoverImageUrl">
+                    <div class="file-detail-wrap">
+                      <div class="uimage"><img width="100px" [src]="base_url+'/'+product.coverImage" /></div>
+
+                    </div>
                   </div>
-                  <button type="button" class="btn dark-blue-btn" (click)="productoptionalImageFile.click()">
+                  <button type="button" class="btn dark-blue-btn" (click)="CoverImageFile.click()">
                     <div>
                       <i class="fa fa-plus" aria-hidden="true"></i>
                       Upload
                     </div>
-                    <input #productoptionalImageFile type='file' (change)="onSelectFile($event)" multiple
-                      accept="image/*" [class.is-invalid]="f.submitted && productoptionalImageFile.invalid"
-                      style="display: none">
+                    <input #CoverImageFile type="file" (change)="onCoverCLUpload($event)" accept="image/*"
+                      style="display: none" />
                   </button>
-                  <div class="alert alert-danger"
-                    *ngIf="(type=='add' && f.submitted && already_uploadedurls.length <= 0 ) || (type=='edit' && f.submitted && urls.length==0 ) ">
-                    <p>Sub Product Image can't be blank.</p>
-                  </div>
                 </div>
               </div>
-              <div class="col-12 col-xl-3 col-md-4">
-                <div class="form-group">
-                  <label for="productname">Select Parent Collection <span class="c-red">*</span></label>
-                  <p-dropdown name="parentcollection" #parentcollection="ngModel" [options]="collection_data" placeholder="Select Product" [(ngModel)]="product.parentcollection" optionLabel="name" optionValue="_id">
-                </p-dropdown>
-                </div>
-              </div>
-
-              <div class="col-12 col-xl-3 col-md-4">
-                <div class="form-group">
-                  <label for="productname">Select Collection <span class="c-red">*</span></label>
-                  <p-multiSelect #collection="ngModel" id="collection" name="collection" [options]="collection_data"
-                    optionValue="_id" optionLabel="name" placeholder="Select Collections"
-                    defaultLabel="Select Collections" [(ngModel)]="product.selectedCollection"
-                    [ngModelOptions]="{standalone: true}"></p-multiSelect>
-                  <div class="alert alert-danger"
-                    *ngIf="(collection.touched && (collection.invalid || (!product.selectedCollection || product.selectedCollection.length == 0)))">
-                    <div>Select Collection</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-12 col-xl-3 col-md-4">
-                <div class="form-group">
-                  <label for="productname">Select Category</label>
-                  <p-multiSelect #category="ngModel" id="category" name="category" [options]="category_data"
-                    optionValue="_id" optionLabel="name" placeholder="Select Category" defaultLabel="Select Category"
-                    [(ngModel)]="product.selectedCategory" [ngModelOptions]="{standalone: true}"></p-multiSelect>
-                </div>
-              </div>
+           
+        
             </div>
             <div class="row mt-4 mb-4">
               <div class="col-12">
                 <button *ngIf="!product._id"
-                  [disabled]="f.invalid || !product.selectedCollection || !product.productImageFile" type="submit"
+                  [disabled]="f.invalid || !product.productImageFile" type="submit"
                   class="btn green-btn" (click)="onClickSave()">Save Product</button>
-                <button *ngIf="product._id" [disabled]="f.invalid || !product.selectedCollection" type="submit"
+                <button *ngIf="product._id" [disabled]="f.invalid" type="submit"
                   class="btn green-btn" (click)="onClickSave()">Update Product</button>
                 <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
               </div>
@@ -181,9 +158,8 @@
           <div>
           </div>
 
-
-
-
           <app-footer></app-footer>
         </div>
         <!-- End of Footer -->
+
+

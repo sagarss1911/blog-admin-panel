@@ -8,12 +8,13 @@ import { environment } from 'src/environments/environment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
 import { Router } from '@angular/router';
+
 @Component({
-  selector: 'product-management',
-  templateUrl: './product-management.component.html',
-  styleUrls: ['./product-management.component.css'],
+  selector: 'app-subscriber-management',
+  templateUrl: './subscriber-management.component.html',
+  styleUrls: ['./subscriber-management.component.css'],
 })
-export class ProductManagementComponent implements OnInit {
+export class SubscriberManagementComponent implements OnInit {
   public loading: boolean = false;
 
   public filters: any = {};
@@ -51,7 +52,7 @@ export class ProductManagementComponent implements OnInit {
       if (this.filters.searchtext) {
         params['filters']['searchtext'] = this.filters.searchtext;
       }
-      this.productService.getAllProduct(params).subscribe(
+      this.productService.getAllSubscriber(params).subscribe(
         (res: any) => {
           if (res.status == 200 && res.data.slides) {
             this.table_data = [];
@@ -86,10 +87,10 @@ export class ProductManagementComponent implements OnInit {
   }
 
   onClickAddProduct() {
-    this.router.navigate(['/products/add-product']);
+    this.router.navigate(['/subscriber/add-subscriber']);
   }
   onClickEditSlider(slider) {
-    this.router.navigate(['/products/edit-product/' + slider._id]);
+    this.router.navigate(['/subscriber/edit-subscriber/' + slider._id]);
   }
   onClickDeleteSlider(slider) {
     this.modalRef = this.modalService.show(ConfirmationModalComponent, {
@@ -98,18 +99,18 @@ export class ProductManagementComponent implements OnInit {
       keyboard: false,
     });
     this.modalRef.content.decision = '';
-    this.modalRef.content.confirmation_text = 'Are you sure to delete this?';
+    this.modalRef.content.confirmation_text = `Are you sure you want to delete ${slider.subscriberName}?`;
     var tempSubObj: Subscription = this.modalService.onHide.subscribe(() => {
       if (this.modalRef.content.decision == 'done') {
         this.loading = true;
-        this.productService.deleteProduct(slider._id).subscribe(
+        this.productService.deleteSubscriber(slider._id).subscribe(
           (res: any) => {
             this.loading = false;
             if (res.status == 200) {
               remove(this.table_data, (ub: any) => ub._id == slider._id);
               this._toastMessageService.alert(
                 'success',
-                'Product deleted successfully.'
+                'Subscriber deleted successfully.'
               );
             }
           },
