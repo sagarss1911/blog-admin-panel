@@ -523,7 +523,7 @@ export class AddProductComponent implements OnInit {
     data.append('body', JSON.stringify(params));
 
     this.loading = true;
-    this.commonService.addProduct(data).subscribe(
+    this.commonService.addPlace(data).subscribe(
       (res: any) => {
         this.loading = false;
         if (res.status == 200 && res.data) {

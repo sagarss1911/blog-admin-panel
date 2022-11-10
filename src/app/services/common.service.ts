@@ -6,14 +6,10 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class CommonService {
-  private addSubscriberUrl = environment.url + '/api/common/add_subscriber';
-  private getSubscriberUrl = environment.url + '/api/common/get_subscriber';
+  private addPlaceUrl = environment.url + '/api/common/add_places';
 
-  /////////////////////////////////////////////////////////////////////////////
-
+  /////////////////
   private addProductUrl = environment.url + '/api/common/add_product';
-  private getProductUrl = environment.url + '/api/common/get_product';
-
   private getAllColorsUrl = environment.url + '/api/common/get_all_colors';
   private addColorUrl = environment.url + '/api/common/add_color';
 
@@ -24,10 +20,13 @@ export class CommonService {
   private addLengthUrl = environment.url + '/api/common/add_length';
   private getAllMaterialUrl = environment.url + '/api/common/get_all_material';
   private addMaterialUrl = environment.url + '/api/common/add_material';
+  // private addProductUrl = environment.url + '/api/common/add_product';
+  private getProductUrl = environment.url + '/api/common/get_product';
   private getSubProductUrl = environment.url + '/api/common/get_sub_product';
   private getProjectUrl = environment.url + '/api/common/get_project_detail';
   private getAllProductCategoryUrl =
     environment.url + '/api/common/get_all_product_category';
+
   private getAllProductSizeUrl =
     environment.url + '/api/common/get_all_product_size';
   private addSizeUrl = environment.url + '/api/common/add_size';
@@ -57,6 +56,7 @@ export class CommonService {
     environment.url + '/api/common/remove_product_options/';
 
   constructor(private http: HttpClient) {}
+
   getHeader(): HttpHeaders {
     let headers = new HttpHeaders({
       'x-auth-token': localStorage.getItem('token') || '',
@@ -64,32 +64,11 @@ export class CommonService {
     return headers;
   }
 
-  addSubscriber(data: any) {
-    return this.http.post(this.addSubscriberUrl, data, {
+  addPlace(data) {
+    return this.http.post(this.addPlaceUrl, data, {
       headers: this.getHeader(),
     });
   }
-
-  getSubscriber(data: any) {
-    return this.http.post(this.getSubscriberUrl, data, {
-      headers: this.getHeader(),
-    });
-  }
-
-  ////////////////////////////////////////
-  addProduct(data: any) {
-    return this.http.post(this.addProductUrl, data, {
-      headers: this.getHeader(),
-    });
-  }
-
-  getProduct(data: any) {
-    return this.http.post(this.getProductUrl, data, {
-      headers: this.getHeader(),
-    });
-  }
-
-  ////////////////////////////////////////
 
   getAllProjects(data) {
     return this.http.post(this.getAllProjectsUrl, data, {
@@ -102,6 +81,11 @@ export class CommonService {
     });
   }
 
+  getProduct(data) {
+    return this.http.post(this.getProductUrl, data, {
+      headers: this.getHeader(),
+    });
+  }
   getAllProjectCategoryList(data) {
     return this.http.post(this.getAllProjectCategoryListUrl, data, {
       headers: this.getHeader(),

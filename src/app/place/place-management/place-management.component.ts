@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
@@ -8,27 +8,25 @@ import { environment } from 'src/environments/environment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
 import { Router } from '@angular/router';
+import { PlaceService } from 'src/app/services/place.service';
 @Component({
-  selector: 'admin-users-management',
-  templateUrl: './admin-users-management.html',
-  styleUrls: ['./admin-users-management.css'],
+  selector: 'app-place-management',
+  templateUrl: './place-management.component.html',
+  styleUrls: ['./place-management.component.css'],
 })
-export class AdminUsersManagementComponent implements OnInit {
+export class PlaceManagementComponent implements OnInit {
   public loading: boolean = false;
-
   public filters: any = {};
-  public slider_obj: any = {};
-
-  base_url = environment.url;
+  // public slider_obj: any = {};
   public dialogType: string = 'add';
-
   public paginationValues: Subject<any> = new Subject();
   public table_data: any[] = [];
-
   public recordLimit: number = 10;
   public modalRef: BsModalRef;
+  base_url = environment.url;
+
   constructor(
-    private productService: ProductService,
+    private placeService: PlaceService,
     private commonHelper: CommonHelper,
     private _toastMessageService: ToastMessageService,
     private modalService: BsModalService,
@@ -51,20 +49,12 @@ export class AdminUsersManagementComponent implements OnInit {
       if (this.filters.searchtext) {
         params['filters']['searchtext'] = this.filters.searchtext;
       }
-      this.productService.getAllProduct(params).subscribe(
+      this.placeService.getAllPlace(params).subscribe(
         (res: any) => {
+          this.loading = false;
           if (res.status == 200 && res.data.places) {
             this.table_data = [];
-
             this.table_data = JSON.parse(JSON.stringify(res.data.places));
-            // this.table_data.forEach((element) => {
-            //   element.collections = element.collections.map((a) => {
-            //     return a.name;
-            //   });
-            //   element.category = element.category.map((a) => {
-            //     return a.name;
-            //   });
-            // });
             this.paginationValues.next({
               type: 'page-init',
               page: params.page,
@@ -85,32 +75,33 @@ export class AdminUsersManagementComponent implements OnInit {
     });
   }
 
-  onClickAddProduct() {
+  onClickAddPlace() {
     this.router.navigate(['/places/add-place']);
   }
-  onClickEditSlider(place) {
+  onClickEditPlace(place) {
     this.router.navigate(['/places/edit-place/' + place._id]);
   }
-  onClickDeleteSlider(slider) {
+  onClickDeletePlace(place) {
     this.modalRef = this.modalService.show(ConfirmationModalComponent, {
       class: 'confirmation-modal',
       backdrop: 'static',
       keyboard: false,
     });
     this.modalRef.content.decision = '';
-    this.modalRef.content.confirmation_text = `Are you sure to delete ${slider.placeName}?`;
+    this.modalRef.content.confirmation_text = `Are you sure to delete ${place.placeName}?`;
     var tempSubObj: Subscription = this.modalService.onHide.subscribe(() => {
       if (this.modalRef.content.decision == 'done') {
         this.loading = true;
-        this.productService.deleteProduct(slider._id).subscribe(
+        this.placeService.deletePlace(place._id).subscribe(
           (res: any) => {
             this.loading = false;
             if (res.status == 200) {
-              remove(this.table_data, (ub: any) => ub._id == slider._id);
+              remove(this.table_data, (ub: any) => ub._id == place._id);
               this._toastMessageService.alert(
                 'success',
                 'Place deleted successfully.'
               );
+              this.router.navigate(['/places']);
             }
           },
           (error) => {
