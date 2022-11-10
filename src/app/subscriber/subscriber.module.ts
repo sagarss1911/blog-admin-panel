@@ -1,25 +1,26 @@
 import { NgModule } from '@angular/core';
-import { AdminUsersManagementComponent } from './admin-users-management/admin-users-management';
-import { AddAdminUsersComponent } from './add-admin-users/add-admin-users';
+import { AddSubscriberComponent } from './add-subscriber/add-subscriber.component';
+import { SubscriberManagementComponent } from './subscriber-management/subscriber-management.component';
+import { SubscriberRoutingModule } from './subscriber-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { SharedPaginationModule } from 'src/app/shared-components/shared-pagination/shared-pagination.module';
-import { AdminUsersRoutingModule } from './admin-users-routing.module';
+
 import { NgxLoadingModule } from 'ngx-loading';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
-  declarations: [AdminUsersManagementComponent, AddAdminUsersComponent],
+  declarations: [SubscriberManagementComponent, AddSubscriberComponent],
   imports: [
     SharedModule,
-    AdminUsersRoutingModule,
     SharedPaginationModule,
     NgxLoadingModule,
     FormsModule,
     NgSelectModule,
     DropdownModule,
+    SubscriberRoutingModule,
   ],
-  providers: [AddAdminUsersComponent],
+  providers: [AddSubscriberComponent],
 })
-export class AdminUsersModule {}
+export class SubscriberModule {}
