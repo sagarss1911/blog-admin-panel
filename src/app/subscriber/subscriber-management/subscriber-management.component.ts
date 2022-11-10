@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
 import { Router } from '@angular/router';
+import { SubscriberService } from 'src/app/services/subscriber.service';
 
 @Component({
   selector: 'app-subscriber-management',
@@ -30,6 +31,7 @@ export class SubscriberManagementComponent implements OnInit {
   public modalRef: BsModalRef;
   constructor(
     private productService: ProductService,
+    private subscriberService: SubscriberService,
     private commonHelper: CommonHelper,
     private _toastMessageService: ToastMessageService,
     private modalService: BsModalService,
@@ -52,7 +54,7 @@ export class SubscriberManagementComponent implements OnInit {
       if (this.filters.searchtext) {
         params['filters']['searchtext'] = this.filters.searchtext;
       }
-      this.productService.getAllSubscriber(params).subscribe(
+      this.subscriberService.getAllSubscriber(params).subscribe(
         (res: any) => {
           if (res.status == 200 && res.data.slides) {
             this.table_data = [];
@@ -103,7 +105,7 @@ export class SubscriberManagementComponent implements OnInit {
     var tempSubObj: Subscription = this.modalService.onHide.subscribe(() => {
       if (this.modalRef.content.decision == 'done') {
         this.loading = true;
-        this.productService.deleteSubscriber(slider._id).subscribe(
+        this.subscriberService.deleteSubscriber(slider._id).subscribe(
           (res: any) => {
             this.loading = false;
             if (res.status == 200) {

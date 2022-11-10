@@ -63,6 +63,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('src/app/place/place.module').then((m) => m.PlaceModule),
       },
+      {
+        path: 'subscriber',
+        loadChildren: () =>
+          import('src/app/subscriber/subscriber.module').then(
+            (m) => m.SubscriberModule
+          ),
+      },
     ],
   },
   { path: '**', component: NotfoundComponent },

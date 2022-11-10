@@ -2,13 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CollectionService } from 'src/app/services/Collection.service';
-import { ProductService } from 'src/app/services/product.service';
-import { CommonService } from 'src/app/services/common.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { findIndex } from 'lodash-es';
+import { SubscriberService } from 'src/app/services/subscriber.service';
 
 @Component({
   selector: 'app-add-subscriber',
@@ -41,13 +40,11 @@ export class AddSubscriberComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private productService: ProductService,
+    private subscriberService: SubscriberService,
     private _toastMessageService: ToastMessageService,
-    private modalService: BsModalService,
     private sanitizer: DomSanitizer,
     private collectionService: CollectionService,
-    private commonHelper: CommonHelper,
-    private commonService: CommonService
+    private commonHelper: CommonHelper
   ) {}
 
   ngOnInit() {
@@ -62,7 +59,7 @@ export class AddSubscriberComponent implements OnInit {
   getSubscriberData() {
     this.loading = true;
     return new Promise((resolve, reject) => {
-      this.commonService.getSubscriber({ _id: this.product._id }).subscribe(
+      this.subscriberService.getSubscriber({ _id: this.product._id }).subscribe(
         (res: any) => {
           if (res.status == 200 && res.data) {
             this.product = res.data;
@@ -87,6 +84,7 @@ export class AddSubscriberComponent implements OnInit {
       );
     });
   }
+
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
@@ -127,61 +125,6 @@ export class AddSubscriberComponent implements OnInit {
         return a.baseimage;
       });
   }
-  getAllCollections() {
-    this.loading = true;
-    return new Promise((resolve, reject) => {
-      let params = {
-        page: 1,
-        limit: 100,
-      };
-      this.collectionService.getAllCollection(params).subscribe(
-        (res: any) => {
-          if (res.status == 200 && res.data.slides) {
-            this.collection_data = [];
-            this.collection_data = JSON.parse(JSON.stringify(res.data.slides));
-            this.collection_data = this.collection_data.map((a) => {
-              return { _id: a._id, name: a.name };
-            });
-          }
-          this.loading = false;
-          return resolve(true);
-        },
-        (error) => {
-          this.loading = false;
-          this.commonHelper.showError(error);
-          return resolve(false);
-        }
-      );
-    });
-  }
-
-  getAllCategory() {
-    this.loading = true;
-    return new Promise((resolve, reject) => {
-      let params = {
-        page: 1,
-        limit: 100,
-      };
-      this.commonService.getAllProductCategory(params).subscribe(
-        (res: any) => {
-          if (res.status == 200 && res.data) {
-            this.category_data = [];
-            this.category_data = JSON.parse(JSON.stringify(res.data));
-            this.category_data = this.category_data.map((a) => {
-              return { _id: a._id, name: a.name };
-            });
-          }
-          this.loading = false;
-          return resolve(true);
-        },
-        (error) => {
-          this.loading = false;
-          this.commonHelper.showError(error);
-          return resolve(false);
-        }
-      );
-    });
-  }
 
   onCLUpload(event) {
     if (event.target.files && event.target.files[0]) {
@@ -219,7 +162,7 @@ export class AddSubscriberComponent implements OnInit {
   }
 
   onClickCancel() {
-    this.router.navigate(['/products-options-pages/products']);
+    this.router.navigate(['/subscriber']);
   }
   onClickSave() {
     this.remaining_url = this.already_uploadedurls
@@ -267,7 +210,7 @@ export class AddSubscriberComponent implements OnInit {
     data.append('body', JSON.stringify(params));
 
     this.loading = true;
-    this.commonService.addSubscriber(data).subscribe(
+    this.subscriberService.addSubscriber(data).subscribe(
       (res: any) => {
         this.loading = false;
         if (res.status == 200 && res.data) {
@@ -275,7 +218,7 @@ export class AddSubscriberComponent implements OnInit {
             'success',
             'Registered successfully.'
           );
-          // this.router.navigate(['/products-options-pages/products']);
+          this.router.navigate(['/subscriber']);
         }
       },
       (error) => {
