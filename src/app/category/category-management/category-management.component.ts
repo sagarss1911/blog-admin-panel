@@ -1,19 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
-import { CommonHelper } from 'src/app/helpers/common.helper';
-import { ToastMessageService } from 'src/app/services/toast-message.service';
-import { remove } from 'lodash-es';
-import { Subscription, Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { remove } from 'lodash-es';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Subject, Subscription } from 'rxjs';
+import { CommonHelper } from 'src/app/helpers/common.helper';
+
+import { ToastMessageService } from 'src/app/services/toast-message.service';
+import { environment } from 'src/environments/environment';
+import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
+import { CategoryService } from 'src/app/services/category.service';
+
 @Component({
-  selector: 'product-management',
-  templateUrl: './product-management.component.html',
-  styleUrls: ['./product-management.component.css'],
+  selector: 'app-category-management',
+  templateUrl: './category-management.component.html',
+  styleUrls: ['./category-management.component.css'],
 })
-export class ProductManagementComponent implements OnInit {
+export class CategoryManagementComponent implements OnInit {
   public loading: boolean = false;
 
   public filters: any = {};
@@ -24,21 +26,23 @@ export class ProductManagementComponent implements OnInit {
 
   public paginationValues: Subject<any> = new Subject();
   public table_data: any[] = [];
+  public categorylist: any;
+
+  public parent: any;
 
   public recordLimit: number = 10;
   public modalRef: BsModalRef;
   constructor(
-    private productService: ProductService,
     private commonHelper: CommonHelper,
     private _toastMessageService: ToastMessageService,
     private modalService: BsModalService,
-    private router: Router
+    private router: Router,
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
     this.getSlidersWithFilters({ page: 1 });
   }
-
   getSlidersWithFilters(event) {
     this.loading = true;
     return new Promise((resolve, reject) => {
@@ -51,20 +55,27 @@ export class ProductManagementComponent implements OnInit {
       if (this.filters.searchtext) {
         params['filters']['searchtext'] = this.filters.searchtext;
       }
-      this.productService.getAllProduct(params).subscribe(
+      this.categoryService.getAllCategory(params).subscribe(
         (res: any) => {
+          console.log(res.data, 'this is get response');
+
+          this.table_data = res.data;
+          console.log(this.table_data);
           if (res.status == 200 && res.data.slides) {
             this.table_data = [];
 
+            this.table_data = res.data;
+            console.log(this.table_data);
+
             this.table_data = JSON.parse(JSON.stringify(res.data.slides));
-            this.table_data.forEach((element) => {
-              element.collections = element.collections.map((a) => {
-                return a.name;
-              });
-              element.category = element.category.map((a) => {
-                return a.name;
-              });
-            });
+            // this.table_data.forEach((element) => {
+            //   element.collections = element.collections.map((a) => {
+            //     return a.name;
+            //   });
+            //   element.category = element.category.map((a) => {
+            //     return a.name;
+            //   });
+            // });
             this.paginationValues.next({
               type: 'page-init',
               page: params.page,
@@ -85,32 +96,37 @@ export class ProductManagementComponent implements OnInit {
     });
   }
 
-  onClickAddProduct() {
-    this.router.navigate(['/products/add-product']);
+  onClickAddCategory() {
+    // this.router.navigate(['/admin-users/add-user']);
+    this.router.navigate(['/category/add-category']);
   }
-  onClickEditSlider(slider) {
-    this.router.navigate(['/products/edit-product/' + slider._id]);
+  onClickEditCategory(category) {
+    this.router.navigate(['/category/edit-category/' + category._id]);
   }
-  onClickDeleteSlider(slider) {
+
+  onClickDeleteCategory(category) {
+    console.log(category);
     this.modalRef = this.modalService.show(ConfirmationModalComponent, {
       class: 'confirmation-modal',
       backdrop: 'static',
       keyboard: false,
     });
     this.modalRef.content.decision = '';
-    this.modalRef.content.confirmation_text = 'Are you sure to delete this?';
+    this.modalRef.content.confirmation_text = `Are you sure to delete this ${category.categoryName}?`;
     var tempSubObj: Subscription = this.modalService.onHide.subscribe(() => {
       if (this.modalRef.content.decision == 'done') {
         this.loading = true;
-        this.productService.deleteProduct(slider._id).subscribe(
+        this.categoryService.deleteCategory(category._id).subscribe(
           (res: any) => {
+            console.log(res);
             this.loading = false;
             if (res.status == 200) {
-              remove(this.table_data, (ub: any) => ub._id == slider._id);
+              remove(this.table_data, (ub: any) => ub._id == category._id);
               this._toastMessageService.alert(
                 'success',
-                'Product deleted successfully.'
+                'Category deleted successfully.'
               );
+              this.router.navigate(['/category']);
             }
           },
           (error) => {

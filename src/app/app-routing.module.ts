@@ -37,27 +37,14 @@ const routes: Routes = [
             (m) => m.CategoryModule
           ),
       },
-      {
-        path: 'product-category',
-        loadChildren: () =>
-          import('src/app/productcategory/productcategory.module').then(
-            (m) => m.ProductCategoryModule
-          ),
-      },
-      {
-        path: 'products',
-        loadChildren: () =>
-          import('src/app/products/products.module').then(
-            (m) => m.ProductsModule
-          ),
-      },
-      {
-        path: 'places1',
-        loadChildren: () =>
-          import('src/app/admin-users/admin-users.module').then(
-            (m) => m.AdminUsersModule
-          ),
-      },
+
+      // {
+      //   path: 'places1',
+      //   loadChildren: () =>
+      //     import('src/app/admin-users/admin-users.module').then(
+      //       (m) => m.AdminUsersModule
+      //     ),
+      // },
       {
         path: 'places',
         loadChildren: () =>

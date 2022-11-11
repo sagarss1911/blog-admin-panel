@@ -1,28 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CategoryManagementComponent } from './category/category-management/category-management.component';
 import { SharedModule } from '../shared/shared.module';
 import { SharedPaginationModule } from 'src/app/shared-components/shared-pagination/shared-pagination.module';
-import { CategorySliderRoutingModule } from './category-routing.module';
-import { AddUpdateCategoryModalComponent } from './category/category-management/add-update-category-modal/add-update-category-modal.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { FormsModule } from '@angular/forms';
 import { NgxSummernoteModule } from 'ngx-summernote';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { CategoryManagementComponent } from './category-management/category-management.component';
+import { CategoryRoutingModule } from './category-routing.module';
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
-  declarations: [
-    CategoryManagementComponent,
-    AddUpdateCategoryModalComponent,
-
-  ],
+  declarations: [AddCategoryComponent, CategoryManagementComponent],
   imports: [
     SharedModule,
-    CategorySliderRoutingModule,
+
     SharedPaginationModule,
     NgxLoadingModule,
     FormsModule,
-    NgxSummernoteModule
+    NgxSummernoteModule,
+    CategoryRoutingModule,
+    DropdownModule,
   ],
-  providers: [
-    AddUpdateCategoryModalComponent
-  ],
+  providers: [AddCategoryComponent],
 })
-export class CategoryModule { }
+export class CategoryModule {}

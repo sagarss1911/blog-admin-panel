@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CollectionService } from 'src/app/services/Collection.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
@@ -43,7 +42,6 @@ export class AddSubscriberComponent implements OnInit {
     private subscriberService: SubscriberService,
     private _toastMessageService: ToastMessageService,
     private sanitizer: DomSanitizer,
-    private collectionService: CollectionService,
     private commonHelper: CommonHelper
   ) {}
 

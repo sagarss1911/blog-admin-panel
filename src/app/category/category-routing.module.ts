@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CategoryManagementComponent } from './category/category-management/category-management.component';
-
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { CategoryManagementComponent } from './category-management/category-management.component';
 
 const routes: Routes = [
-  {
-    path: '', component: CategoryManagementComponent,
-    // children: [
-    // 	{ path: '', redirectTo: '/homeslider', pathMatch: 'full' },
-    //   { path: 'homeslider', component: HomeSliderManagementComponent},
-
-    // ]
-  }
+  { path: '', component: CategoryManagementComponent },
+  { path: 'edit-category/:id', component: AddCategoryComponent },
+  { path: 'add-category', component: AddCategoryComponent },
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CategorySliderRoutingModule { }
+export class CategoryRoutingModule {}

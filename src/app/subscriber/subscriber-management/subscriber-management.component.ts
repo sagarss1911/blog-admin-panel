@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
+
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { remove } from 'lodash-es';
@@ -30,7 +30,6 @@ export class SubscriberManagementComponent implements OnInit {
   public recordLimit: number = 10;
   public modalRef: BsModalRef;
   constructor(
-    private productService: ProductService,
     private subscriberService: SubscriberService,
     private commonHelper: CommonHelper,
     private _toastMessageService: ToastMessageService,
@@ -39,10 +38,10 @@ export class SubscriberManagementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getSlidersWithFilters({ page: 1 });
+    this.getSubscriberWithFilter({ page: 1 });
   }
 
-  getSlidersWithFilters(event) {
+  getSubscriberWithFilter(event) {
     this.loading = true;
     return new Promise((resolve, reject) => {
       let params = {
@@ -60,14 +59,7 @@ export class SubscriberManagementComponent implements OnInit {
             this.table_data = [];
 
             this.table_data = JSON.parse(JSON.stringify(res.data.slides));
-            this.table_data.forEach((element) => {
-              element.collections = element.collections.map((a) => {
-                return a.name;
-              });
-              element.category = element.category.map((a) => {
-                return a.name;
-              });
-            });
+
             this.paginationValues.next({
               type: 'page-init',
               page: params.page,
@@ -88,13 +80,13 @@ export class SubscriberManagementComponent implements OnInit {
     });
   }
 
-  onClickAddProduct() {
+  onClickAddSubscriber() {
     this.router.navigate(['/subscriber/add-subscriber']);
   }
-  onClickEditSlider(slider) {
+  onClickEditSubscriber(slider) {
     this.router.navigate(['/subscriber/edit-subscriber/' + slider._id]);
   }
-  onClickDeleteSlider(slider) {
+  onClickDeleteSubscriber(slider) {
     this.modalRef = this.modalService.show(ConfirmationModalComponent, {
       class: 'confirmation-modal',
       backdrop: 'static',
