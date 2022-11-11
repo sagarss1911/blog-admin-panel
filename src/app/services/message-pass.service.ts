@@ -7,8 +7,7 @@ export class MessagePassService {
   private subject = new Subject<any>();
   private ctsSubject = new Subject<any>();
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
   getNotificationCountData(): Observable<any> {
     return this.subject.asObservable();

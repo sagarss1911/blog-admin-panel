@@ -8,9 +8,10 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DropdownModule } from 'primeng/dropdown';
-import { BlogsRoutingModule } from './blogs-routing.module';
+
 import { BlogManagementComponent } from './blog-management/blog-management.component';
 
+import { BlogsRoutingModule } from './blogs-routing.module';
 import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
