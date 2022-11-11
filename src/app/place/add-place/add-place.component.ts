@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CommonService } from 'src/app/services/common.service';
+// import { CommonService } from 'src/app/services/common.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
@@ -31,7 +31,7 @@ export class AddPlaceComponent implements OnInit {
     private _toastMessageService: ToastMessageService,
     private sanitizer: DomSanitizer,
     private commonHelper: CommonHelper,
-    private commonService: CommonService,
+    // private commonService: CommonService,
     private placeService: PlaceService
   ) {}
 
