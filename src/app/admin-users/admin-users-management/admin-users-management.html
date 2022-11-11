@@ -4,27 +4,27 @@
   </ngx-loading>
 
   <div class="row" style="justify-content: space-between;margin:0px;margin-bottom: 2rem;">
-    <h1 class="h3 page-title">Places</h1>
+    <h1 class="h3 page-title">Admin-List</h1>
     <div>
-      <div class="btn green-btn" (click)="onClickAddProduct();">
+      <div class="btn green-btn" (click)="onClickAddUser();">
         <span class="dib mr-2"><i class="fas fa-plus"></i></span>
-        <div class="dib">Add Place</div>
+        <div class="dib">Add User</div>
       </div>
     </div>
   </div>
   <div class="row mb-3">
     <div class="col-12 col-xl-3 col-md-6">
       <div class="form-group">
-        <input type="text" class="form-control" id="searchtext" name="searchtext" placeholder="Search by product name"
+        <input type="text" class="form-control" id="searchtext" name="searchtext" placeholder="Search by Name or Email"
           #searchtext="ngModel" [(ngModel)]="filters.searchtext">
       </div>
     </div>
     <div class="col-12 col-xl-6 col-md-6">
       <div class="form-group">
-        <div class="btn blue-btn" (click)="getPlaceswithFilters({'page':1});">
+        <div class="btn blue-btn" (click)="getUsersWithFilters({'page':1});">
           <div class="dib">Search</div>
         </div>
-        <div class="btn gray-btn ml-3" (click)="filters={};getPlaceswithFilters({'page':1});">
+        <div class="btn gray-btn ml-3" (click)="filters={};getUsersWithFilters({'page':1});">
           <div class="dib">Reset</div>
         </div>
       </div>
@@ -38,22 +38,19 @@
             <tr class="c-table-row c-table-row-header">
               <div style="width: 5px;"></div>
               <th class="c-table-cell c-table-header-cell text-pull-left">
-                Image
+                Name
               </th>
               <th class="c-table-cell c-table-header-cell text-pull-left">
-                Map Image
+                Email
               </th>
               <th class="c-table-cell c-table-header-cell text-pull-left">
-                Place Name
+                Username
               </th>
               <th class="c-table-cell c-table-header-cell text-pull-left">
-                SEO Title
+                Created By
               </th>
               <th class="c-table-cell c-table-header-cell text-pull-left">
-                SEO Description
-              </th>
-              <th class="c-table-cell c-table-header-cell text-pull-left">
-                SEO Keyword
+                Registered Date
               </th>
               <th class="c-table-cell c-table-header-cell text-pull-left">
                 Active
@@ -61,32 +58,31 @@
               <th class="c-table-cell c-table-header-cell text-pull-right">Actions</th>
             </tr>
           </thead>
-          <tbody class="c-table-body" *ngIf="table_data && table_data.length>0">
-            <tr class="c-table-row" *ngFor="let tab_data of table_data; let i=index;">
+          <tbody class="c-table-body" *ngIf="user_list && user_list.length>0">
+            <tr class="c-table-row" *ngFor="let item of user_list">
               <div style="width: 5px;"></div>
-              <td class="c-table-cell c-table-body-cell text-pull-left"><img height="100"
-                  [src]="base_url +'/'+ tab_data.image"></td>
-              <td class="c-table-cell c-table-body-cell text-pull-left"><img height="100"
-                  [src]="base_url +'/'+ tab_data.mapImage"></td>
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.placeName)}}</td>
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{tab_data.seoTitle}}</td>
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{tab_data.seoDescription}}</td>
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{tab_data.seoKeyword}}</td>
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{tab_data.active}}</td>
+
+              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.name}}</td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.email}}</td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.userName}}</td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.creator.length ? item.creator[0].name :
+                "" }}</td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.createdAt | date:'mediumDate'}}</td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.active}}</td>
               <td class="c-table-cell c-table-body-cell text-pull-right">
-                <div class="action-btn" title="Edit Slider" (click)="onClickEditSlider(tab_data)"
-                  style="color: #3985fc">
+                <div *ngIf="item?.canBeEdited === true" class="action-btn" title="Edit User"
+                  (click)="onClickEditUser(item)" style="color: #3985fc">
                   <i class="fa fa-edit"></i>
                 </div>
-                <div class="action-btn" title="Delete Slider" (click)="onClickDeleteSlider(tab_data)"
-                  style="color: #ff5151">
+                <div *ngIf="item?.canBeEdited === true" class="action-btn" title="Delete User"
+                  (click)="onClickDeleteUser(item)" style="color: #ff5151">
                   <i class="fa fa-trash"></i>
                 </div>
               </td>
 
             </tr>
           </tbody>
-          <tbody class="c-table-body" *ngIf="(!table_data || table_data.length==0)">
+          <tbody class="c-table-body" *ngIf="(!user_list || user_list.length==0)">
             <tr class="c-table-row">
               <td class="c-table-cell c-table-body-cell text-center" colspan="6">{{loading ? "Fetching a Data" : "No
                 Data Available"}}</td>
@@ -96,7 +92,7 @@
       </div>
       <div>
         <div class="share-pagination">
-          <app-shared-pagination [paginationValues]="paginationValues" (onChange)="getPlaceswithFilters($event)">
+          <app-shared-pagination [paginationValues]="paginationValues" (onChange)="getUsersWithFilters($event)">
           </app-shared-pagination>
         </div>
       </div>

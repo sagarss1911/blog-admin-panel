@@ -5,8 +5,8 @@ import { AddAdminUsersComponent } from 'src/app/admin-users/add-admin-users/add-
 
 const routes: Routes = [
   { path: '', component: AdminUsersManagementComponent },
-  { path: 'edit-place/:id', component: AddAdminUsersComponent },
-  { path: 'add-place', component: AddAdminUsersComponent },
+  { path: 'edit-user/:id', component: AddAdminUsersComponent },
+  { path: 'add-user', component: AddAdminUsersComponent },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

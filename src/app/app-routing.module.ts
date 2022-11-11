@@ -31,28 +31,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'category',
-        loadChildren: () =>
-          import('src/app/category/category.module').then(
-            (m) => m.CategoryModule
-          ),
-      },
-      {
-        path: 'product-category',
-        loadChildren: () =>
-          import('src/app/productcategory/productcategory.module').then(
-            (m) => m.ProductCategoryModule
-          ),
-      },
-      {
-        path: 'products',
-        loadChildren: () =>
-          import('src/app/products/products.module').then(
-            (m) => m.ProductsModule
-          ),
-      },
-      {
-        path: 'places1',
+        path: 'admin-users',
         loadChildren: () =>
           import('src/app/admin-users/admin-users.module').then(
             (m) => m.AdminUsersModule
@@ -62,6 +41,12 @@ const routes: Routes = [
         path: 'places',
         loadChildren: () =>
           import('src/app/place/place.module').then((m) => m.PlaceModule),
+      },
+
+      {
+        path: 'blogs',
+        loadChildren: () =>
+          import('src/app/blogs/blogs.module').then((m) => m.BlogsModule),
       },
     ],
   },

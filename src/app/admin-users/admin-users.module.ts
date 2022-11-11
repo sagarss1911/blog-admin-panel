@@ -10,10 +10,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
-  declarations: [
-    AdminUsersManagementComponent,
-    AddAdminUsersComponent
-  ],
+  declarations: [AdminUsersManagementComponent, AddAdminUsersComponent],
   imports: [
     SharedModule,
     AdminUsersRoutingModule,
@@ -21,10 +18,8 @@ import { DropdownModule } from 'primeng/dropdown';
     NgxLoadingModule,
     FormsModule,
     NgSelectModule,
-    DropdownModule
+    DropdownModule,
   ],
-  providers: [
-    AddAdminUsersComponent
-  ],
+  providers: [AddAdminUsersComponent],
 })
 export class AdminUsersModule {}
