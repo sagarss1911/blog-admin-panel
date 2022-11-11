@@ -24,7 +24,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { CalendarModule } from 'primeng/calendar';
 import { CustomAdvanceFilterModule } from 'src/app/shared-components/custom-advance-filter/custom-advance-filter.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +33,6 @@ import { CustomAdvanceFilterModule } from 'src/app/shared-components/custom-adva
     ToastMessageComponent,
     ConfirmationModalComponent,
     PasswordChangeModalComponent,
-
   ],
   imports: [
     BrowserModule,

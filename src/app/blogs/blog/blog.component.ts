@@ -71,7 +71,7 @@ export class BlogComponent implements OnInit {
 
     if (this.blog._id) {
       this.type = 'edit';
-      this.getProductData();
+      this.getBlogsData();
     }
   }
 
@@ -86,7 +86,7 @@ export class BlogComponent implements OnInit {
       return { name: a };
     });
   }
-  getProductData() {
+  getBlogsData() {
     this.loading = true;
     return new Promise((resolve, reject) => {
       this.blogsService.getBlog({ _id: this.blog._id }).subscribe(

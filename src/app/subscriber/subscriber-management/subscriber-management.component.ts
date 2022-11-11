@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ProductService } from 'src/app/services/product.service';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { remove } from 'lodash-es';
@@ -7,35 +8,40 @@ import { environment } from 'src/environments/environment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
 import { Router } from '@angular/router';
-import { blogsService } from 'src/app/services/blog.service';
+
 @Component({
-  selector: 'app-blog-management',
-  templateUrl: './blog-management.component.html',
-  styleUrls: ['./blog-management.component.css'],
+  selector: 'app-subscriber-management',
+  templateUrl: './subscriber-management.component.html',
+  styleUrls: ['./subscriber-management.component.css'],
 })
-export class BlogManagementComponent implements OnInit {
+export class SubscriberManagementComponent implements OnInit {
   public loading: boolean = false;
+
   public filters: any = {};
   public slider_obj: any = {};
+
+  base_url = environment.url;
   public dialogType: string = 'add';
+
   public paginationValues: Subject<any> = new Subject();
   public table_data: any[] = [];
-  public recordLimit: number = 2;
+
+  public recordLimit: number = 10;
   public modalRef: BsModalRef;
-  base_url = environment.url;
   constructor(
-    private blogservice: blogsService,
+    private productService: ProductService,
     private commonHelper: CommonHelper,
     private _toastMessageService: ToastMessageService,
     private modalService: BsModalService,
     private router: Router
   ) {}
+
   ngOnInit(): void {
-    this.getAllData({ page: 1 });
+    this.getSlidersWithFilters({ page: 1 });
   }
 
-  getAllData(event) {
-    // this.loading = true;
+  getSlidersWithFilters(event) {
+    this.loading = true;
     return new Promise((resolve, reject) => {
       let params = {
         filters: {},
@@ -46,11 +52,20 @@ export class BlogManagementComponent implements OnInit {
       if (this.filters.searchtext) {
         params['filters']['searchtext'] = this.filters.searchtext;
       }
-      this.blogservice.getAllBlogs(params).subscribe(
+      this.productService.getAllSubscriber(params).subscribe(
         (res: any) => {
           if (res.status == 200 && res.data.slides) {
             this.table_data = [];
+
             this.table_data = JSON.parse(JSON.stringify(res.data.slides));
+            this.table_data.forEach((element) => {
+              element.collections = element.collections.map((a) => {
+                return a.name;
+              });
+              element.category = element.category.map((a) => {
+                return a.name;
+              });
+            });
             this.paginationValues.next({
               type: 'page-init',
               page: params.page,
@@ -71,31 +86,31 @@ export class BlogManagementComponent implements OnInit {
     });
   }
 
-  onClickAddBlog() {
-    this.router.navigate(['/blogs/add-blog']);
+  onClickAddProduct() {
+    this.router.navigate(['/subscriber/add-subscriber']);
   }
-  onClickEditBlog(blog) {
-    this.router.navigate(['/blogs/edit-blog/' + blog._id]);
+  onClickEditSlider(slider) {
+    this.router.navigate(['/subscriber/edit-subscriber/' + slider._id]);
   }
-  onClickDeleteBlog(blog) {
+  onClickDeleteSlider(slider) {
     this.modalRef = this.modalService.show(ConfirmationModalComponent, {
       class: 'confirmation-modal',
       backdrop: 'static',
       keyboard: false,
     });
     this.modalRef.content.decision = '';
-    this.modalRef.content.confirmation_text = `Are you sure to delete ${blog.title}?`;
+    this.modalRef.content.confirmation_text = `Are you sure you want to delete ${slider.subscriberName}?`;
     var tempSubObj: Subscription = this.modalService.onHide.subscribe(() => {
       if (this.modalRef.content.decision == 'done') {
         this.loading = true;
-        this.blogservice.deleteBlogs(blog._id).subscribe(
+        this.productService.deleteSubscriber(slider._id).subscribe(
           (res: any) => {
             this.loading = false;
             if (res.status == 200) {
-              remove(this.table_data, (ub: any) => ub._id == blog._id);
+              remove(this.table_data, (ub: any) => ub._id == slider._id);
               this._toastMessageService.alert(
                 'success',
-                'Product deleted successfully.'
+                'Subscriber deleted successfully.'
               );
             }
           },
