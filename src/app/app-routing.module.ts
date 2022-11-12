@@ -48,6 +48,20 @@ const routes: Routes = [
         loadChildren: () =>
           import('src/app/blogs/blogs.module').then((m) => m.BlogsModule),
       },
+      {
+        path: 'category',
+        loadChildren: () =>
+          import('src/app/category/category.module').then(
+            (m) => m.CategoryModule
+          ),
+      },
+      {
+        path: 'subscriber',
+        loadChildren: () =>
+          import('src/app/subscriber/subscriber.module').then(
+            (m) => m.SubscriberModule
+          ),
+      },
     ],
   },
   { path: '**', component: NotfoundComponent },

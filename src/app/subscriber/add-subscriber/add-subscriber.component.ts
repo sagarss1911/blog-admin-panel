@@ -1,14 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CollectionService } from 'src/app/services/Collection.service';
-import { ProductService } from 'src/app/services/product.service';
-import { CommonService } from 'src/app/services/common.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { findIndex } from 'lodash-es';
+import { SubscriberService } from 'src/app/services/subscriber.service';
 
 @Component({
   selector: 'app-add-subscriber',
@@ -16,7 +14,7 @@ import { findIndex } from 'lodash-es';
   styleUrls: ['./add-subscriber.component.css'],
 })
 export class AddSubscriberComponent implements OnInit {
-  product: any = { colors: [] };
+  subscriber: any = { colors: [] };
   base_url = environment.url;
   loading: boolean = false;
   collection_data = [];
@@ -35,26 +33,23 @@ export class AddSubscriberComponent implements OnInit {
   err = false;
 
   @ViewChild('CoverImageFile') CoverImageFile: any;
-  @ViewChild('productImageFile') productImageFile: any;
+  @ViewChild('subscriberImageFile') subscriberImageFile: any;
   @ViewChild('productcolorImageFile') productcolorImageFile: any;
   public modalRef: BsModalRef;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private productService: ProductService,
+    private subscriberService: SubscriberService,
     private _toastMessageService: ToastMessageService,
-    private modalService: BsModalService,
     private sanitizer: DomSanitizer,
-    private collectionService: CollectionService,
-    private commonHelper: CommonHelper,
-    private commonService: CommonService
+    private commonHelper: CommonHelper
   ) {}
 
   ngOnInit() {
-    this.product._id = this.activatedRoute.snapshot.paramMap.get('id')
+    this.subscriber._id = this.activatedRoute.snapshot.paramMap.get('id')
       ? this.activatedRoute.snapshot.paramMap.get('id')
       : '';
-    if (this.product._id) {
+    if (this.subscriber._id) {
       this.type = 'edit';
       this.getSubscriberData();
     }
@@ -62,31 +57,34 @@ export class AddSubscriberComponent implements OnInit {
   getSubscriberData() {
     this.loading = true;
     return new Promise((resolve, reject) => {
-      this.commonService.getSubscriber({ _id: this.product._id }).subscribe(
-        (res: any) => {
-          if (res.status == 200 && res.data) {
-            this.product = res.data;
-            this.product.subscriberName = res.data.subscriberName;
-            this.product.shortDescription = res.data.shortDescription;
-            this.product.location = res.data.location;
-            this.product.website = res.data.website;
-            this.product.facebookLink = res.data.facebookLink;
-            this.product.twitterLink = res.data.twitterLink;
-            this.already_uploadedurls = res.data.option_images
-              ? res.data.option_images
-              : [];
+      this.subscriberService
+        .getSubscriber({ _id: this.subscriber._id })
+        .subscribe(
+          (res: any) => {
+            if (res.status == 200 && res.data) {
+              this.subscriber = res.data;
+              this.subscriber.subscriberName = res.data.subscriberName;
+              this.subscriber.shortDescription = res.data.shortDescription;
+              this.subscriber.location = res.data.location;
+              this.subscriber.website = res.data.website;
+              this.subscriber.facebookLink = res.data.facebookLink;
+              this.subscriber.twitterLink = res.data.twitterLink;
+              this.already_uploadedurls = res.data.option_images
+                ? res.data.option_images
+                : [];
+            }
+            this.loading = false;
+            return resolve(true);
+          },
+          (error) => {
+            this.loading = false;
+            this.commonHelper.showError(error);
+            return resolve(false);
           }
-          this.loading = false;
-          return resolve(true);
-        },
-        (error) => {
-          this.loading = false;
-          this.commonHelper.showError(error);
-          return resolve(false);
-        }
-      );
+        );
     });
   }
+
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
@@ -127,99 +125,45 @@ export class AddSubscriberComponent implements OnInit {
         return a.baseimage;
       });
   }
-  getAllCollections() {
-    this.loading = true;
-    return new Promise((resolve, reject) => {
-      let params = {
-        page: 1,
-        limit: 100,
-      };
-      this.collectionService.getAllCollection(params).subscribe(
-        (res: any) => {
-          if (res.status == 200 && res.data.slides) {
-            this.collection_data = [];
-            this.collection_data = JSON.parse(JSON.stringify(res.data.slides));
-            this.collection_data = this.collection_data.map((a) => {
-              return { _id: a._id, name: a.name };
-            });
-          }
-          this.loading = false;
-          return resolve(true);
-        },
-        (error) => {
-          this.loading = false;
-          this.commonHelper.showError(error);
-          return resolve(false);
-        }
-      );
-    });
-  }
-
-  getAllCategory() {
-    this.loading = true;
-    return new Promise((resolve, reject) => {
-      let params = {
-        page: 1,
-        limit: 100,
-      };
-      this.commonService.getAllProductCategory(params).subscribe(
-        (res: any) => {
-          if (res.status == 200 && res.data) {
-            this.category_data = [];
-            this.category_data = JSON.parse(JSON.stringify(res.data));
-            this.category_data = this.category_data.map((a) => {
-              return { _id: a._id, name: a.name };
-            });
-          }
-          this.loading = false;
-          return resolve(true);
-        },
-        (error) => {
-          this.loading = false;
-          this.commonHelper.showError(error);
-          return resolve(false);
-        }
-      );
-    });
-  }
 
   onCLUpload(event) {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      this.product.productImageUrl = this.sanitizer.bypassSecurityTrustUrl(
-        URL.createObjectURL(event.target.files[0])
-      );
-      this.product.productImageFile = event.target.files[0];
-      this.product.newImageUploaded = true;
+      this.subscriber.subscriberImageUrl =
+        this.sanitizer.bypassSecurityTrustUrl(
+          URL.createObjectURL(event.target.files[0])
+        );
+      this.subscriber.subscriberImageFile = event.target.files[0];
+      this.subscriber.newImageUploaded = true;
     }
   }
 
   onCoverCLUpload(event) {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      this.product.CoverImageUrl = this.sanitizer.bypassSecurityTrustUrl(
+      this.subscriber.CoverImageUrl = this.sanitizer.bypassSecurityTrustUrl(
         URL.createObjectURL(event.target.files[0])
       );
-      this.product.CoverImageFile = event.target.files[0];
-      this.product.newcoverImageUploaded = true;
+      this.subscriber.CoverImageFile = event.target.files[0];
+      this.subscriber.newcoverImageUploaded = true;
     }
   }
   clearCoverCLFile() {
     this.CoverImageFile.nativeElement.value = '';
-    this.product.CoverImageUrl = '';
-    this.product.CoverImageFile = null;
-    this.product.newcoverImageUploaded = false;
+    this.subscriber.CoverImageUrl = '';
+    this.subscriber.CoverImageFile = null;
+    this.subscriber.newcoverImageUploaded = false;
   }
 
   clearCLFile() {
-    this.productImageFile.nativeElement.value = '';
-    this.product.productImageUrl = '';
-    this.product.productImageFile = null;
-    this.product.newImageUploaded = false;
+    this.subscriberImageFile.nativeElement.value = '';
+    this.subscriber.subscriberImageUrl = '';
+    this.subscriber.subscriberImageFile = null;
+    this.subscriber.newImageUploaded = false;
   }
 
   onClickCancel() {
-    this.router.navigate(['/products-options-pages/products']);
+    this.router.navigate(['/subscriber']);
   }
   onClickSave() {
     this.remaining_url = this.already_uploadedurls
@@ -233,33 +177,33 @@ export class AddSubscriberComponent implements OnInit {
 
     const data = new FormData();
     this.uploaded_files = [];
-    if (this.product.productImageFile) {
-      data.append('profileImage', this.product.productImageFile);
+    if (this.subscriber.subscriberImageFile) {
+      data.append('profileImage', this.subscriber.subscriberImageFile);
       this.uploaded_files.push({
-        imageactualname: this.product.productImageFile.name,
+        imageactualname: this.subscriber.subscriberImageFile.name,
         type: 'profileImage',
       });
     }
 
-    if (this.product.CoverImageFile) {
-      data.append('coverImage', this.product.CoverImageFile);
+    if (this.subscriber.CoverImageFile) {
+      data.append('coverImage', this.subscriber.CoverImageFile);
       this.uploaded_files.push({
-        imageactualname: this.product.CoverImageFile.name,
+        imageactualname: this.subscriber.CoverImageFile.name,
         type: 'coverImage',
       });
     }
 
     let params = {
-      _id: this.product._id,
-      subscriberName: this.product.subscriberName,
-      newImageUploaded: this.product.newImageUploaded,
+      _id: this.subscriber._id,
+      subscriberName: this.subscriber.subscriberName,
+      newImageUploaded: this.subscriber.newImageUploaded,
       files: this.files,
-      password: this.product.password,
-      shortDescription: this.product.shortDescription,
-      location: this.product.location,
-      website: this.product.website,
-      facebookLink: this.product.facebookLink,
-      twitterLink: this.product.twitterLink,
+      password: this.subscriber.password,
+      shortDescription: this.subscriber.shortDescription,
+      location: this.subscriber.location,
+      website: this.subscriber.website,
+      facebookLink: this.subscriber.facebookLink,
+      twitterLink: this.subscriber.twitterLink,
       uploaded_files: this.uploaded_files,
       remaining_url: this.remaining_url,
     };
@@ -267,7 +211,7 @@ export class AddSubscriberComponent implements OnInit {
     data.append('body', JSON.stringify(params));
 
     this.loading = true;
-    this.commonService.addSubscriber(data).subscribe(
+    this.subscriberService.addSubscriber(data).subscribe(
       (res: any) => {
         this.loading = false;
         if (res.status == 200 && res.data) {
@@ -275,7 +219,7 @@ export class AddSubscriberComponent implements OnInit {
             'success',
             'Registered successfully.'
           );
-          // this.router.navigate(['/products-options-pages/products']);
+          this.router.navigate(['/subscriber']);
         }
       },
       (error) => {

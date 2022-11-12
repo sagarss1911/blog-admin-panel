@@ -1,0 +1,109 @@
+
+<div class="container-fluid management-tab">
+    <!-- <ngx-loading [show]="loading"
+      [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
+    </ngx-loading> -->
+    <div class="row section-box">
+      <div class="col-12">
+        {{ type | titlecase }} category
+        <div>
+        </div>
+  
+        <div class="row">
+          <div class="col-12">
+            <form #f="ngForm" novalidate autocomplete="off">
+              <div class="row">
+  
+  
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="categoryName">Category Name <span class="c-red">*</span></label>
+                    <input type="text" class="form-control" id="fname" placeholder="Enter category Name" name="categoryName"
+                      #categoryName="ngModel" [(ngModel)]="category.categoryName" required
+                      [class.is-invalid]="f.submitted && categoryName.invalid">
+                    <div class="alert alert-danger" *ngIf="(categoryName.touched || f.submitted) && categoryName.invalid">
+                      <p>Category Name can't be blank.</p>
+                    </div>
+                  </div>
+  
+                </div>
+  
+    
+
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="productname">Parent Category <span class="c-red">*</span></label>
+                    <p-dropdown name="parentCategory" #parentcollection="ngModel" [options]="parentCategory" placeholder="Select Category"
+                      [(ngModel)]="category.parentCategory" optionLabel="name" optionValue="_id">
+                    </p-dropdown>
+                  </div>
+                </div>
+  
+
+  
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="collectionname">SEO Title <span class="c-red">*</span></label>
+                    <input type="text" class="form-control" id="seoTitle" placeholder="Enter SEO Title" name="seoTitle"
+                      #seoTitle="ngModel" [(ngModel)]="category.seoTitle" required
+                      [class.is-invalid]="f.submitted && seoTitle.invalid">
+                    <div class="alert alert-danger" *ngIf="(seoTitle.touched || f.submitted) && seoTitle.invalid">
+                      <p>SEO Title can't be blank.</p>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="collectionname">SEO Description <span class="c-red">*</span></label>
+                    <input type="text" class="form-control" id="seoDescription" placeholder="Enter SEO Description"
+                      name="seoDescription" #seoDescription="ngModel" [(ngModel)]="category.seoDescription" required
+                      [class.is-invalid]="f.submitted && seoDescription.invalid">
+                    <div class="alert alert-danger"
+                      *ngIf="(seoDescription.touched || f.submitted) && seoDescription.invalid">
+                      <p>SEO Description can't be blank.</p>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="collectiontext">SEO Keywords <span class="c-red">*</span></label>
+                    <input type="text" class="form-control" id="seoKeyword" placeholder="Enter Keywords" name="seoKeyword"
+                      #seoKeyword="ngModel" [(ngModel)]="category.seoKeyword" required
+                      [class.is-invalid]="f.submitted && seoKeyword.invalid">
+                    <div class="alert alert-danger" *ngIf="(seoKeyword.touched || f.submitted) && seoKeyword.invalid">
+                      <p>Keywords Text can't be blank.</p>
+                    </div>
+                  </div>
+                </div>
+  
+  
+ 
+  
+  
+              </div>
+              <div class="row mt-4 mb-4">
+                <div class="col-12">
+                  <button *ngIf="!category._id"
+                    [disabled]="f.invalid" type="submit"
+                    class="btn green-btn" (click)="onClickSave()">Save Category</button>
+                  <button *ngIf="category._id" [disabled]="f.invalid " type="submit"
+                    class="btn green-btn" (click)="onClickSave()">Update category</button>
+                  <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
+                </div>
+              </div>
+            </form>
+            <div>
+            </div>
+  
+  
+            <!--  -->
+  
+            <!-- <app-footer></app-footer> -->
+          </div>
+          <!-- End of Footer -->
+  
+  
+  
+  

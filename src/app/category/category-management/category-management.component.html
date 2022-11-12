@@ -1,31 +1,28 @@
 
-  <div class="container-fluid management-tab">
-    <ngx-loading [show]="loading"
-      [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
-    </ngx-loading>
-  
+<div class="container-fluid management-tab">
+   
     <div class="row" style="justify-content: space-between;margin:0px;margin-bottom: 2rem;">
-      <h1 class="h3 page-title">Subscriber</h1>
+      <h1 class="h3 page-title">Category</h1>
       <div>
-        <div class="btn green-btn" (click)="onClickAddSubscriber();">
+        <div class="btn green-btn" (click)="onClickAddCategory();">
           <span class="dib mr-2"><i class="fas fa-plus"></i></span>
-          <div class="dib">Register Subscriber</div>
+          <div class="dib">Add Category</div>
         </div>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-12 col-xl-3 col-md-6">
         <div class="form-group">
-          <input type="text" class="form-control" id="searchtext" name="searchtext" placeholder="Search by subscriber name"
+          <input type="text" class="form-control" id="searchtext" name="searchtext" placeholder="Search by category name"
             #searchtext="ngModel" [(ngModel)]="filters.searchtext">
         </div>
       </div>
       <div class="col-12 col-xl-6 col-md-6">
         <div class="form-group">
-          <div class="btn blue-btn" (click)="getSubscriberWithFilter({'page':1});">
+          <div class="btn blue-btn" (click)="getSlidersWithFilters({'page':1});">
             <div class="dib">Search</div>
           </div>
-          <div class="btn gray-btn ml-3" (click)="filters={};getSubscriberWithFilter({'page':1});">
+          <div class="btn gray-btn ml-3" (click)="filters={};getSlidersWithFilters({'page':1});">
             <div class="dib">Reset</div>
           </div>
         </div>
@@ -38,54 +35,42 @@
             <thead class="c-table-header">
               <tr class="c-table-row c-table-row-header">
                 <div style="width: 5px;"></div>
+              
                 <th class="c-table-cell c-table-header-cell text-pull-left">
-                  Profile Image
+                  Category Name
                 </th>
                 <th class="c-table-cell c-table-header-cell text-pull-left">
-                  Cover Image
+         Parent category Id
                 </th>
                 <th class="c-table-cell c-table-header-cell text-pull-left">
-                  Subscriber Name
+                  Seo Title
                 </th>
                 <th class="c-table-cell c-table-header-cell text-pull-left">
-                  Short Description
+                  Seo Description
                 </th>
                 <th class="c-table-cell c-table-header-cell text-pull-left">
-                  Location
+                  Seo Keyword
                 </th>
-                <th class="c-table-cell c-table-header-cell text-pull-left">
-                  Website
-                </th>  
-                <th class="c-table-cell c-table-header-cell text-pull-left">
-                  Facebook Link
-                </th>
-                <th class="c-table-cell c-table-header-cell text-pull-left">
-                  Twitter Link
-                </th>
-                
                 <th class="c-table-cell c-table-header-cell text-pull-right">Actions</th>
               </tr>
             </thead>
             <tbody class="c-table-body" *ngIf="table_data && table_data.length>0">
               <tr class="c-table-row" *ngFor="let tab_data of table_data; let i=index;">
                 <div style="width: 5px;"></div>
-                <td class="c-table-cell c-table-body-cell text-pull-left"><img height="100"
-                    [src]="base_url +'/'+ tab_data.profileImage"></td>
-                    <td class="c-table-cell c-table-body-cell text-pull-left"><img height="100"
-                      [src]="base_url +'/'+ tab_data.coverImage"></td>
-                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.subscriberName)}}</td>
-                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.shortDescription)}}</td>
-                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.location)}}</td>
-                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.website)}}</td>
-                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.facebookLink)}}</td>
-                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.twitterLink)}}</td>
-               
+             
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.categoryName)}}</td>
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{tab_data.parentCategory.length ? tab_data.parentCategory[0].categoryName :
+                  "" }}</td>
+              
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.seoTitle)}}</td>
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.seoDescription)}}</td>
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.seoKeyword)}}</td>
                 <td class="c-table-cell c-table-body-cell text-pull-right">
-                  <div class="action-btn" title="Edit Subscriber" (click)="onClickEditSubscriber(tab_data)"
+                  <div class="action-btn" title="Edit Category" (click)="onClickEditCategory(tab_data)"
                     style="color: #3985fc">
                     <i class="fa fa-edit"></i>
                   </div>
-                  <div class="action-btn" title="Delete Subscriber" (click)="onClickDeleteSubscriber(tab_data)"
+                  <div class="action-btn" title="Delete Category" (click)="onClickDeleteCategory(tab_data)"
                     style="color: #ff5151">
                     <i class="fa fa-trash"></i>
                   </div>
@@ -103,7 +88,7 @@
         </div>
         <div>
           <div class="share-pagination">
-            <app-shared-pagination [paginationValues]="paginationValues" (onChange)="getSubscriberWithFilter($event)">
+            <app-shared-pagination [paginationValues]="paginationValues" (onChange)="getSlidersWithFilters($event)">
             </app-shared-pagination>
           </div>
         </div>
@@ -113,5 +98,4 @@
     <app-footer></app-footer>
     <!-- End of Footer -->
   
-
-    
+  

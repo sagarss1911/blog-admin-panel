@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { remove } from 'lodash-es';
@@ -38,7 +37,7 @@ export class PlaceManagementComponent implements OnInit {
   }
 
   getPlaceswithFilters(event) {
-    // this.loading = true;
+    this.loading = true;
     return new Promise((resolve, reject) => {
       let params = {
         filters: {},
