@@ -46,6 +46,7 @@ td.pr1 {
   flex-direction: row;
   text-align: left;
   width: 50%;
+  height: 20rem;
   margin-bottom: 0.8rem;
 }
 .checkboxmargin {

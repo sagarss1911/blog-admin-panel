@@ -10,13 +10,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('src/app/login/login.module').then((m) => m.LoginModule),
   },
-  {
-    path: 'reset-password',
-    loadChildren: () =>
-      import('src/app/reset-password/reset-password.module').then(
-        (m) => m.ResetPasswordModule
-      ),
-  },
+  // {
+  //   path: 'reset-password',
+  //   loadChildren: () =>
+  //     import('src/app/reset-password/reset-password.module').then(
+  //       (m) => m.ResetPasswordModule
+  //     ),
+  // },
   {
     path: '',
     component: NavbarComponent,
@@ -31,24 +31,29 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'admin-users',
+        loadChildren: () =>
+          import('src/app/admin-users/admin-users.module').then(
+            (m) => m.AdminUsersModule
+          ),
+      },
+      {
+        path: 'places',
+        loadChildren: () =>
+          import('src/app/place/place.module').then((m) => m.PlaceModule),
+      },
+
+      {
+        path: 'blogs',
+        loadChildren: () =>
+          import('src/app/blogs/blogs.module').then((m) => m.BlogsModule),
+      },
+      {
         path: 'category',
         loadChildren: () =>
           import('src/app/category/category.module').then(
             (m) => m.CategoryModule
           ),
-      },
-
-      // {
-      //   path: 'places1',
-      //   loadChildren: () =>
-      //     import('src/app/admin-users/admin-users.module').then(
-      //       (m) => m.AdminUsersModule
-      //     ),
-      // },
-      {
-        path: 'places',
-        loadChildren: () =>
-          import('src/app/place/place.module').then((m) => m.PlaceModule),
       },
       {
         path: 'subscriber',
