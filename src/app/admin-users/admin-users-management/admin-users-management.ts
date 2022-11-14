@@ -35,6 +35,7 @@ export class AdminUsersManagementComponent implements OnInit {
     this.getUsersWithFilters({ page: 1 });
   }
 
+  //sending filetrs and pagination value to fetch the admin list
   getUsersWithFilters(event) {
     this.loading = true;
     return new Promise((resolve, reject) => {
@@ -47,12 +48,10 @@ export class AdminUsersManagementComponent implements OnInit {
       if (this.filters.searchtext) {
         params['filters']['searchtext'] = this.filters.searchtext;
       }
-
       this.AdminUserService.getUserData(params).subscribe(
         (res: any) => {
           if (res.status == 200) {
             this.table_data = [];
-            console.log(res);
             this.user_list = res.data.adminList;
             this.paginationValues.next({
               type: 'page-init',
@@ -80,6 +79,8 @@ export class AdminUsersManagementComponent implements OnInit {
   onClickEditUser(user) {
     this.router.navigate(['/admin-users/edit-user/' + user._id]);
   }
+
+  //deleting a particular admin by sending its id
   onClickDeleteUser(user) {
     this.modalRef = this.modalService.show(ConfirmationModalComponent, {
       class: 'confirmation-modal',

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
-// import { CommonService } from 'src/app/services/common.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
@@ -13,7 +12,7 @@ import { PlaceService } from 'src/app/services/place.service';
   styleUrls: ['./add-place.component.css'],
 })
 export class AddPlaceComponent implements OnInit {
-  place: any = { colors: [] };
+  place: any = {};
   base_url = environment.url;
   loading: boolean = false;
   urls = [];
@@ -23,7 +22,6 @@ export class AddPlaceComponent implements OnInit {
 
   @ViewChild('placeImageFile') placeImageFile: any;
   @ViewChild('mapImageFile') mapImageFile: any;
-  @ViewChild('productcolorImageFile') productcolorImageFile: any;
   public modalRef: BsModalRef;
   constructor(
     private router: Router,
@@ -31,7 +29,6 @@ export class AddPlaceComponent implements OnInit {
     private _toastMessageService: ToastMessageService,
     private sanitizer: DomSanitizer,
     private commonHelper: CommonHelper,
-    // private commonService: CommonService,
     private placeService: PlaceService
   ) {}
 
@@ -47,12 +44,10 @@ export class AddPlaceComponent implements OnInit {
   getPlaceData() {
     this.loading = true;
     return new Promise((resolve, reject) => {
-      this.placeService.getPlace({ _id: this.place._id }).subscribe(
+      this.placeService.getPlace(this.place._id).subscribe(
         (res: any) => {
           if (res.status == 200 && res.data) {
             this.place = res.data;
-            this.place.active =
-              this.place.active && this.place.active == true ? true : false;
           }
           this.loading = false;
           return resolve(true);
@@ -73,7 +68,6 @@ export class AddPlaceComponent implements OnInit {
         URL.createObjectURL(event.target.files[0])
       );
       this.place.placeImageFile = event.target.files[0];
-      this.place.newImageUploaded = true;
     }
   }
 
@@ -84,21 +78,18 @@ export class AddPlaceComponent implements OnInit {
         URL.createObjectURL(event.target.files[0])
       );
       this.place.mapImageFile = event.target.files[0];
-      this.place.newmapImageUploaded = true;
     }
   }
   clearMapFile() {
     this.mapImageFile.nativeElement.value = '';
     this.place.mapImageUrl = '';
     this.place.mapImageFile = null;
-    this.place.newmapImageUploaded = false;
   }
 
   clearImageFile() {
     this.placeImageFile.nativeElement.value = '';
     this.place.placeImageUrl = '';
     this.place.placeImageFile = null;
-    this.place.newImageUploaded = false;
   }
 
   onClickCancel() {

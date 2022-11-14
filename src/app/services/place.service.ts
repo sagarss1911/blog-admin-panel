@@ -8,7 +8,7 @@ export class PlaceService {
   private addPlaceUrl = environment.url + '/api/place/add_places';
   private getAllPlaceUrl = environment.url + '/api/place/get_all_place';
   private deletePlaceUrl = environment.url + '/api/place/remove_place/';
-  private getPlaceUrl = environment.url + '/api/place/get_place';
+  private getPlaceUrl = environment.url + '/api/place/get_place/';
   constructor(private http: HttpClient) {}
   getHeader(): HttpHeaders {
     let headers = new HttpHeaders({
@@ -17,10 +17,8 @@ export class PlaceService {
     return headers;
   }
 
-  getPlace(data) {
-    console.log(data, 'service');
-
-    return this.http.post(this.getPlaceUrl, data, {
+  getPlace(id) {
+    return this.http.get(this.getPlaceUrl + id, {
       headers: this.getHeader(),
     });
   }

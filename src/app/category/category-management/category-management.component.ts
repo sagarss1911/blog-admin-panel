@@ -4,7 +4,6 @@ import { remove } from 'lodash-es';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
 import { CommonHelper } from 'src/app/helpers/common.helper';
-
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { environment } from 'src/environments/environment';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
@@ -41,9 +40,9 @@ export class CategoryManagementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getSlidersWithFilters({ page: 1 });
+    this.getCategoryWithFilters({ page: 1 });
   }
-  getSlidersWithFilters(event) {
+  getCategoryWithFilters(event) {
     this.loading = true;
     return new Promise((resolve, reject) => {
       let params = {
@@ -57,25 +56,14 @@ export class CategoryManagementComponent implements OnInit {
       }
       this.categoryService.getAllCategory(params).subscribe(
         (res: any) => {
-          console.log(res.data, 'this is get response');
-
           this.table_data = res.data;
-          console.log(this.table_data);
-          if (res.status == 200 && res.data.slides) {
+
+          if (res.status == 200 && res.data.categoryList) {
             this.table_data = [];
 
             this.table_data = res.data;
-            console.log(this.table_data);
 
-            this.table_data = JSON.parse(JSON.stringify(res.data.slides));
-            // this.table_data.forEach((element) => {
-            //   element.collections = element.collections.map((a) => {
-            //     return a.name;
-            //   });
-            //   element.category = element.category.map((a) => {
-            //     return a.name;
-            //   });
-            // });
+            this.table_data = JSON.parse(JSON.stringify(res.data.categoryList));
             this.paginationValues.next({
               type: 'page-init',
               page: params.page,
@@ -97,15 +85,14 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   onClickAddCategory() {
-    // this.router.navigate(['/admin-users/add-user']);
     this.router.navigate(['/category/add-category']);
   }
   onClickEditCategory(category) {
     this.router.navigate(['/category/edit-category/' + category._id]);
   }
 
+  //Delete category
   onClickDeleteCategory(category) {
-    console.log(category);
     this.modalRef = this.modalService.show(ConfirmationModalComponent, {
       class: 'confirmation-modal',
       backdrop: 'static',
@@ -118,7 +105,6 @@ export class CategoryManagementComponent implements OnInit {
         this.loading = true;
         this.categoryService.deleteCategory(category._id).subscribe(
           (res: any) => {
-            console.log(res);
             this.loading = false;
             if (res.status == 200) {
               remove(this.table_data, (ub: any) => ub._id == category._id);
@@ -126,7 +112,6 @@ export class CategoryManagementComponent implements OnInit {
                 'success',
                 'Category deleted successfully.'
               );
-              this.router.navigate(['/category']);
             }
           },
           (error) => {

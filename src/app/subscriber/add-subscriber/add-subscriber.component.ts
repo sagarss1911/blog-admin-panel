@@ -17,24 +17,17 @@ export class AddSubscriberComponent implements OnInit {
   subscriber: any = { colors: [] };
   base_url = environment.url;
   loading: boolean = false;
-  collection_data = [];
   urls = [];
   already_uploadedurls = [];
   remaining_url = [];
   uploaded_files = [];
-  category_data = [];
-  color_data = [];
-  thickness_data = [];
-  length_data = [];
   files = [];
-  material_data = [];
   type = 'add';
   imgclr = false;
   err = false;
 
   @ViewChild('CoverImageFile') CoverImageFile: any;
   @ViewChild('subscriberImageFile') subscriberImageFile: any;
-  @ViewChild('productcolorImageFile') productcolorImageFile: any;
   public modalRef: BsModalRef;
   constructor(
     private router: Router,
@@ -54,34 +47,34 @@ export class AddSubscriberComponent implements OnInit {
       this.getSubscriberData();
     }
   }
+
+  //Get subscriber by _id
   getSubscriberData() {
     this.loading = true;
     return new Promise((resolve, reject) => {
-      this.subscriberService
-        .getSubscriber({ _id: this.subscriber._id })
-        .subscribe(
-          (res: any) => {
-            if (res.status == 200 && res.data) {
-              this.subscriber = res.data;
-              this.subscriber.subscriberName = res.data.subscriberName;
-              this.subscriber.shortDescription = res.data.shortDescription;
-              this.subscriber.location = res.data.location;
-              this.subscriber.website = res.data.website;
-              this.subscriber.facebookLink = res.data.facebookLink;
-              this.subscriber.twitterLink = res.data.twitterLink;
-              this.already_uploadedurls = res.data.option_images
-                ? res.data.option_images
-                : [];
-            }
-            this.loading = false;
-            return resolve(true);
-          },
-          (error) => {
-            this.loading = false;
-            this.commonHelper.showError(error);
-            return resolve(false);
+      this.subscriberService.getSubscriber(this.subscriber._id).subscribe(
+        (res: any) => {
+          if (res.status == 200 && res.data) {
+            this.subscriber = res.data;
+            this.subscriber.subscriberName = res.data.subscriberName;
+            this.subscriber.shortDescription = res.data.shortDescription;
+            this.subscriber.location = res.data.location;
+            this.subscriber.website = res.data.website;
+            this.subscriber.facebookLink = res.data.facebookLink;
+            this.subscriber.twitterLink = res.data.twitterLink;
+            this.already_uploadedurls = res.data.option_images
+              ? res.data.option_images
+              : [];
           }
-        );
+          this.loading = false;
+          return resolve(true);
+        },
+        (error) => {
+          this.loading = false;
+          this.commonHelper.showError(error);
+          return resolve(false);
+        }
+      );
     });
   }
 
@@ -165,6 +158,8 @@ export class AddSubscriberComponent implements OnInit {
   onClickCancel() {
     this.router.navigate(['/subscriber']);
   }
+
+  //Add new subscriber
   onClickSave() {
     this.remaining_url = this.already_uploadedurls
       .filter((fl) => {
@@ -217,7 +212,7 @@ export class AddSubscriberComponent implements OnInit {
         if (res.status == 200 && res.data) {
           this._toastMessageService.alert(
             'success',
-            'Registered successfully.'
+            'Subscriber Registered Successfully.'
           );
           this.router.navigate(['/subscriber']);
         }

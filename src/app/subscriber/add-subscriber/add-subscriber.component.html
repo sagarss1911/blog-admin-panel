@@ -28,7 +28,7 @@
                 <div class="col-12 col-xl-3 col-md-4">
                   <div class="form-group">
                     <label for="password">Password <span class="c-red">*</span></label>
-                    <input type="text" class="form-control" id="password" placeholder="Enter Password" name="password"
+                    <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password"
                       #password="ngModel" [(ngModel)]="subscriber.password" required
                       [class.is-invalid]="f.submitted && password.invalid">
                     <div class="alert alert-danger" *ngIf="(password.touched || f.submitted) && password.invalid">

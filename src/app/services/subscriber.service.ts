@@ -13,10 +13,8 @@ export class SubscriberService {
     environment.url + '/api/subscriber/get_all_subscriber';
   private deleteSubscriberUrl =
     environment.url + '/api/subscriber/remove_subscriber/';
-  private getSubscriberUrl = environment.url + '/api/subscriber/get_subscriber';
-
-  // private addSubscriberUrl = environment.url + '/api/subscriber/add_subscriber';
-  // private getSubscriberUrl = environment.url + '/api/subscriber/get_subscriber';
+  private getSubscriberUrl =
+    environment.url + '/api/subscriber/get_subscriber/';
 
   constructor(private http: HttpClient) {}
 
@@ -27,20 +25,8 @@ export class SubscriberService {
     return headers;
   }
 
-  // addSubscriber(data: any) {
-  //   return this.http.post(this.addSubscriberUrl, data, {
-  //     headers: this.getHeader(),
-  //   });
-  // }
-
-  // getSubscriber(data: any) {
-  //   return this.http.post(this.getSubscriberUrl, data, {
-  //     headers: this.getHeader(),
-  //   });
-  // }
-
-  getSubscriber(data: any) {
-    return this.http.post(this.getSubscriberUrl, data, {
+  getSubscriber(id) {
+    return this.http.get(this.getSubscriberUrl + id, {
       headers: this.getHeader(),
     });
   }
