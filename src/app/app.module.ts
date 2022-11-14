@@ -23,6 +23,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CalendarModule } from 'primeng/calendar';
 import { CustomAdvanceFilterModule } from 'src/app/shared-components/custom-advance-filter/custom-advance-filter.module';
+import { CapitalizePipe } from './capitalize.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CustomAdvanceFilterModule } from 'src/app/shared-components/custom-adva
     ToastMessageComponent,
     ConfirmationModalComponent,
     PasswordChangeModalComponent,
+    CapitalizePipe,
   ],
   imports: [
     BrowserModule,
