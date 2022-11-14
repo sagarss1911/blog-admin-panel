@@ -296,12 +296,7 @@
                   ></p-multiSelect>
                   <div
                     class="alert alert-danger"
-                    *ngIf="
-                      collection.touched &&
-                      (collection.invalid ||
-                        !blog.categoryIds ||
-                        blog.categoryIds.length == 0)
-                    "
+                    *ngIf="!blog.categoryIds || blog.categoryIds.length == 0"
                   >
                     <div>Select category</div>
                   </div>
