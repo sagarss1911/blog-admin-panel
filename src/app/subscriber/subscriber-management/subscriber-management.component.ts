@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { remove } from 'lodash-es';
@@ -41,6 +40,7 @@ export class SubscriberManagementComponent implements OnInit {
     this.getSubscriberWithFilter({ page: 1 });
   }
 
+  // Get complete list of subscribers
   getSubscriberWithFilter(event) {
     this.loading = true;
     return new Promise((resolve, reject) => {
@@ -55,11 +55,11 @@ export class SubscriberManagementComponent implements OnInit {
       }
       this.subscriberService.getAllSubscriber(params).subscribe(
         (res: any) => {
-          if (res.status == 200 && res.data.slides) {
+          if (res.status == 200 && res.data.subscriberList) {
             this.table_data = [];
-
-            this.table_data = JSON.parse(JSON.stringify(res.data.slides));
-
+            this.table_data = JSON.parse(
+              JSON.stringify(res.data.subscriberList)
+            );
             this.paginationValues.next({
               type: 'page-init',
               page: params.page,
@@ -86,6 +86,8 @@ export class SubscriberManagementComponent implements OnInit {
   onClickEditSubscriber(subscriber) {
     this.router.navigate(['/subscriber/edit-subscriber/' + subscriber._id]);
   }
+
+  //Delete Subscriber
   onClickDeleteSubscriber(subscriber) {
     this.modalRef = this.modalService.show(ConfirmationModalComponent, {
       class: 'confirmation-modal',
