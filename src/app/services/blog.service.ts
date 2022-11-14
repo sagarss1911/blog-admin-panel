@@ -7,15 +7,11 @@ import { environment } from '../../environments/environment';
 })
 export class blogsService {
   private addProductUrl = environment.url + '/api/blogs/add_blog';
-  // private addProductUrl = environment.url + '/api/blog/add_blog';
+
   private updateProductUrl = environment.url + '/api/blogs/update_blog/';
   private getAllProductUrl = environment.url + '/api/blogs/get_all_blog';
   private deleteProductUrl = environment.url + '/api/blogs/remove_blog/';
-  private getProductUrl = environment.url + '/api/blogs/get_blog';
-  // private getProductUrl = environment.url + '/api/blogs/add_product';
-
-  // private getAboutUsUrl = environment.url + '/api/about_us/get_about_us';
-  // private addAboutUsUrl = environment.url + '/api/about_us/add_about_us';
+  private getProductUrl = environment.url + '/api/blogs/get_blog/';
 
   constructor(private http: HttpClient) {}
   getHeader(): HttpHeaders {
@@ -25,8 +21,10 @@ export class blogsService {
     return headers;
   }
 
-  getBlog(data) {
-    return this.http.post(this.getProductUrl, data, {
+  getBlog(id) {
+    console.log(this.getProductUrl + id);
+
+    return this.http.get(this.getProductUrl + id, {
       headers: this.getHeader(),
     });
   }
@@ -47,6 +45,7 @@ export class blogsService {
     });
   }
   deleteBlogs(id) {
+    console.log(this.deleteProductUrl + id);
     return this.http.delete(this.deleteProductUrl + id, {
       headers: this.getHeader(),
     });

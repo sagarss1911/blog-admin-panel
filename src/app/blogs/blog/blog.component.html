@@ -1,6 +1,15 @@
 <div class="container-fluid management-tab">
-  <ngx-loading [show]="loading"
-    [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
+  <ngx-loading
+    [show]="loading"
+    [config]="{
+      backdropBorderRadius: '14px',
+      fullScreenBackdrop: true,
+      backdropBackgroundColour: 'rgba(255,255,255, 0.01)',
+      primaryColour: '#005eff',
+      secondaryColour: '#005eff',
+      tertiaryColour: '#005eff'
+    }"
+  >
   </ngx-loading>
   <div class="row section-box">
     <div class="col-12">
@@ -9,15 +18,33 @@
 
       <div class="row">
         <div class="col-12">
-          <form #f="ngForm" (submit)="onClickSave(f)" novalidate autocomplete="off">
+          <form
+            #f="ngForm"
+            (submit)="onClickSave(f)"
+            novalidate
+            autocomplete="off"
+          >
             <div class="row">
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="blogTitle">title <span class="c-red">*</span></label>
-                  <input type="text" class="form-control" id="title" placeholder="Enter blog title" name="title"
-                    #title="ngModel" [(ngModel)]="blog.title" required
-                    [class.is-invalid]="f.submitted && title.invalid" />
-                  <div class="alert alert-danger" *ngIf="(title.touched || f.submitted) && title.invalid">
+                  <label for="blogTitle"
+                    >title <span class="c-red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    placeholder="Enter blog title"
+                    name="title"
+                    #title="ngModel"
+                    [(ngModel)]="blog.title"
+                    required
+                    [class.is-invalid]="f.submitted && title.invalid"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="(title.touched || f.submitted) && title.invalid"
+                  >
                     <p>Product Name can't be blank.</p>
                   </div>
                 </div>
@@ -25,12 +52,26 @@
               </div>
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="productname">blog Slug <span class="c-red">*</span></label>
+                  <label for="productname"
+                    >blog Slug <span class="c-red">*</span></label
+                  >
                   <!-- s -->
-                  <input type="text" class="form-control" id="fname" placeholder="Enter blog Slug" name="slug"
-                    #slug="ngModel" [(ngModel)]="blog.slug" required [class.is-invalid]="f.submitted && slug.invalid"
-                    (keyup)="generateSlug($event)" />
-                  <div class="alert alert-danger" *ngIf="(slug.touched || f.submitted) && slug.invalid">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fname"
+                    placeholder="Enter blog Slug"
+                    name="slug"
+                    #slug="ngModel"
+                    [(ngModel)]="blog.slug"
+                    required
+                    [class.is-invalid]="f.submitted && slug.invalid"
+                    (keyup)="generateSlug($event)"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="(slug.touched || f.submitted) && slug.invalid"
+                  >
                     <p>slug Name can't be blank.</p>
                   </div>
                 </div>
@@ -39,12 +80,26 @@
               <!-- s -->
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="Blogname">Small Discription <span class="c-red">*</span></label>
+                  <label for="Blogname"
+                    >Small Discription <span class="c-red">*</span></label
+                  >
                   <!--  -->
-                  <input type="text" class="form-control" id="fname" placeholder="Enter small Discription"
-                    name="smallDiscription" #smallDiscription="ngModel" [(ngModel)]="blog.smallDiscription" required
-                    [class.is-invalid]="f.submitted && smallDiscription.invalid" (keyup)="generateSlug($event)" />
-                  <div class="alert alert-danger" *ngIf="(slug.touched || f.submitted) && slug.invalid">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fname"
+                    placeholder="Enter small Discription"
+                    name="smallDiscription"
+                    #smallDiscription="ngModel"
+                    [(ngModel)]="blog.smallDiscription"
+                    required
+                    [class.is-invalid]="f.submitted && smallDiscription.invalid"
+                    (keyup)="generateSlug($event)"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="(slug.touched || f.submitted) && slug.invalid"
+                  >
                     <p>Small Discription can't be blank.</p>
                   </div>
                 </div>
@@ -53,11 +108,26 @@
               <!--s  -->
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectionname">SEO title <span class="c-red">*</span></label>
-                  <input type="text" class="form-control" id="seotitle" placeholder="Enter SEO title" name="seotitle"
-                    #seotitle="ngModel" [(ngModel)]="blog.seoTitle" required
-                    [class.is-invalid]="f.submitted && seotitle.invalid" />
-                  <div class="alert alert-danger" *ngIf="(seotitle.touched || f.submitted) && seotitle.invalid">
+                  <label for="collectionname"
+                    >SEO title <span class="c-red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="seotitle"
+                    placeholder="Enter SEO title"
+                    name="seotitle"
+                    #seotitle="ngModel"
+                    [(ngModel)]="blog.seoTitle"
+                    required
+                    [class.is-invalid]="f.submitted && seotitle.invalid"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      (seotitle.touched || f.submitted) && seotitle.invalid
+                    "
+                  >
                     <p>SEO title can't be blank.</p>
                   </div>
                 </div>
@@ -65,23 +135,53 @@
               <!--  -->
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectionname">SEO Description <span class="c-red">*</span></label>
-                  <input type="text" class="form-control" id="seodescription" placeholder="Enter SEO Description"
-                    name="seodescription" #seodescription="ngModel" [(ngModel)]="blog.seoDescription" required
-                    [class.is-invalid]="f.submitted && seodescription.invalid" />
-                  <div class="alert alert-danger"
-                    *ngIf="(seodescription.touched || f.submitted) && seodescription.invalid">
+                  <label for="collectionname"
+                    >SEO Description <span class="c-red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="seodescription"
+                    placeholder="Enter SEO Description"
+                    name="seodescription"
+                    #seodescription="ngModel"
+                    [(ngModel)]="blog.seoDescription"
+                    required
+                    [class.is-invalid]="f.submitted && seodescription.invalid"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      (seodescription.touched || f.submitted) &&
+                      seodescription.invalid
+                    "
+                  >
                     <p>SEO Description can't be blank.</p>
                   </div>
                 </div>
               </div>
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectiontext">SEO Keywords <span class="c-red">*</span></label>
-                  <input type="text" class="form-control" id="seokeyword" placeholder="Enter Keywords" name="seokeyword"
-                    #seokeyword="ngModel" [(ngModel)]="blog.seoKeyword" required
-                    [class.is-invalid]="f.submitted && seokeyword.invalid" />
-                  <div class="alert alert-danger" *ngIf="(seokeyword.touched || f.submitted) && seokeyword.invalid">
+                  <label for="collectiontext"
+                    >SEO Keywords <span class="c-red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="seokeyword"
+                    placeholder="Enter Keywords"
+                    name="seokeyword"
+                    #seokeyword="ngModel"
+                    [(ngModel)]="blog.seoKeyword"
+                    required
+                    [class.is-invalid]="f.submitted && seokeyword.invalid"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      (seokeyword.touched || f.submitted) && seokeyword.invalid
+                    "
+                  >
                     <p>Keywords Text can't be blank.</p>
                   </div>
                 </div>
@@ -99,27 +199,45 @@
                   <div class="uploaded-file-block" *ngIf="blog.productImageUrl">
                     <div class="file-detail-wrap">
                       <div class="uimage">
-                        <img style="height: 200px; width: 500px" [src]="blog.productImageUrl" />
+                        <img
+                          style="height: 200px; width: 500px"
+                          [src]="blog.productImageUrl"
+                        />
                       </div>
                       <div class="close-btn-wrapper" (click)="clearCLFile()">
                         <i class="fa fa-times-circle" aria-hidden="true"></i>
                       </div>
                     </div>
                   </div>
-                  <div class="uploaded-file-block" *ngIf="blog.image && !blog.productImageUrl">
+                  <div
+                    class="uploaded-file-block"
+                    *ngIf="blog.image && !blog.productImageUrl"
+                  >
                     <div class="file-detail-wrap">
                       <div class="uimage">
-                        <img style="height: 200px; width: 500px" [src]="base_url+'/'+blog.image" />
+                        <img
+                          style="height: 200px; width: 500px"
+                          [src]="base_url + '/' + blog.image"
+                        />
                       </div>
                     </div>
                   </div>
-                  <button type="button" class="btn dark-blue-btn" (click)="productImageFile.click()">
+                  <button
+                    type="button"
+                    class="btn dark-blue-btn"
+                    (click)="productImageFile.click()"
+                  >
                     <div>
                       <i class="fa fa-plus" aria-hidden="true"></i>
                       Upload
                     </div>
-                    <input #productImageFile type="file" (change)="onCLUpload($event)" accept="image/*"
-                      style="display: none" />
+                    <input
+                      #productImageFile
+                      type="file"
+                      (change)="onCLUpload($event)"
+                      accept="image/*"
+                      style="display: none"
+                    />
                   </button>
                 </div>
               </div>
@@ -129,13 +247,29 @@
 
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectiontext">full discription <span class="c-red">*</span></label>
-                  <textarea type="text" class="form-control" id="EnterFullDiscription"
-                    placeholder="Enter Full Discription" name="fullDiscription" #EnterFullDiscription="ngModel"
-                    [(ngModel)]="blog.fullDiscription" required
-                    [class.is-invalid]="f.submitted && EnterFullDiscription.invalid"></textarea>
-                  <div class="alert alert-danger"
-                    *ngIf="(EnterFullDiscription.touched || f.submitted) && EnterFullDiscription.invalid">
+                  <label for="collectiontext"
+                    >full discription <span class="c-red">*</span></label
+                  >
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    id="EnterFullDiscription"
+                    placeholder="Enter Full Discription"
+                    name="fullDiscription"
+                    #EnterFullDiscription="ngModel"
+                    [(ngModel)]="blog.fullDiscription"
+                    required
+                    [class.is-invalid]="
+                      f.submitted && EnterFullDiscription.invalid
+                    "
+                  ></textarea>
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      (EnterFullDiscription.touched || f.submitted) &&
+                      EnterFullDiscription.invalid
+                    "
+                  >
                     <p>full discription Text can't be blank.</p>
                   </div>
                 </div>
@@ -144,13 +278,31 @@
 
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="productname">Select category <span class="c-red">*</span></label>
-                  <p-multiSelect #collection="ngModel" id="collection" name="select" [options]="Category"
-                    optionValue="name" optionLabel="name" placeholder="Select Collections"
-                    defaultLabel="Select Collections" [(ngModel)]="blog.categoryIds"
-                    [ngModelOptions]="{standalone: true}" (click)="keyUp()"></p-multiSelect>
-                  <div class="alert alert-danger"
-                    *ngIf="(collection.touched && (collection.invalid || (!blog.categoryIds || blog.categoryIds.length == 0)))">
+                  <label for="productname"
+                    >Select category <span class="c-red">*</span></label
+                  >
+                  <p-multiSelect
+                    #collection="ngModel"
+                    id="collection"
+                    name="select"
+                    [options]="Category"
+                    optionValues="{_id,name}"
+                    optionLabel="name"
+                    placeholder="Select Collections"
+                    defaultLabel="Select Collections"
+                    [(ngModel)]="blog.categoryIds"
+                    [ngModelOptions]="{ standalone: true }"
+                    (click)="keyUp()"
+                  ></p-multiSelect>
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      collection.touched &&
+                      (collection.invalid ||
+                        !blog.categoryIds ||
+                        blog.categoryIds.length == 0)
+                    "
+                  >
                     <div>Select category</div>
                   </div>
                 </div>
@@ -158,37 +310,73 @@
 
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="productname">Select higlight Category
-                    <span class="c-red">*</span></label>
-                  <p-dropdown name="higlight" #parentcollection="ngModel" [options]="sam" placeholder="Select Product"
-                    [(ngModel)]="blog.higlight" optionLabel="name" optionValue="name">
+                  <label for="productname"
+                    >Select higlight Category
+                    <span class="c-red">*</span></label
+                  >
+                  <p-dropdown
+                    name="higlight"
+                    #parentcollection="ngModel"
+                    [options]="sam"
+                    placeholder="Select Product"
+                    [(ngModel)]="blog.higlight"
+                    optionLabel="name"
+                    optionValue="name"
+                  >
                   </p-dropdown>
                 </div>
               </div>
 
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="productname">Created By <span class="c-red">*</span></label>
-                  <p-dropdown name="CteatedBy" #parentcollection="ngModel" [options]="user" placeholder="Select Product"
-                    [(ngModel)]="blog.cteatedBy" optionLabel="name" optionValue="_id">
+                  <label for="productname"
+                    >Created By <span class="c-red">*</span></label
+                  >
+                  <p-dropdown
+                    name="createdBy"
+                    #parentcollection="ngModel"
+                    [options]="user"
+                    placeholder="Select Product"
+                    [(ngModel)]="blog.createdBy"
+                    optionLabel="name"
+                    optionValue="_id"
+                  >
                   </p-dropdown>
                 </div>
               </div>
 
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="productname">Image By <span class="c-red">*</span></label>
-                  <p-dropdown name="ImageBy" #parentcollection="ngModel" [options]="user" placeholder="Select Product"
-                    [(ngModel)]="blog.ImageBy" optionLabel="name" optionValue="_id">
+                  <label for="productname"
+                    >Image By <span class="c-red">*</span></label
+                  >
+                  <p-dropdown
+                    name="imageBy"
+                    #parentcollection="ngModel"
+                    [options]="user"
+                    placeholder="Select user"
+                    [(ngModel)]="blog.imageBy"
+                    optionLabel="name"
+                    optionValue="_id"
+                  >
                   </p-dropdown>
                 </div>
               </div>
 
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="productname">Words By <span class="c-red">*</span></label>
-                  <p-dropdown name="WordsBy" #parentcollection="ngModel" [options]="user" placeholder="Select Product"
-                    [(ngModel)]="blog.wordsBy" optionLabel="name" optionValue="_id">
+                  <label for="productname"
+                    >Words By <span class="c-red">*</span></label
+                  >
+                  <p-dropdown
+                    name="WordsBy"
+                    #parentcollection="ngModel"
+                    [options]="user"
+                    placeholder="Select user"
+                    [(ngModel)]="blog.wordsBy"
+                    optionLabel="name"
+                    optionValue="_id"
+                  >
                   </p-dropdown>
                 </div>
               </div>
@@ -201,7 +389,11 @@
                 <button *ngIf="blog._id" type="submit" class="btn green-btn">
                   Update Product
                 </button>
-                <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">
+                <button
+                  type="button"
+                  class="btn gray-btn ml-4"
+                  (click)="onClickCancel()"
+                >
                   Cancel
                 </button>
               </div>
@@ -215,4 +407,9 @@
     </div>
   </div>
 </div>
-<p-multiSelect [options]="Category" [(ngModel)]="selectedCities" optionLabel="name" (click)="keyUp()"></p-multiSelect>
+<!-- <p-multiSelect
+  [options]="Category"
+  [(ngModel)]="selectedCities"
+  optionLabel="name"
+  (click)="keyUp()"
+></p-multiSelect> -->
