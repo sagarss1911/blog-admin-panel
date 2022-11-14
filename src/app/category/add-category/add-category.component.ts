@@ -18,17 +18,12 @@ export class AddCategoryComponent implements OnInit {
   category: any = [];
   base_url = environment.url;
   loading: boolean = false;
-  collection_data = [];
   urls = [];
   already_uploadedurls = [];
   remaining_url = [];
   uploaded_files = [];
   category_data: any;
-  color_data = [];
-  thickness_data = [];
-  length_data = [];
   files = [];
-  material_data = [];
   type = 'add';
   imgclr = false;
   err = false;
@@ -42,9 +37,7 @@ export class AddCategoryComponent implements OnInit {
     private _toastMessageService: ToastMessageService,
     private modalService: BsModalService,
     private sanitizer: DomSanitizer,
-
     private commonHelper: CommonHelper,
-
     private categoryService: CategoryService
   ) {}
   ngOnInit() {
@@ -60,15 +53,16 @@ export class AddCategoryComponent implements OnInit {
     this.getAllCategory();
   }
 
+  // Get category by _id
   getCategoryData() {
     this.loading = true;
     return new Promise((resolve, reject) => {
       this.categoryService.getCategory({ _id: this.category._id }).subscribe(
         (res: any) => {
           if (res.status == 200 && res.data) {
-            console.log(res.slides);
             this.category = [];
             this.category = res.data[0];
+            console.log(res.data);
           }
 
           this.loading = false;
@@ -83,6 +77,7 @@ export class AddCategoryComponent implements OnInit {
     });
   }
 
+  //Get complete list of  category
   getAllCategory() {
     this.loading = true;
     return new Promise((resolve, reject) => {
@@ -92,11 +87,9 @@ export class AddCategoryComponent implements OnInit {
       };
       this.categoryService.getAllCategory(params).subscribe(
         (res: any) => {
-          console.log(res.data, 'afreen');
-
           if (res.status == 200 && res.data) {
             this.category_data = [];
-            this.category_data = res.data.slides;
+            this.category_data = res.data.categoryList;
 
             this.parentCategory = this.category_data.map((a: any) => {
               return { _id: a._id, name: a.categoryName };
@@ -118,16 +111,16 @@ export class AddCategoryComponent implements OnInit {
     this.router.navigate(['/category']);
   }
 
+  //Add Category
   onClickSave() {
     let data = {
-      // _id: this.category._id,
-      parentCategoryId: this.category.parentCategory,
+      _id: this.category._id,
+      parentCategoryId: this.category.parentCategoryId,
       categoryName: this.category.categoryName,
       seoTitle: this.category.seoTitle,
       seoDescription: this.category.seoDescription,
       seoKeyword: this.category.seoKeyword,
     };
-    console.log(data, 'added');
 
     this.loading = true;
     this.categoryService.addCategory(data).subscribe(

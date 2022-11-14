@@ -19,10 +19,10 @@
       </div>
       <div class="col-12 col-xl-6 col-md-6">
         <div class="form-group">
-          <div class="btn blue-btn" (click)="getSlidersWithFilters({'page':1});">
+          <div class="btn blue-btn" (click)="getCategoryWithFilters({'page':1});">
             <div class="dib">Search</div>
           </div>
-          <div class="btn gray-btn ml-3" (click)="filters={};getSlidersWithFilters({'page':1});">
+          <div class="btn gray-btn ml-3" (click)="filters={};getCategoryWithFilters({'page':1});">
             <div class="dib">Reset</div>
           </div>
         </div>
@@ -40,7 +40,7 @@
                   Category Name
                 </th>
                 <th class="c-table-cell c-table-header-cell text-pull-left">
-         Parent category Id
+                  Parent category Id
                 </th>
                 <th class="c-table-cell c-table-header-cell text-pull-left">
                   Seo Title
@@ -88,7 +88,7 @@
         </div>
         <div>
           <div class="share-pagination">
-            <app-shared-pagination [paginationValues]="paginationValues" (onChange)="getSlidersWithFilters($event)">
+            <app-shared-pagination [paginationValues]="paginationValues" (onChange)="getCategoryWithFilters($event)">
             </app-shared-pagination>
           </div>
         </div>
