@@ -12,14 +12,13 @@ export class AuthService {
     environment.url + '/api/organization_user/forgot_password';
   public resetPasswordEndpoint: string =
     environment.url + '/api/organization_user/reset_password';
-  public logoutEndpoint: string =
-    environment.url + '/api/v1/auth/logOut';
+  public logoutEndpoint: string = environment.url + '/api/v1/auth/logOut';
   public isAuthenticated = false;
   public isLicenceValidated = false;
   private authStatusListener = new Subject<boolean>();
   userId: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getHeader(): HttpHeaders {
     let headers = new HttpHeaders({
@@ -40,8 +39,6 @@ export class AuthService {
     this.isAuthenticated = isAuth;
     return observableOf(this.isAuthenticated);
   }
-
-
 
   login(params) {
     return this.http.post(this.loginEndpoint, params, {});
@@ -70,7 +67,7 @@ export class AuthService {
       return;
     }
     return {
-      token: token
+      token: token,
     };
   }
 }

@@ -6,10 +6,10 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class AdminUserService {
-  private addUserUrl = environment.url + '/api/admin-user/add-user';
-  private getUserListUrl = environment.url + '/api/admin-user/get-users-list';
-  private deleteUserUrl = environment.url + '/api/admin-user/delete-user/';
-  private updateUserUrl = environment.url + '/api/admin-user/edit-user/';
+  private addUserUrl = environment.url + '/api/admin_user/add_user';
+  private getUserListUrl = environment.url + '/api/admin_user/get_users_list';
+  private deleteUserUrl = environment.url + '/api/admin_user/delete_user/';
+  private updateUserUrl = environment.url + '/api/admin_user/edit_user/';
   constructor(private http: HttpClient) {}
 
   getHeader(): HttpHeaders {

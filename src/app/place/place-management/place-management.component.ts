@@ -16,7 +16,6 @@ import { PlaceService } from 'src/app/services/place.service';
 export class PlaceManagementComponent implements OnInit {
   public loading: boolean = false;
   public filters: any = {};
-  // public slider_obj: any = {};
   public dialogType: string = 'add';
   public paginationValues: Subject<any> = new Subject();
   public table_data: any[] = [];
