@@ -76,9 +76,11 @@ export class BlogComponent implements OnInit {
       };
       this.category.getAllCategory(params).subscribe(
         (res: any) => {
+          console.log(res);
+
           this.Category = [];
-          if (res.status == 200 && res.data.slides) {
-            this.Category = JSON.parse(JSON.stringify(res.data.slides));
+          if (res.status == 200 && res.data.categoryList) {
+            this.Category = JSON.parse(JSON.stringify(res.data.categoryList));
             this.Category = this.Category.map((a) => {
               return { _id: a._id, name: a.categoryName };
             });
@@ -104,9 +106,10 @@ export class BlogComponent implements OnInit {
       };
       this.subscriber.getAllSubscriber(params).subscribe(
         (res: any) => {
+          console.log(res);
           this.user = [];
-          if (res.status == 200 && res.data.slides) {
-            this.user = JSON.parse(JSON.stringify(res.data.slides));
+          if (res.status == 200 && res.data.subscriberList) {
+            this.user = JSON.parse(JSON.stringify(res.data.subscriberList));
             this.user = this.user.map((a) => {
               return { _id: a._id, name: a.subscriberName };
             });
