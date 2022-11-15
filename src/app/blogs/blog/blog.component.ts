@@ -2,15 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 
-// import { ProductService } from 'src/app/services/product.service';
-// import { CommonService } from 'src/app/services/common.service';
+
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { findIndex } from 'lodash-es';
 import { blogsService } from 'src/app/services/blog.service';
-// import { Editor } from 'ngx-editor';
+
 import { SubscriberService } from 'src/app/services/subscriber.service';
 import { CategoryService } from 'src/app/services/category.service';
 @Component({
@@ -66,7 +65,7 @@ export class BlogComponent implements OnInit {
       this.getBlogsData();
     }
   }
-  //  get category api
+  //  geted category to add category in blogs
   getCategory() {
     this.loading = true;
     return new Promise((resolve, reject) => {
@@ -96,7 +95,7 @@ export class BlogComponent implements OnInit {
       );
     });
   }
-  // get subscriber
+  // get subscriber to add wordsBy and imageby blohBy users
   getSubscribers() {
     this.loading = true;
     return new Promise((resolve, reject) => {
@@ -125,6 +124,8 @@ export class BlogComponent implements OnInit {
       );
     });
   }
+
+  // to push selected category to highlight dropdown
   setCategory(save: any) {}
   keyUp() {
     // this.higlight = [];
@@ -195,7 +196,7 @@ export class BlogComponent implements OnInit {
   onClickCancel() {
     this.router.navigate(['/products-options-pages/products']);
   }
-  // post data
+  // post blog data
   onClickSave(f: any) {
     const data = new FormData();
     this.uploaded_files = [];
