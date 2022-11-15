@@ -33,9 +33,9 @@ export class BlogManagementComponent implements OnInit {
   ngOnInit(): void {
     this.getAllData({ page: 1 });
   }
-
+  // get all blog dada..
   getAllData(event) {
-    // this.loading = true;
+    this.loading = true;
     return new Promise((resolve, reject) => {
       let params = {
         filters: {},
@@ -70,13 +70,17 @@ export class BlogManagementComponent implements OnInit {
       );
     });
   }
-
+  //  addBlog button navigate to add blog componenet
   onClickAddBlog() {
     this.router.navigate(['/blogs/add-blog']);
   }
+
+  // for edite blog it will navigate to add compontnt
   onClickEditBlog(blog) {
     this.router.navigate(['/blogs/edit-blog/' + blog._id]);
   }
+
+  // for delete blog
   onClickDeleteBlog(blog) {
     this.modalRef = this.modalService.show(ConfirmationModalComponent, {
       class: 'confirmation-modal',
