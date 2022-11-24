@@ -1,29 +1,31 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 *,
-*::before,
+/* *::before,
 *::after {
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-}
+} */
 *body {
+ 
   background: #e5e5e5;
-  margin: 0;
+  
 }
 
-.row {
+.rows {
   display: flex;
 }
 .container {
   max-width: 90%;
-  margin: 0, auto;
+ 
 }
 
-h1 {
+.h1 {
+  margin-top: 3vh;
   font-size: clamp(60px, 10vw, 96px);
   color: #000000;
   text-transform: uppercase;
-  margin: 0;
+
 }
 .cards {
   flex-wrap: wrap;
@@ -40,8 +42,8 @@ h1 {
   text-align: center;
   overflow: hidden;
   cursor: pointer;
-  background-image: url("../../../assets/img/cloud-sky-twilight-times_74190-1765.webp");
-  background-image: url(https://images.unsplash.com/photo-1599148400620-8e1ff0bf28d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG5pZ2h0JTIwc2t5fGVufDB8fDB8fA%3D%3D&w=1000&q=80);
+  /* background-image: url("../../../assets/img/bg-login.jpg");
+  background-image: url(https://images.unsplash.com/photo-1599148400620-8e1ff0bf28d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG5pZ2h0JTIwc2t5fGVufDB8fDB8fA%3D%3D&w=1000&q=80); */
 
   background-position: center;
   background-repeat: no-repeat;
@@ -65,19 +67,20 @@ h1 {
   height: 500px;
   width: 500px;
 }
-.card:nth-of-type(2) {
-  background-image: url(../../../assets/img/travel-by-car-into-dawn-concept.jpg);
+/* .card:nth-of-type(2) {
+  background-image: url(../../../assets/img/graph.jpg);
 }
 .card:nth-of-type(3) {
   background-image: url("http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcT2flpNZx086BC6BmM-NlHkukeLeHgtDwKFU-4RX0NNegXJIKV8EGvm7Rlt3sgSlckT");
-}
+} */
 
 .card:hover {
   max-width: 500px;
 }
 
 .card-body {
-  background: linear-gradient(180deg, rgba(45, 45, 45, 0) 0%, #2d2d2d 100%);
+
+  /* background: linear-gradient(180deg, rgba(45, 45, 45, 0) 0%, #2d2d2d 100%); */
   padding: 4em;
 }
 
@@ -111,11 +114,11 @@ h2 {
   -o-transform: unset;
 }
 
-p {
+.p {
   position: absolute;
   font-size: 18px;
   color: #fff;
-  margin: 0;
+  
   max-height: 0;
   opacity: 0;
   transition: max-height 0.3s ease-in-out;
@@ -125,235 +128,453 @@ p {
   -o-transition: max-height 0.3s ease-in-out;
 }
 
-.card:hover p {
+.card:hover .p {
   position: relative;
   opacity: 1;
   max-height: 100%;
   transition-delay: 0.3s;
-} */
+}
+.headline{
+  font-size: 80px;
+  color: #000000;
+  text-transform: uppercase;
 
-/* //next  */
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
-section {
-  margin: 0;
-  padding: 0;
-  /* background-color: #161616; */
-  /* font-family: "Raleway", sans-serif; */
-  font-family: "Montserrat", sans-serif;
+}
+.blogP{
+margin-top: 30px;
+  font-size: 18px;
+  
+}
+img{
+  width: 100%;
 }
 
-.container {
+/* blogs */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:ital,wght@0,500;1,900&family=Ms+Madi&family=Noto+Sans+HK:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Ms+Madi&family=Noto+Sans+HK:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:ital,wght@0,500;1,900&family=Ms+Madi&family=Noto+Sans+HK:wght@100&family=Signika:wght@200&display=swap');
+.search{
+padding-left: 2rem;
+font-size: 22px;
+border: none;
+margin-left: 0.2rem;
+width: 80%;
+/* background-color: rebeccapurple; */
+
+}
+
+form{
+    
+   margin-top: 7rem; 
+   width:60%;
+    height: 60px;
+    border: transparent;
+    border-radius: 19px;
+    box-shadow: 10px 10px 8px #888888;
+    margin-left: 9%;
+   }
+
+ input:focus{
+       outline: none;
+   }
+   .fullpage {
+      width: 100%;
+      border-collapse: collapse;
+    margin-left: 10%;
+  
+      
+   
+    }
+.containers{
   width: 100%;
-  max-width: 1100px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-  grid-auto-flow: dense;
-  grid-gap: 30px;
+      font-weight: 400;
+      margin-top: 7vh;  
+      padding: 4%;
+
+
+
+   
+ 
+}
+ .col-sm-6{
+    padding: 20px;
+    align-items:unset;
+    border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+    
+    
+ }
+
+  .img{
+   
+    width: 98%;
+  }     
+  .img img{
+     
+       width:100% ;
+      
+     
+ }
+ .blogs{
   align-items: center;
-  justify-content: center;
+      margin-top: 7vh;
+      font-family: 'Noto Sans HK', sans-serif;
+   
+      word-spacing: 2px;
+      letter-spacing: 1px;
+      
+     
+  
+     
+      
+ }
+ .header{
+      font-weight:800;
+      letter-spacing: 1px;
+      
+      font-family: 'Noto Sans HK', sans-serif;
+      width: 100%;
+      border-bottom: solid 0.3px  #888888;
+     
+ }
+
+ .peaple{
+      margin-top: 7vh;  
+   width: 70%;
+  
+ }
+
+ .blogtitle{
+  font-size: 50px;
+  font-family: 'Merriweather', serif;
+  margin-top: 0px;
+ }
+
+.future-btn{
+  margin: 20px;
+  color: antiquewhite;
+   text-align: center;
+  padding-top: 0px;
+background-color: black;
+border-radius: 20px;
+height: 2.8vh;
+width: 10vh;
+margin-left: 9px;
+
 }
 
-.card {
+.btn1{
+      background-color: #888888;
+      /* font-size: 30px; */
+}
+.titles{
+  width: 80%;
+}
+
+/* blogs? */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:ital,wght@0,500;1,900&family=Ms+Madi&family=Noto+Sans+HK:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Ms+Madi&family=Noto+Sans+HK:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:ital,wght@0,500;1,900&family=Ms+Madi&family=Noto+Sans+HK:wght@100&family=Signika:wght@200&display=swap');
+/* .search{
+padding-left: 2rem;
+font-size: 22px;
+border: none;
+margin-left: 0.2rem;
+width: 80%;
+/* background-color: rebeccapurple; */
+
+/* } */ 
+
+/* form{
+    
+   margin-top: 7rem; 
+   width:60%;
+    height: 60px;
+    border: transparent;
+    border-radius: 19px;
+    box-shadow: 10px 10px 8px #888888;
+    margin-left: 9%;
+   } */
+
+ /* input:focus{
+       outline: none;
+   } */
+   .fullpage {
+      width: 80%;
+   
+    margin-left: 10%;
+  
+      
+   
+    }
+.container{
+      font-weight: 400;
+      margin-top: 7vh;  
+    /* padding: 20px; */
+     
+
+   
+ 
+}
+ .col-6{
+    
+      align-items: center;
+      
+      margin-top: 7vh;  
+     
+      
+        
+       
+    
+ }
+
+       
+ img{
+      
+       width:80% ;
+      
+     
+ }
+ .blogs{
+   
+      margin-top: 7vh;
+      font-family: 'Noto Sans HK', sans-serif;
+  
+      word-spacing: 2px;
+      letter-spacing: 1px;
+      border-left: 1px solid #e0e0e0;
+      border-right: 1px solid #e0e0e0;
+     
+     
+  
+     
+      
+ }
+ .header{
+      font-weight:800;
+      letter-spacing: 1px;
+    
+      font-family: 'Noto Sans HK', sans-serif;
+      width: 95%;
+      border-bottom: solid 0.3px  #888888;
+     
+ }
+
+
+ .peaple{
+      margin-top: 7vh;  
+   /* width: 70%; */
+  
+ }
+
+ .title{
+      font-family: 'Merriweather', serif;
+ }
+
+.future-btn{
+color: antiquewhite;
+text-align: center;
+padding-top: 0px;
+background-color: black;
+border-radius: 20px;
+height: 2.8vh;
+width: 10vh;
+margin-left: 9px;
+
+}
+
+.btn1{
+      background-color: #888888;
+      font-size: 30px;
+}
+.ppl{
+     padding-top:  3vh;
+}
+
+.ppl-img {
+margin-left: 30px;
+border-radius: 50%;
+width: 6.5vh;
+height: 6.5vh;
+}
+.col-8{
+
+     margin: 0px;
+}
+/* font-family: "Publico Text",Georgia,Times,"Times New Roman",serif!important; */
+
+
+/* diomand button  */
+
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: 0.25s all 0.02s ease-in-out;
+}
+
+
+
+
+.transparent {
+     
   position: relative;
+  margin: 1rem auto;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 0.6rem;
+  vertical-align: middle;
+  color: #ffffff;
+  display: inline-block;
+  border-width: 0;
+  border-style: solid;
+  border-color: #000000;
+  padding: 0.5rem;
+  cursor: pointer;
+min-width: 10vh;
+  background: transparent;
+ 
+  /* width: calc(100% / 10); */
 }
 
-.card .card-media {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  z-index: -1;
+.transparent span {
+  z-index: 20;
+  position: relative;
+  
 }
 
-.card .card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.3s;
-}
-
-.card:hover .card-media img {
-  transform: scale(1.05);
-}
-
-.card .card-media::before {
+.transparent::before,
+.transparent::after {
   content: "";
   position: absolute;
-  top: 0;
+  border-color: inherit;
+  border-style: inherit;
+  height: 50%;
+  width: 100%;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(22, 22, 22, 0.3);
-  transition: all 0.3s;
-  z-index: 1;
+  z-index: 10;
+  background-color: black;
 }
 
-.card:hover .card-media::before {
-  background-color: #161616;
-}
-
-.card .card-content {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 40px;
-  opacity: 0;
-  transition: all 0.3s;
-}
-
-.card:hover .card-content {
-  opacity: 1;
-}
-
-.card .card-content .card-header {
-  margin-bottom: 30px;
-}
-
-.card .card-content .card-header .card-date {
-  display: block;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 15px;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.card .card-content .card-header h3 {
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 43px;
-}
-
-.card .card-content .card-header h3 a {
-  display: block;
-  color: #ffffff;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.card .card-content .card-header h3 a:hover {
-  color: #cf000f;
-}
-
-.card .card-content .card-desc {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 15px;
-  line-height: 27px;
-}
-
-.card .card-content .card-footer {
-  margin-top: 100px;
-}
-
-.card .card-content .card-footer .read-more-link {
-  display: inline-flex;
-  align-items: center;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.card .card-content .card-footer .read-more-link:hover {
-  color: #cf000f;
-}
-
-.card .read-more-link svg {
-  height: 10px;
-  margin-left: 10px;
-  transition: transform 0.3s;
-}
-
-.card .read-more-link:hover svg {
-  transform: translateX(5px);
-}
-
-.card .card-border span {
-  display: inline-block;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.4);
-  transition: all 0.3s linear;
-  z-index: 2;
-}
-
-.card .card-border span.top {
-  width: 100%;
-  height: 1px;
+.transparent::before {
+  border-width: 2px 2px 0 2px;
   top: 0;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: left;
+  transform-origin: center bottom;
+  transform: perspective(0.2rem) rotateX(3deg);
 }
 
-.card .card-border span.right {
-  width: 1px;
-  height: 100%;
-  top: 0;
-  right: 0;
-  transform: scaleY(0);
-  transform-origin: top;
-}
-
-.card .card-border span.bottom {
-  width: 100%;
-  height: 1px;
+.transparent::after {
+  border-width: 0 2px 2px 2px;
   bottom: 0;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: right;
+  transform-origin: center top;
+  transform: perspective(0.2rem) rotateX(-3deg);
 }
 
-.card .card-border span.left {
-  width: 1px;
-  height: 100%;
-  top: 0;
-  left: 0;
-  transform: scaleY(0);
-  transform-origin: bottom;
-}
 
-.card:hover .card-border span.top {
-  transform: scaleX(1);
-}
 
-.card:hover .card-border span.right {
-  transform: scaleY(1);
-  transition-delay: 0.3s;
-}
+.transparent1 {
+     
+     margin-left: 20px;
+     position: relative;
+     
+     text-align: center;
+     font-size: 0.7rem;
+     line-height: 0.6rem;
+     vertical-align: middle;
+     color: #ffffff;
+     display: inline-block;
+     border-width: 0;
+     border-style: solid;
+     border-color: gray;
+     padding: 0.5rem;
+     cursor: pointer;
+   min-width: 10vh;
+  
+     background: transparent;
+    
+   
+   }
+   
+   .transparent1 span {
 
-.card:hover .card-border span.bottom {
-  transform: scaleX(1);
-  transition-delay: 0.6s;
-}
+     z-index: 20;
+     position: relative;
+     
+   }
+   
+   .transparent1::before,
+   .transparent1::after {
+     content: "";
+     position: absolute;
+     border-color: inherit;
+     border-style: inherit;
+     height: 50%;
+     width: 100%;
+     left: 0;
+     z-index: 10;
+     background-color: gray;
+   }
+   
+   .transparent1::before {
+     border-width: 2px 2px 0 2px;
+     top: 0;
+     transform-origin: center bottom;
+     transform: perspective(0.2rem) rotateX(3deg);
+   }
+   
+   .transparent1::after {
+     border-width: 0 2px 2px 2px;
+     bottom: 0;
+     transform-origin: center top;
+     transform: perspective(0.2rem) rotateX(-3deg);
+   }
+   .col-8 h5{
+     font-size:16px;
+     font-family: 'Merriweather', serif;
+   }
+   .col-8 p{
+     font-size:13px;
+   }
 
-.card:hover .card-border span.left {
-  transform: scaleY(1);
-  transition-delay: 0.9s;
-}
+   .favButton .btn{
+    /* border: none; */
+   }
 
-/* Let's write the media query */
-@media (max-width: 1024px) {
-  .container {
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-  }
+   /* .bookmark .fa{
+    background-color: red;
+   } */
 
-  .card {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-}
 
-.title {
-  font-size: 60px;
-  align-items: center;
-}
+   .like-button {
+    font-size: 1rem;
+    padding: 5px 10px;
+    color: #585858;
+    }
+    
+    .liked {
+    font-weight: bold;
+    color: #1565c0;
+    }
+
+    
+    .fa{
+      color: red;
+    }
+
+    .bookmark{
+      border: none;
+      background-color: transparent;
+    }
+
+    .favButton{
+      border: none;
+      background-color: transparent;
+    }
+
+    .icons{
+      margin-top: 20px;
+      align-items: center;
+    }

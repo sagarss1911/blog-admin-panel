@@ -8,6 +8,7 @@ import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { HeaderComponent } from './header/header.component';
 import { FeaturedPlaceComponent } from './featured-place/featured-place.component';
 import { WebsitePlacesComponent } from './website-places/website-places.component';
+import { FutureBlogsComponent } from './future-blogs/future-blogs.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -16,6 +17,7 @@ import { WebsitePlacesComponent } from './website-places/website-places.componen
     HeaderComponent,
     FeaturedPlaceComponent,
     WebsitePlacesComponent,
+    FutureBlogsComponent,
   ],
   imports: [CommonModule, HomepageRoutingModule],
 })

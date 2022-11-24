@@ -2,16 +2,15 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 
-// import { ProductService } from 'src/app/services/product.service';
-// import { CommonService } from 'src/app/services/common.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { findIndex } from 'lodash-es';
 import { blogsService } from 'src/app/services/blog.service';
-// import { Editor } from 'ngx-editor';
 
+import { SubscriberService } from 'src/app/services/subscriber.service';
+import { CategoryService } from 'src/app/services/category.service';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -48,23 +47,50 @@ export class BlogComponent implements OnInit {
     private blogsService: blogsService,
     private _toastMessageService: ToastMessageService,
     private sanitizer: DomSanitizer,
-    private commonHelper: CommonHelper
-  ) {
-    this.Category = [
-      { _id: 1, name: 'cultural' },
-      { _id: 2, name: 'food' },
-      { _id: 3, name: 'Lifestyle' },
-      { _id: 4, name: 'Fashion' },
-    ];
-    this.user = [
-      { _id: 1, name: 'sana' },
-      { _id: 2, name: 'shaz' },
-      { _id: 3, name: 'sachin' },
-      { _id: 4, name: 'afreen' },
-    ];
-  }
+    private commonHelper: CommonHelper,
+    private subscriber: SubscriberService,
+    private category: CategoryService
+  ) {}
+
+  // for editor
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: '200px',
+    uploadImagePath: '/api/upload',
+    toolbar: [
+      ['misc', ['codeview', 'undo', 'redo']],
+      ['style', ['bold', 'italic', 'underline', 'clear']],
+      [
+        'font',
+        [
+          'bold',
+          'italic',
+          'underline',
+          'strikethrough',
+          'superscript',
+          'subscript',
+          'clear',
+        ],
+      ],
+      ['fontsize', ['fontsize']],
+      ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
+      ['insert', ['table', 'hr']],
+    ],
+    fontNames: [
+      'Helvetica',
+      'Arial',
+      'Arial Black',
+      'Comic Sans MS',
+      'Courier New',
+      'Roboto',
+      'Times',
+    ],
+  };
 
   ngOnInit() {
+    this.getSubscribers();
+    this.getCategory();
     this.blog._id = this.activatedRoute.snapshot.paramMap.get('id')
       ? this.activatedRoute.snapshot.paramMap.get('id')
       : '';
@@ -75,35 +101,22 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  setCategory(save: any) {}
-  keyUp() {
-    this.higlight = [];
-    this.blog.categoryIds.forEach((element) => {
-      this.higlight.push(element);
-    });
-    this.sam = [];
-    this.sam = this.higlight.map((a) => {
-      return { name: a };
-    });
-  }
-  getBlogsData() {
+  //  geted category to add category in blogs
+  getCategory() {
     this.loading = true;
     return new Promise((resolve, reject) => {
-      this.blogsService.getBlog({ _id: this.blog._id }).subscribe(
+      let params = {
+        page: 1,
+        limit: 100,
+      };
+      this.category.getAllCategory(params).subscribe(
         (res: any) => {
-          if (res.status == 200 && res.data) {
-            this.blog = res.data;
-            this.blog.productname = res.data.name;
-            this.already_uploadedurls = res.data.option_images
-              ? res.data.option_images
-              : [];
-            this.sam = [];
-            this.sam.push(res.data.highlightCategory);
-            this.sam = this.sam.map((a) => {
-              return { name: a };
+          this.Category = [];
+          if (res.status == 200 && res.data.categoryList) {
+            this.Category = JSON.parse(JSON.stringify(res.data.categoryList));
+            this.Category = this.Category.map((a) => {
+              return { _id: a._id, name: a.categoryName };
             });
-            this.blog.higlight = this.sam[0].name;
-            this.blog.selectedCategory = res.data.category;
           }
           this.loading = false;
           return resolve(true);
@@ -117,6 +130,83 @@ export class BlogComponent implements OnInit {
     });
   }
 
+  // get subscriber to add wordsBy and imageby blohBy users
+  getSubscribers() {
+    this.loading = true;
+    return new Promise((resolve, reject) => {
+      let params = {
+        page: 1,
+        limit: 100,
+      };
+      this.subscriber.getAllSubscriber(params).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.user = [];
+          if (res.status == 200 && res.data.subscriberList) {
+            this.user = JSON.parse(JSON.stringify(res.data.subscriberList));
+            this.user = this.user.map((a) => {
+              return { _id: a._id, name: a.subscriberName };
+            });
+          }
+          this.loading = false;
+          return resolve(true);
+        },
+        (error) => {
+          this.loading = false;
+          this.commonHelper.showError(error);
+          return resolve(false);
+        }
+      );
+    });
+  }
+
+  // to push selected category to highlight dropdown
+  setCategory(save: any) {}
+  keyUp() {
+    this.sam = [];
+    this.sam = this.blog.Category.map((a) => {
+      return { name: a.name };
+    });
+  }
+
+  getBlogsData() {
+    this.loading = true;
+    return new Promise((resolve, reject) => {
+      this.blogsService.getBlog(this.blog._id).subscribe(
+        (res: any) => {
+          if (res.status == 200 && res.data) {
+            this.blog = res.data;
+            this.blog.productname = res.data.name;
+            this.already_uploadedurls = res.data.option_images
+              ? res.data.option_images
+              : [];
+
+            this.sam = [];
+            this.sam.push(res.data.highlightCategory);
+            this.sam = this.sam.map((a) => {
+              return { name: a };
+            });
+            this.blog.higlight = res.data.highlightCategory;
+            this.blog.Category = JSON.parse(
+              JSON.stringify(res.data.categoryIds)
+            );
+            this.blog.Category = this.blog.Category.map((a) => {
+              return { _id: a._id, name: a.categoryName };
+            });
+          }
+          this.loading = false;
+          return resolve(true);
+        },
+        (error) => {
+          this.loading = false;
+          this.commonHelper.showError(error);
+          return resolve(false);
+        }
+      );
+    });
+  }
+
+  // generating slug
   generateSlug(event) {
     this.blog.slug = event.target.value
       .toLowerCase()
@@ -124,6 +214,7 @@ export class BlogComponent implements OnInit {
       .replace(/[^\w-]+/g, '');
   }
 
+  // image upload
   onCLUpload(event) {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -134,22 +225,30 @@ export class BlogComponent implements OnInit {
       this.blog.newImageUploaded = true;
     }
   }
-
+  // clear file
   clearCLFile() {
     this.blog.productImageUrl = '';
     this.blog.productImageFile = null;
     this.blog.newImageUploaded = false;
   }
 
+  // cancel image
   onClickCancel() {
     this.router.navigate(['/products-options-pages/products']);
   }
+
+  // post blog data
   onClickSave(f: any) {
     const data = new FormData();
     this.uploaded_files = [];
     if (this.blog.productImageFile) {
       data.append('image', this.blog.productImageFile);
     }
+
+    let dataa = [];
+    this.blog.Category.forEach((element) => {
+      dataa.push(element._id);
+    });
 
     let params = {
       _id: this.blog._id,
@@ -161,10 +260,11 @@ export class BlogComponent implements OnInit {
       seoTitle: this.blog.seoTitle,
       seoDescription: this.blog.seoDescription,
       seoKeyword: this.blog.seoKeyword,
-      categoryIds: this.blog.categoryIds,
-      highlight: this.blog.higlight,
-      createdBy: this.blog.cteatedBy,
-      imageBy: this.blog.ImageBy,
+      categoryIds: dataa,
+      feature: this.blog.feature,
+      highlight: this.blog.highlightCategory,
+      createdBy: this.blog.createdBy,
+      imageBy: this.blog.imageBy,
       wordsBy: this.blog.wordsBy,
     };
     data.append('body', JSON.stringify(params));

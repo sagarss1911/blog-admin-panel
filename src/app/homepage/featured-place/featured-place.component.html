@@ -1,65 +1,95 @@
-<!-- featured places -->
 <!-- <img class="placeimage" [src]="base_url +'/'+ item.mapImage" alt="" srcset=""> -->
-<!--
-<body>
-  <section class="container">
-    <h1>FEATURED PLACES</h1>
-    <div class="cards row">
-      <div class="card row" *ngFor="let item of places">
-        <div class="card-body">
-          <div class="title">
-            <h2>{{item.placeName}}</h2>
-          </div>
-          <p>{{item.seoDescription}}
-            Enjoy , relax, breath </p>
-          <p routerLink="places-featured" onclick="openblog()">Read-More</p>
-        </div>
+<div class="about_section">
+  <div class="container">
+    <div class="row rows" *ngFor="let item of liked">
+      <div class="col-sm-8">
+        <h1 class="headline">FEature blogs</h1>
         <div>
+          <img [src]="base_url + '/' + item.image" alt="" />
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="">
+          <h1 class="headline">{{ item.title }}</h1>
+          <p class="blogP">
+            {{ item.smallDiscription }}, Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Saepe illum voluptate deleniti, expedita vel minus
+            iste, nobis autem laudantium repellendus veritatis aperiam deserunt
+            asperiores ex! Distinctio obcaecati reiciendis amet asperiores.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe illum
+            voluptate deleniti, expedita vel minus iste, nobis autem laudantium
+            repellendus veritatis aperiam deserunt asperiores ex! Distinctio
+            obcaecati reiciendis amet asperiores.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<body>
+  <app-future-blogs></app-future-blogs>
+  <section>
+    <div class="row containers">
+      <p class="headline">BLOGS</p>
+
+      <div class="col-sm-6" *ngFor="let item of table_data">
+        <div class="blogs">
+          <div class="img">
+            <img [src]="base_url + '/' + item.image" alt="" />
+          </div>
+          <div class="question">
+            <button
+              class="transparent classic"
+              (click)="category(item.highlightCategory)"
+            >
+              <span>{{ item.highlightCategory }}</span>
+            </button>
+            <button class="transparent1 classic">
+              <span>INDIA</span>
+            </button>
+          </div>
+          <h3 class="blogtitle">{{ item.title }}</h3>
+          <p>
+            {{ item.smallDiscription }}
+          </p>
+          <div class="row icons">
+            <div class="row col-3">
+              <button class="favButton col" (click)="clickeds(item)">
+                <i
+                  *ngIf="item.clicked"
+                  class="fa fa-heart"
+                  style="font-size: 30px"
+                ></i>
+                <i
+                  *ngIf="!item.clicked"
+                  class="far fa-heart"
+                  style="font-size: 30px"
+                ></i>
+              </button>
+
+              <p class="col">{{ item.clicked ? "Unlike" : "Like" }}</p>
+            </div>
+            <div class="row col-3">
+              <button class="bookmark col" (click)="bookCheck(item)">
+                <i
+                  *ngIf="!item.bookmark"
+                  class="fas fa-bookmark"
+                  style="font-size: 22px; color: red"
+                ></i>
+
+                <i
+                  *ngIf="item.bookmark"
+                  class="fa fa-bookmark-o"
+                  style="font-size: 24px"
+                ></i>
+              </button>
+              <p class="col">
+                {{ item.bookmark ? "Add To Bookmark " : "Remove BookMark" }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-</body> -->
-
-
-
-<section>
-  <div class="title">
-    <h1>FEATURED PLACES</h1>
-  </div>
-  <div class="container">
-    <div class="card" *ngFor="let item of places">
-      <div class="card-media">
-        <img [src]="base_url +'/'+ item.mapImage" />
-      </div>
-      <div class="card-content">
-        <header class="card-header">
-          <span class="card-date">{{item.createdAt | date}}</span>
-          <h3>
-            <a href="#">{{item.placeName}}</a>
-          </h3>
-        </header>
-        <div class="card-desc">
-          <p>
-            {{item.seoDescription|titlecase}}
-          </p>
-        </div>
-        <footer class="card-footer">
-          <a href="#" class="read-more-link">Read more
-            <svg fill="none" viewBox="0 0 16 8">
-              <path
-                d="M15.354 4.354a.5.5 0 000-.708L12.172.464a.5.5 0 10-.708.708L14.293 4l-2.828 2.828a.5.5 0 10.707.708l3.182-3.182zM0 4.5h15v-1H0v1z"
-                fill="currentColor" />
-            </svg>
-          </a>
-        </footer>
-      </div>
-      <div class="card-border">
-        <span class="top"></span>
-        <span class="right"></span>
-        <span class="bottom"></span>
-        <span class="left"></span>
-      </div>
-    </div>
-  </div>
-</section>
+</body>

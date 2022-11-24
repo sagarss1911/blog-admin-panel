@@ -23,6 +23,7 @@ export class BlogManagementComponent implements OnInit {
   public recordLimit: number = 2;
   public modalRef: BsModalRef;
   base_url = environment.url;
+  featured: string;
   constructor(
     private blogservice: blogsService,
     private commonHelper: CommonHelper,
@@ -30,12 +31,15 @@ export class BlogManagementComponent implements OnInit {
     private modalService: BsModalService,
     private router: Router
   ) {}
+
+  //
   ngOnInit(): void {
     this.getAllData({ page: 1 });
   }
 
+  // get all blog dada..
   getAllData(event) {
-    // this.loading = true;
+    this.loading = true;
     return new Promise((resolve, reject) => {
       let params = {
         filters: {},
@@ -50,6 +54,7 @@ export class BlogManagementComponent implements OnInit {
         (res: any) => {
           if (res.status == 200 && res.data.slides) {
             this.table_data = [];
+
             this.table_data = JSON.parse(JSON.stringify(res.data.slides));
             this.paginationValues.next({
               type: 'page-init',
@@ -70,13 +75,17 @@ export class BlogManagementComponent implements OnInit {
       );
     });
   }
-
+  //  addBlog button navigate to add blog componenet
   onClickAddBlog() {
     this.router.navigate(['/blogs/add-blog']);
   }
+
+  // for edite blog it will navigate to add compontnt
   onClickEditBlog(blog) {
     this.router.navigate(['/blogs/edit-blog/' + blog._id]);
   }
+
+  // for delete blog
   onClickDeleteBlog(blog) {
     this.modalRef = this.modalService.show(ConfirmationModalComponent, {
       class: 'confirmation-modal',

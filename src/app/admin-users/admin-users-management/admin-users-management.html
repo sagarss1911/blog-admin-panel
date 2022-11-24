@@ -1,9 +1,14 @@
 <div class="container-fluid management-tab">
-  <ngx-loading [show]="loading"
-    [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
+  <ngx-loading
+    [show]="loading"
+    [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}"
+  >
   </ngx-loading>
 
-  <div class="row" style="justify-content: space-between;margin:0px;margin-bottom: 2rem;">
+  <div
+    class="row"
+    style="justify-content: space-between; margin: 0px; margin-bottom: 2rem"
+  >
     <h1 class="h3 page-title">Admin-List</h1>
     <div>
       <div class="btn green-btn" (click)="onClickAddUser();">
@@ -15,8 +20,15 @@
   <div class="row mb-3">
     <div class="col-12 col-xl-3 col-md-6">
       <div class="form-group">
-        <input type="text" class="form-control" id="searchtext" name="searchtext" placeholder="Search by Name or Email"
-          #searchtext="ngModel" [(ngModel)]="filters.searchtext">
+        <input
+          type="text"
+          class="form-control"
+          id="searchtext"
+          name="searchtext"
+          placeholder="Search by Name or Email"
+          #searchtext="ngModel"
+          [(ngModel)]="filters.searchtext"
+        />
       </div>
     </div>
     <div class="col-12 col-xl-6 col-md-6">
@@ -24,7 +36,10 @@
         <div class="btn blue-btn" (click)="getUsersWithFilters({'page':1});">
           <div class="dib">Search</div>
         </div>
-        <div class="btn gray-btn ml-3" (click)="filters={};getUsersWithFilters({'page':1});">
+        <div
+          class="btn gray-btn ml-3"
+          (click)="filters={};getUsersWithFilters({'page':1});"
+        >
           <div class="dib">Reset</div>
         </div>
       </div>
@@ -36,7 +51,7 @@
         <table class="c-table">
           <thead class="c-table-header">
             <tr class="c-table-row c-table-row-header">
-              <div style="width: 5px;"></div>
+              <div style="width: 5px"></div>
               <th class="c-table-cell c-table-header-cell text-pull-left">
                 Name
               </th>
@@ -55,44 +70,76 @@
               <th class="c-table-cell c-table-header-cell text-pull-left">
                 Active
               </th>
-              <th class="c-table-cell c-table-header-cell text-pull-right">Actions</th>
+              <th class="c-table-cell c-table-header-cell text-pull-right">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody class="c-table-body" *ngIf="user_list && user_list.length>0">
             <tr class="c-table-row" *ngFor="let item of user_list">
-              <div style="width: 5px;"></div>
+              <div style="width: 5px"></div>
 
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.name}}</td>
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.email}}</td>
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.userName}}</td>
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.creator.length ? item.creator[0].name :
-                "" }}</td>
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.createdAt | date:'mediumDate'}}</td>
-              <td class="c-table-cell c-table-body-cell text-pull-left">{{item.active}}</td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">
+                {{item.name}}
+              </td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">
+                {{item.email}}
+              </td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">
+                {{item.userName}}
+              </td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">
+                {{item.creator.length ? item.creator[0].name : "" }}
+              </td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">
+                {{item.createdAt | date:'mediumDate'}}
+              </td>
+              <td class="c-table-cell c-table-body-cell text-pull-left">
+                {{item.active}}
+              </td>
               <td class="c-table-cell c-table-body-cell text-pull-right">
-                <div *ngIf="item?.canBeEdited === true" class="action-btn" title="Edit User"
-                  (click)="onClickEditUser(item)" style="color: #3985fc">
+                <div
+                  *ngIf="item?.canBeEdited === true"
+                  class="action-btn"
+                  title="Edit User"
+                  (click)="onClickEditUser(item)"
+                  style="color: #3985fc"
+                >
                   <i class="fa fa-edit"></i>
                 </div>
-                <div *ngIf="item?.canBeEdited === true" class="action-btn" title="Delete User"
-                  (click)="onClickDeleteUser(item)" style="color: #ff5151">
+                <div
+                  *ngIf="item?.canBeEdited === true"
+                  class="action-btn"
+                  title="Delete User"
+                  (click)="onClickDeleteUser(item)"
+                  style="color: #ff5151"
+                >
                   <i class="fa fa-trash"></i>
                 </div>
               </td>
-
             </tr>
           </tbody>
-          <tbody class="c-table-body" *ngIf="(!user_list || user_list.length==0)">
+          <tbody
+            class="c-table-body"
+            *ngIf="(!user_list || user_list.length==0)"
+          >
             <tr class="c-table-row">
-              <td class="c-table-cell c-table-body-cell text-center" colspan="6">{{loading ? "Fetching a Data" : "No
-                Data Available"}}</td>
+              <td
+                class="c-table-cell c-table-body-cell text-center"
+                colspan="6"
+              >
+                {{loading ? "Fetching a Data" : "No Data Available"}}
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div>
         <div class="share-pagination">
-          <app-shared-pagination [paginationValues]="paginationValues" (onChange)="getUsersWithFilters($event)">
+          <app-shared-pagination
+            [paginationValues]="paginationValues"
+            (onChange)="getUsersWithFilters($event)"
+          >
           </app-shared-pagination>
         </div>
       </div>
@@ -101,3 +148,4 @@
   <!-- Footer -->
   <app-footer></app-footer>
   <!-- End of Footer -->
+</div>

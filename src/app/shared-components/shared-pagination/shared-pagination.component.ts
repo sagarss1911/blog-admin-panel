@@ -11,12 +11,12 @@ export class SharedPaginationComponent implements OnInit {
   @Input() paginationValues: Subject<any>;
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
-  public recordLimit: number = 10;
+  public recordLimit: number = 4;
   public pages: number[] = [];
   public activePageNumber: number = 0;
   public iteration: number;
   public filters: any = {};
-  public selectedLimit: any = 10;
+  public selectedLimit: any = 4;
 
   constructor() {}
 

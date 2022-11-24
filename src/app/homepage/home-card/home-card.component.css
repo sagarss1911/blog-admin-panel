@@ -10,10 +10,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* background: linear-gradient(0deg, #fff 50%, #2196f3); */
-  background-image: url(../../../assets/img/DJI_0672-Edit-2_600x600.webp);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: linear-gradient(0deg, #fff 50%, #2196f3);
 }
 .container {
   max-width: 1000px;

@@ -1,0 +1,61 @@
+<!-- <div class="col">
+  <div class="col-sm-11"></div>
+  <div class="col-sm-1"></div>
+</div> -->
+
+<form (submit)="search(signupForm)" #signupForm="ngForm">
+  <i style="padding-left: 2rem; padding-top: 20px" class="fa fa-search"></i>
+  <input
+    class="search"
+    type="text"
+    id="searchtext"
+    name="searchtext"
+    placeholder="Search by product name"
+    [(ngModel)]="filters.searchtext"
+  />
+</form>
+
+<div class="fullpage">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="row container">
+        <p class="header">BLOGS</p>
+        <div class="col-sm-6" *ngFor="let item of table_data">
+          <div class="blogs">
+            <div class="img">
+              <img [src]="base_url + '/' + item.image" alt="" />
+            </div>
+            <div class="question">
+              <button class="transparent classic">
+                <span>{{ item.highlightCategory }}</span>
+              </button>
+              <button class="transparent1 classic">
+                <span>INDIA</span>
+              </button>
+            </div>
+            <h3 class="title">{{ item.title }}</h3>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Veritatis ratione molestiae rem ab perferendis architecto, in
+              soluta vel ipsa sed debitis facilis est voluptatem deleniti,
+              quaerat aliquid voluptate enim non!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 container">
+      <p class="header">PEOPLE</p>
+      <div class="row ppl" *ngFor="let item of table_data">
+        <div class="col-4">
+          <img class="ppl-img" [src]="base_url + '/' + item.image" alt="" />
+        </div>
+        <div class="col-8">
+          <h5>Hello theten</h5>
+          <p>Lorem ipsumcxccvcxcxv cfgffv fdgged dssdf</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>{{ searchtext }}</p>

@@ -74,7 +74,8 @@
 
 .title {
   width: 100%;
-  height: 5vh;
+  /* height: 50vh; */
+  margin-top: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,23 +85,4 @@
   font-size: 100px;
   font-weight: 800px;
   text-transform: uppercase;
-}
-
-/* //aboutus */
-.aboutUs img {
-  width: 100%;
-  padding: 10rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.card1 {
-  width: 1600px;
-  margin: 100px 15px;
-  padding: 2em;
-  position: relative;
-  background-image: url(../../../assets//img/cloud-sky-twilight-times_74190-1765.webp);
-  align-items: center;
-  box-shadow: 0px 7px 10px rgba(black, 0.5);
-  font-size: 80px;
 }
