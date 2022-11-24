@@ -92,7 +92,7 @@ const routes: Routes = [
       import('src/app/login/login.module').then((m) => m.LoginModule),
   },
 
-  {path:"suggestions",component:SuggestionsComponent},
+  { path: 'suggestions', component: SuggestionsComponent },
 
   {
     path: '',
@@ -138,6 +138,18 @@ const routes: Routes = [
           import('src/app/subscriber/subscriber.module').then(
             (m) => m.SubscriberModule
           ),
+      },
+      {
+        path: 'aboutus',
+        loadChildren: () =>
+          import('src/app/about-us/about-us.module').then(
+            (m) => m.AboutUsModule
+          ),
+      },
+      {
+        path: 'journeys',
+        loadChildren: () =>
+          import('src/app/journey/journey.module').then((m) => m.JourneyModule),
       },
     ],
   },

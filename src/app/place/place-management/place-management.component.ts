@@ -19,7 +19,7 @@ export class PlaceManagementComponent implements OnInit {
   public dialogType: string = 'add';
   public paginationValues: Subject<any> = new Subject();
   public table_data: any[] = [];
-  public feature: any;
+  // public feature: any;
 
   public recordLimit: number = 10;
   public modalRef: BsModalRef;
@@ -121,6 +121,8 @@ export class PlaceManagementComponent implements OnInit {
     };
     this.placeService.addToFeature(data).subscribe(
       (res: any) => {
+        console.log(res);
+
         if (res.data == 'added') {
           this._toastMessageService.alert(
             'success',

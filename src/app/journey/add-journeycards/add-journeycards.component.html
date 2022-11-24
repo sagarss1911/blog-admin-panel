@@ -1,0 +1,52 @@
+<div class="container-fluid management-tab">
+  <ngx-loading [show]="loading"
+    [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
+  </ngx-loading>
+  <div class="row section-box">
+    <div class="col-12">
+      {{ type | titlecase }} JOURNEY
+      <div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form #f="ngForm" novalidate autocomplete="off">
+            <div class="row">
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Card Description<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="cardDescription" name="cardDescription" #cardDescription="ngModel"
+                    [(ngModel)]="journey.cardDescription" required
+                    [class.is-invalid]="f.submitted && cardDescription.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="(cardDescription.touched || f.submitted) && cardDescription.invalid">
+                  <p>Description Text can't be blank.</p>
+                </div>
+              </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Card Title<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="cardTitle" name="cardTitle" #cardTitle="ngModel"
+                    [(ngModel)]="journey.cardTitle" required [class.is-invalid]="f.submitted && cardTitle.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="(cardTitle.touched || f.submitted) && cardTitle.invalid">
+                  <p>Title Text can't be blank.</p>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4 mb-4">
+              <div class="col-12">
+                <button *ngIf="!journey._id" [disabled]="f.invalid " type="submit" class="btn green-btn"
+                  (click)="onClickSave()">Save Journey</button>
+                <button *ngIf="journey._id" [disabled]="f.invalid" type="submit" class="btn green-btn"
+                  (click)="onClickSave()">Update Journey</button>
+                <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
+              </div>
+            </div>
+          </form>
+          <div>
+          </div>
+          <app-footer></app-footer>
+        </div>
