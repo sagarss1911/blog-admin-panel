@@ -23,6 +23,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CalendarModule } from 'primeng/calendar';
 import { CustomAdvanceFilterModule } from 'src/app/shared-components/custom-advance-filter/custom-advance-filter.module';
+import { SuggestionsComponent } from './suggestions/suggestions.component';
+// mat
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { CustomAdvanceFilterModule } from 'src/app/shared-components/custom-adva
     ToastMessageComponent,
     ConfirmationModalComponent,
     PasswordChangeModalComponent,
+    SuggestionsComponent,
   ],
   imports: [
     BrowserModule,

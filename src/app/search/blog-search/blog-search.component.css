@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:ital,wght@0,500;1,900&family=Ms+Madi&family=Noto+Sans+HK:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Ms+Madi&family=Noto+Sans+HK:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:ital,wght@0,500;1,900&family=Ms+Madi&family=Noto+Sans+HK:wght@100&family=Signika:wght@200&display=swap');
+.search{
+padding-left: 2rem;
+font-size: 22px;
+border: none;
+margin-left: 0.2rem;
+width: 80%;
+/* background-color: rebeccapurple; */
+
+}
+
+form{
+    
+   margin-top: 7rem; 
+   width:60%;
+    height: 60px;
+    border: transparent;
+    border-radius: 19px;
+    box-shadow: 10px 10px 8px #888888;
+    margin-left: 9%;
+   }
+
+ input:focus{
+       outline: none;
+   }
+   .fullpage {
+      width: 80%;
+   
+    margin-left: 10%;
+  
+      
+   
+    }
+.container{
+      font-weight: 400;
+      margin-top: 7vh;  
+    /* padding: 20px; */
+     
+
+   
+ 
+}
+ .col-6{
+    
+      align-items: center;
+      
+      margin-top: 7vh;  
+     
+      
+        
+       
+    
+ }
+
+       
+ img{
+      
+       width:80% ;
+      
+     
+ }
+ .blogs{
+   
+      margin-top: 7vh;
+      font-family: 'Noto Sans HK', sans-serif;
+  
+      word-spacing: 2px;
+      letter-spacing: 1px;
+      border-left: 1px solid #e0e0e0;
+      border-right: 1px solid #e0e0e0;
+     
+     
+  
+     
+      
+ }
+ .header{
+      font-weight:800;
+      letter-spacing: 1px;
+    
+      font-family: 'Noto Sans HK', sans-serif;
+      width: 95%;
+      border-bottom: solid 0.3px  #888888;
+     
+ }
+
+
+ .peaple{
+      margin-top: 7vh;  
+   /* width: 70%; */
+  
+ }
+
+ .title{
+      font-family: 'Merriweather', serif;
+ }
+
+.future-btn{
+color: antiquewhite;
+text-align: center;
+padding-top: 0px;
+background-color: black;
+border-radius: 20px;
+height: 2.8vh;
+width: 10vh;
+margin-left: 9px;
+
+}
+
+.btn1{
+      background-color: #888888;
+      font-size: 30px;
+}
+.ppl{
+     padding-top:  3vh;
+}
+
+.ppl-img {
+margin-left: 30px;
+border-radius: 50%;
+width: 6.5vh;
+height: 6.5vh;
+}
+.col-8{
+
+     margin: 0px;
+}
+/* font-family: "Publico Text",Georgia,Times,"Times New Roman",serif!important; */
+
+
+/* diomand button  */
+
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: 0.25s all 0.02s ease-in-out;
+}
+
+
+
+
+.transparent {
+     
+  position: relative;
+  margin: 1rem auto;
+  text-align: center;
+  font-size: 0.6rem;
+  line-height: 0.6rem;
+  vertical-align: middle;
+  color: #ffffff;
+  display: inline-block;
+  border-width: 0;
+  border-style: solid;
+  border-color: #000000;
+  padding: 0.5rem;
+  cursor: pointer;
+min-width: 10vh;
+  background: transparent;
+ 
+  /* width: calc(100% / 10); */
+}
+
+.transparent span {
+  z-index: 20;
+  position: relative;
+  
+}
+
+.transparent::before,
+.transparent::after {
+  content: "";
+  position: absolute;
+  border-color: inherit;
+  border-style: inherit;
+  height: 50%;
+  width: 100%;
+  left: 0;
+  z-index: 10;
+  background-color: black;
+}
+
+.transparent::before {
+  border-width: 2px 2px 0 2px;
+  top: 0;
+  transform-origin: center bottom;
+  transform: perspective(0.2rem) rotateX(3deg);
+}
+
+.transparent::after {
+  border-width: 0 2px 2px 2px;
+  bottom: 0;
+  transform-origin: center top;
+  transform: perspective(0.2rem) rotateX(-3deg);
+}
+
+
+
+.transparent1 {
+     
+     margin-left: 20px;
+     position: relative;
+     
+     text-align: center;
+     font-size: 0.6rem;
+     line-height: 0.6rem;
+     vertical-align: middle;
+     color: #ffffff;
+     display: inline-block;
+     border-width: 0;
+     border-style: solid;
+     border-color: gray;
+     padding: 0.5rem;
+     cursor: pointer;
+   min-width: 10vh;
+  
+     background: transparent;
+    
+   
+   }
+   
+   .transparent1 span {
+
+     z-index: 20;
+     position: relative;
+     
+   }
+   
+   .transparent1::before,
+   .transparent1::after {
+     content: "";
+     position: absolute;
+     border-color: inherit;
+     border-style: inherit;
+     height: 50%;
+     width: 100%;
+     left: 0;
+     z-index: 10;
+     background-color: gray;
+   }
+   
+   .transparent1::before {
+     border-width: 2px 2px 0 2px;
+     top: 0;
+     transform-origin: center bottom;
+     transform: perspective(0.2rem) rotateX(3deg);
+   }
+   
+   .transparent1::after {
+     border-width: 0 2px 2px 2px;
+     bottom: 0;
+     transform-origin: center top;
+     transform: perspective(0.2rem) rotateX(-3deg);
+   }
+   .col-8 h5{
+     font-size:16px;
+     font-family: 'Merriweather', serif;
+   }
+   .col-8 p{
+     font-size:13px;
+   }

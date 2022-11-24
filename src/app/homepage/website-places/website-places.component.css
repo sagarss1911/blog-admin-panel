@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #fff;
+  font-family: "Montserrat", sans-serif;
+}
+.card {
+  width: 280px;
+  height: 370px;
+  margin: 30px 15px;
+  border-radius: 15px;
+  padding: 1.7em;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.4s ease-out;
+  box-shadow: 0px 7px 10px rgba(black, 0.5);
+}
+.card img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+.info-card {
+  position: relative;
+  z-index: 3;
+  color: #fff;
+  transform: translateY(50px);
+  transition: transform 0.4s;
+  opacity: 0;
+}
+.info-card p {
+  letter-spacing: 1px;
+  font-size: 15px;
+  margin-top: 8px;
+}
+.card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: opacity 0.5s;
+  border-radius: 15px;
+  z-index: 2;
+}
+.card:hover {
+  transform: translateY(20px);
+}
+.card:hover .info-card {
+  opacity: 1;
+  transform: translateY(0px);
+}
+.card:hover::before {
+  opacity: 1;
+}
+
+.title {
+  width: 100%;
+  /* height: 50vh; */
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 100px;
+  font-weight: 800px;
+  text-transform: uppercase;
+}

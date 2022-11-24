@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
@@ -53,6 +52,42 @@ export class BlogComponent implements OnInit {
     private category: CategoryService
   ) {}
 
+  // for editor
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: '200px',
+    uploadImagePath: '/api/upload',
+    toolbar: [
+      ['misc', ['codeview', 'undo', 'redo']],
+      ['style', ['bold', 'italic', 'underline', 'clear']],
+      [
+        'font',
+        [
+          'bold',
+          'italic',
+          'underline',
+          'strikethrough',
+          'superscript',
+          'subscript',
+          'clear',
+        ],
+      ],
+      ['fontsize', ['fontsize']],
+      ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
+      ['insert', ['table', 'hr']],
+    ],
+    fontNames: [
+      'Helvetica',
+      'Arial',
+      'Arial Black',
+      'Comic Sans MS',
+      'Courier New',
+      'Roboto',
+      'Times',
+    ],
+  };
+
   ngOnInit() {
     this.getSubscribers();
     this.getCategory();
@@ -65,6 +100,7 @@ export class BlogComponent implements OnInit {
       this.getBlogsData();
     }
   }
+
   //  geted category to add category in blogs
   getCategory() {
     this.loading = true;
@@ -75,8 +111,6 @@ export class BlogComponent implements OnInit {
       };
       this.category.getAllCategory(params).subscribe(
         (res: any) => {
-          console.log(res);
-
           this.Category = [];
           if (res.status == 200 && res.data.categoryList) {
             this.Category = JSON.parse(JSON.stringify(res.data.categoryList));
@@ -95,6 +129,7 @@ export class BlogComponent implements OnInit {
       );
     });
   }
+
   // get subscriber to add wordsBy and imageby blohBy users
   getSubscribers() {
     this.loading = true;
@@ -128,15 +163,12 @@ export class BlogComponent implements OnInit {
   // to push selected category to highlight dropdown
   setCategory(save: any) {}
   keyUp() {
-    // this.higlight = [];
-    // this.blog.categoryIds.forEach((element) => {
-    //   this.higlight.push(element);
-    // });
     this.sam = [];
-    this.sam = this.blog.categoryIds.map((a) => {
+    this.sam = this.blog.Category.map((a) => {
       return { name: a.name };
     });
   }
+
   getBlogsData() {
     this.loading = true;
     return new Promise((resolve, reject) => {
@@ -148,13 +180,19 @@ export class BlogComponent implements OnInit {
             this.already_uploadedurls = res.data.option_images
               ? res.data.option_images
               : [];
+
             this.sam = [];
             this.sam.push(res.data.highlightCategory);
             this.sam = this.sam.map((a) => {
               return { name: a };
             });
-            this.blog.higlight = this.sam[0].name;
-            this.blog.selectedCategory = res.data.category;
+            this.blog.higlight = res.data.highlightCategory;
+            this.blog.Category = JSON.parse(
+              JSON.stringify(res.data.categoryIds)
+            );
+            this.blog.Category = this.blog.Category.map((a) => {
+              return { _id: a._id, name: a.categoryName };
+            });
           }
           this.loading = false;
           return resolve(true);
@@ -175,6 +213,7 @@ export class BlogComponent implements OnInit {
       .replace(/ /g, '-')
       .replace(/[^\w-]+/g, '');
   }
+
   // image upload
   onCLUpload(event) {
     if (event.target.files && event.target.files[0]) {
@@ -192,10 +231,12 @@ export class BlogComponent implements OnInit {
     this.blog.productImageFile = null;
     this.blog.newImageUploaded = false;
   }
+
   // cancel image
   onClickCancel() {
     this.router.navigate(['/products-options-pages/products']);
   }
+
   // post blog data
   onClickSave(f: any) {
     const data = new FormData();
@@ -203,9 +244,9 @@ export class BlogComponent implements OnInit {
     if (this.blog.productImageFile) {
       data.append('image', this.blog.productImageFile);
     }
-    // this.blog.categoryIds = '';
+
     let dataa = [];
-    this.blog.categoryIds.forEach((element) => {
+    this.blog.Category.forEach((element) => {
       dataa.push(element._id);
     });
 
@@ -220,7 +261,8 @@ export class BlogComponent implements OnInit {
       seoDescription: this.blog.seoDescription,
       seoKeyword: this.blog.seoKeyword,
       categoryIds: dataa,
-      highlight: this.blog.higlight,
+      feature: this.blog.feature,
+      highlight: this.blog.highlightCategory,
       createdBy: this.blog.createdBy,
       imageBy: this.blog.imageBy,
       wordsBy: this.blog.wordsBy,

@@ -82,6 +82,7 @@
                 Actions
               </th>
             </tr>
+            <th>fitured</th>
           </thead>
           <tbody
             class="c-table-body"
@@ -142,6 +143,12 @@
                   <i class="fa fa-trash"></i>
                 </div>
               </td>
+              <td
+                *ngIf="tab_data.feature"
+                class="c-table-cell c-table-body-cell text-pull-left"
+              >
+                featured
+              </td>
             </tr>
           </tbody>
           <tbody
@@ -170,6 +177,7 @@
       </div>
     </div>
   </div>
+
   <!-- Footer -->
   <app-footer></app-footer>
 
