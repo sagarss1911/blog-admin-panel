@@ -1,0 +1,65 @@
+<!-- featured places -->
+<!-- <img class="placeimage" [src]="base_url +'/'+ item.mapImage" alt="" srcset=""> -->
+<!--
+<body>
+  <section class="container">
+    <h1>FEATURED PLACES</h1>
+    <div class="cards row">
+      <div class="card row" *ngFor="let item of places">
+        <div class="card-body">
+          <div class="title">
+            <h2>{{item.placeName}}</h2>
+          </div>
+          <p>{{item.seoDescription}}
+            Enjoy , relax, breath </p>
+          <p routerLink="places-featured" onclick="openblog()">Read-More</p>
+        </div>
+        <div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body> -->
+
+
+
+<section>
+  <div class="title">
+    <h1>FEATURED PLACES</h1>
+  </div>
+  <div class="container">
+    <div class="card" *ngFor="let item of places">
+      <div class="card-media">
+        <img [src]="base_url +'/'+ item.mapImage" />
+      </div>
+      <div class="card-content">
+        <header class="card-header">
+          <span class="card-date">{{item.createdAt | date}}</span>
+          <h3>
+            <a href="#">{{item.placeName}}</a>
+          </h3>
+        </header>
+        <div class="card-desc">
+          <p>
+            {{item.seoDescription|titlecase}}
+          </p>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="read-more-link">Read more
+            <svg fill="none" viewBox="0 0 16 8">
+              <path
+                d="M15.354 4.354a.5.5 0 000-.708L12.172.464a.5.5 0 10-.708.708L14.293 4l-2.828 2.828a.5.5 0 10.707.708l3.182-3.182zM0 4.5h15v-1H0v1z"
+                fill="currentColor" />
+            </svg>
+          </a>
+        </footer>
+      </div>
+      <div class="card-border">
+        <span class="top"></span>
+        <span class="right"></span>
+        <span class="bottom"></span>
+        <span class="left"></span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+<div class="main-page-content">
+  <div class="setting-menu-bar">
+    <ul class="menu-ul">
+      <li>
+        <a routerLink="/aboutus/aboutUsManagement" routerLinkActive="active" (click)="onClickLink(0)">About us
+          Page</a>
+      </li>
+      <li>
+        <a routerLink="/aboutus/aboutUsCardManagement" routerLinkActive="active" (click)="onClickLink(1)">Add
+          Cards</a>
+      </li>
+    </ul>
+  </div>
+  <div class="settings-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

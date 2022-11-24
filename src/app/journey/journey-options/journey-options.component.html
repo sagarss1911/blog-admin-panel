@@ -1,0 +1,17 @@
+<div class="main-page-content">
+  <div class="setting-menu-bar">
+    <ul class="menu-ul">
+      <li>
+        <a routerLink="/journeys/journeyIconManagement" routerLinkActive="active" (click)="onClickLink(0)">Add
+          icons</a>
+      </li>
+      <li>
+        <a routerLink="/journeys/journeyCardManagement" routerLinkActive="active" (click)="onClickLink(1)">Add
+          Cards</a>
+      </li>
+    </ul>
+  </div>
+  <div class="settings-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

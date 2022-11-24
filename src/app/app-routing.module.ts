@@ -56,7 +56,24 @@ const routes: Routes = [
             (m) => m.SubscriberModule
           ),
       },
+      {
+        path: 'aboutus',
+        loadChildren: () =>
+          import('src/app/about-us/about-us.module').then(
+            (m) => m.AboutUsModule
+          ),
+      },
+      {
+        path: 'journeys',
+        loadChildren: () =>
+          import('src/app/journey/journey.module').then((m) => m.JourneyModule),
+      },
     ],
+  },
+  {
+    path: 'homepage',
+    loadChildren: () =>
+      import('src/app/homepage/homepage.module').then((m) => m.HomepageModule),
   },
   { path: '**', component: NotfoundComponent },
 ];

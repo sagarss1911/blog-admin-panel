@@ -1,0 +1,178 @@
+<div class="container-fluid management-tab">
+  <ngx-loading [show]="loading"
+    [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
+  </ngx-loading>
+  <div class="row section-box">
+    <div class="col-12">
+      {{ type | titlecase }} about
+      <div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form #f="ngForm" novalidate autocomplete="off">
+            <div class="row">
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="mission">Mission <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="fname" placeholder="Enter Mission" name="mission"
+                    #mission="ngModel" [(ngModel)]="aboutUs.mission" required
+                    [class.is-invalid]="f.submitted && mission.invalid">
+                  <div class="alert alert-danger" *ngIf="(mission.touched || f.submitted) && mission.invalid">
+                    <p>Mission can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectionname">Aim<span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="aim" placeholder="Enter Aim" name="aim" #aim="ngModel"
+                    [(ngModel)]="aboutUs.aim" required [class.is-invalid]="f.submitted && aim.invalid">
+                  <div class="alert alert-danger" *ngIf="(aim.touched || f.submitted) && aim.invalid">
+                    <p>Aim can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Title - 1<span class="c-red">*</span></label>
+                  <div [class.is-invalid]="f.submitted && firstTitle.invalid">
+                    <div [ngxSummernote]="config" name="firstTitle" #firstTitle="ngModel"
+                      [(ngModel)]="aboutUs.firstTitle" required></div>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="(firstTitle.touched || f.submitted) && firstTitle.invalid">
+                    <p>Title - 1 Text can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Description -1 <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="firstDescription" placeholder="Enter description - 1 "
+                    name="firstDescription" #firstDescription="ngModel" [(ngModel)]="aboutUs.firstDescription" required
+                    [class.is-invalid]="f.submitted && firstDescription.invalid">
+                  <div class="alert alert-danger"
+                    *ngIf="(firstDescription.touched || f.submitted) && firstDescription.invalid">
+                    <p>Description - 1 Text can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Contributors Paragraph-1 Description <span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="contributorPara1" name="contributorPara1"
+                    #contributorPara1="ngModel" [(ngModel)]="aboutUs.contributorPara1" required
+                    [class.is-invalid]="f.submitted && contributorPara1.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="(contributorPara1.touched || f.submitted) && contributorPara1.invalid">
+                  <p>Contributor Paragraph - 1 Text can't be blank.</p>
+                </div>
+              </div>
+
+
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Contributors Paragraph-2 Description <span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="contributorPara2" placeholder="Enter para-2 description "
+                    name="contributorPara2" #contributorPara2="ngModel" [(ngModel)]="aboutUs.contributorPara2" required
+                    [class.is-invalid]="f.submitted && contributorPara2.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="(contributorPara2.touched || f.submitted) && contributorPara2.invalid">
+                  <p>Contributor Paragraph -2 Text can't be blank.</p>
+                </div>
+              </div>
+
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Title - 2<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="secondTitle" name="secondTitle" #secondTitle="ngModel"
+                    [(ngModel)]="aboutUs.secondTitle" required [class.is-invalid]="f.submitted && secondTitle.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="(secondTitle.touched || f.submitted) && secondTitle.invalid">
+                  <p>Title - 2 Text can't be blank.</p>
+                </div>
+              </div>
+
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Column 1<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="firstColumn" name="firstColumn" #firstColumn="ngModel"
+                    [(ngModel)]="aboutUs.firstColumn" required [class.is-invalid]="f.submitted && firstColumn.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="(firstColumn.touched || f.submitted) && firstColumn.invalid">
+                  <p>Column-1 Text can't be blank.</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Column 2<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="secondColumn" name="secondColumn" #secondColumn="ngModel"
+                    [(ngModel)]="aboutUs.secondColumn" required
+                    [class.is-invalid]="f.submitted && secondColumn.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="(secondColumn.touched || f.submitted) && secondColumn.invalid">
+                  <p>Column - 2 Text can't be blank.</p>
+                </div>
+              </div>
+
+              <div class="col-12 ">
+                <div class="form-group">
+                  <div>
+                    <label>Image<span class="c-red">*</span></label>
+                  </div>
+
+                  <div class="uploaded-file-block" *ngIf="aboutUs.aboutUsImageUrl">
+                    <div class="file-detail-wrap">
+                      <div class="uimage"><img width="100px" [src]="aboutUs.aboutUsImageUrl" /></div>
+                      <div class="close-btn-wrapper" (click)="clearImageFile()"><i class="fa fa-times-circle"
+                          aria-hidden="true"></i></div>
+                    </div>
+                  </div>
+                  <div class="uploaded-file-block" *ngIf="aboutUs.image && !aboutUs.aboutUsImageUrl">
+                    <div class="file-detail-wrap">
+                      <div class="uimage"><img width="100px" [src]="base_url+'/'+aboutUs.image" /></div>
+
+                    </div>
+                  </div>
+                  <button type="button" class="btn dark-blue-btn" (click)="aboutUsImageFile.click()">
+                    <div>
+                      <i class="fa fa-plus" aria-hidden="true"></i>
+                      Upload
+                    </div>
+                    <input #aboutUsImageFile type="file" (change)="onImageUpload($event)" accept="image/*"
+                      style="display: none" />
+                  </button>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="row mt-4 mb-4">
+              <div class="col-12">
+                <button *ngIf="!aboutUs._id" [disabled]="f.invalid || !aboutUs.aboutUsImageFile" type="submit"
+                  class="btn green-btn" (click)="onClickSave()">Save About - Us</button>
+                <button *ngIf="aboutUs._id" [disabled]="f.invalid" type="submit" class="btn green-btn"
+                  (click)="onClickSave()">Update AboutUs</button>
+                <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
+              </div>
+            </div>
+          </form>
+          <div>
+          </div>
+          <app-footer></app-footer>
+        </div>

@@ -19,6 +19,8 @@ export class PlaceManagementComponent implements OnInit {
   public dialogType: string = 'add';
   public paginationValues: Subject<any> = new Subject();
   public table_data: any[] = [];
+  // public feature: any;
+
   public recordLimit: number = 10;
   public modalRef: BsModalRef;
   base_url = environment.url;
@@ -110,5 +112,36 @@ export class PlaceManagementComponent implements OnInit {
       }
       tempSubObj.unsubscribe();
     });
+  }
+
+  addToFeature(feature: any, place: any) {
+    let data = {
+      feature: feature,
+      _id: place,
+    };
+    this.placeService.addToFeature(data).subscribe(
+      (res: any) => {
+        console.log(res);
+
+        if (res.data == 'added') {
+          this._toastMessageService.alert(
+            'success',
+            'Place added to feature successfully.'
+          );
+          this.router.navigate(['/places']);
+        }
+        if (res.data == 'removed') {
+          this._toastMessageService.alert(
+            'success',
+            'Place removed from feature successfully.'
+          );
+          this.router.navigate(['/places']);
+        }
+      },
+      (error) => {
+        this.loading = false;
+        this.commonHelper.showError(error);
+      }
+    );
   }
 }

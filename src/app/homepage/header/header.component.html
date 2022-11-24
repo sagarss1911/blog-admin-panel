@@ -1,0 +1,124 @@
+<!-- <header>
+  <a routerLink="home" class="logo"> <img src="../../assets/img/maptialogo.png" alt="" class=""></a>
+  <input type="checkbox" id="menu-bar">
+  <label for="menu-bar">Menu</label>
+  <nav class="navbar">
+    <ul>
+      <li><a href="#">Explore</a>
+        <ul>
+          <li><a href="#">Editor's Picks</a></li>
+          <li><a href="#">Journeys</a></li>
+          <li><a routerLink="home/places-featured">Places</a></li>
+          <li><a href="#">Channels</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Community</a>
+        <ul>
+          <li><a href="#">Contributors</a></li>
+          <li><a href="#">Members</a></li>
+          <li><a href="#">True North</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">Store</a>
+        <ul>
+          <li><a href="#">Photography</a></li>
+          <li><a href="#">Manifesto</a></li>
+          <li><a href="#">SeaLegacy</a></li>
+        </ul>
+      </li>
+      <li><a routerLink="about-us">About Us</a></li>
+    </ul>
+  </nav>
+</header> -->
+
+
+
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/> -->
+
+<nav>
+  <div class="wrapper">
+    <div class="logo"><a><img [src]="base_url+'/'+icon.image" class="micon1"></a></div>&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="slider" id="menu-btn">
+    <input type="radio" name="slider" id="close-btn">
+    <ul class="nav-links">
+      <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+
+      <li>
+        <a href="#" class="desktop-item">EXPLORE</a>
+        <input type="checkbox" id="showMega">
+        <div class="mega-box">
+          <div class="content">
+            <div class="row">
+              <header>EDITORS' PICKS</header>
+              <ul class="mega-links">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, facere.</p>
+              </ul>
+            </div>
+            <div class="row">
+              <header>JOURNEYS</header>
+              <ul class="mega-links">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, facere.</p>
+              </ul>
+            </div>
+            <div class="row">
+
+              <header routerLink="home/places-featured">PLACES</header>
+              <ul class="mega-links">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, facere.</p>
+              </ul>
+            </div>
+            <div class="row">
+              <header>CHANNELS</header>
+              <ul class="mega-links">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, facere.</p>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="desktop-item">COMMUNITY</a>
+        <input type="checkbox" id="showMega">
+        <!-- <label for="showMega" class="mobile-item">COMMUNITY</label> -->
+        <div class="mega-box">
+          <div class="content">
+            <div class="row">
+              <header>MEMBERS</header>
+              <ul class="mega-links">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, facere.</p>
+              </ul>
+            </div>
+            <div class="row">
+              <header>CONTRIBUTORS</header>
+              <ul class="mega-links">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, facere.</p>
+              </ul>
+            </div>
+            <div class="row">
+              <header>TRUE NORTH</header>
+              <ul class="mega-links">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, facere.</p>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      &nbsp;
+      <div class="logo"><a><img [src]="base_url+'/'+icon.logoImage" class="micon"></a></div>
+      &nbsp;&nbsp;
+      <li><a href="#">STORE</a></li>
+      <li><a href="#">ABOUT</a></li>
+    </ul>
+
+    <div class="styling">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href=""><i class="fa-regular fa-magnifying-glass" style="color:black">search</i></a>
+      &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a routerLink="/user" style="color:black">Join | </a>
+      <a routerLink="/user/user-login" style="color:black">Login</a>
+    </div>
+    <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+  </div>
+</nav>
