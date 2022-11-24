@@ -157,3 +157,6 @@ td.pr1 {
 .p-fluid .p-multiselect {
   display: flex;
 }
+.editor.apiKey{
+  height: 500px;
+}

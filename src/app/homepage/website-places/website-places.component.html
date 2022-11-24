@@ -1,0 +1,12 @@
+<p class="title">Places</p>
+<section>
+  <div class="container">
+    <div class="card" *ngFor="let place of table_data">
+      <img [src]="base_url +'/'+ place.mapImage" alt="">
+      <div class="info-card">
+        <h1>{{place.placeName}}</h1>
+        <p>{{place.seoDescription}}</p>
+      </div>
+    </div>
+  </div>
+</section>

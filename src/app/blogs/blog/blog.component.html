@@ -11,6 +11,9 @@
     }"
   >
   </ngx-loading>
+
+  <!--  -->
+
   <div class="row section-box">
     <div class="col-12">
       {{ type | titlecase }} product
@@ -48,14 +51,13 @@
                     <p>Product Name can't be blank.</p>
                   </div>
                 </div>
-                <!--  -->
               </div>
+              <!--  -->
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
                   <label for="productname"
                     >blog Slug <span class="c-red">*</span></label
                   >
-                  <!-- s -->
                   <input
                     type="text"
                     class="form-control"
@@ -189,7 +191,6 @@
 
               <!--  -->
 
-              <!--  -->
               <div class="col-12">
                 <div class="form-group">
                   <div>
@@ -244,36 +245,46 @@
               <!--
 
                -->
-
               <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext"
+                    >Active<span class="c-red">*</span></label
+                  >
+                  <p-inputSwitch
+                    [(ngModel)]="blog.feature"
+                    class="input-switch"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                  </p-inputSwitch>
+                </div>
+              </div>
+              <!--  -->
+
+              <div class="">
                 <div class="form-group">
                   <label for="collectiontext"
                     >full discription <span class="c-red">*</span></label
                   >
-                  <textarea
-                    type="text"
-                    class="form-control"
-                    id="EnterFullDiscription"
-                    placeholder="Enter Full Discription"
-                    name="fullDiscription"
-                    #EnterFullDiscription="ngModel"
+                  <div
+                    [ngxSummernote]="config"
+                    name="FullDiscription"
+                    #fullDiscription="ngModel"
                     [(ngModel)]="blog.fullDiscription"
                     required
-                    [class.is-invalid]="
-                      f.submitted && EnterFullDiscription.invalid
-                    "
-                  ></textarea>
+                  ></div>
+
                   <div
                     class="alert alert-danger"
                     *ngIf="
-                      (EnterFullDiscription.touched || f.submitted) &&
-                      EnterFullDiscription.invalid
+                      (fullDiscription.touched || f.submitted) &&
+                      fullDiscription.invalid
                     "
                   >
                     <p>full discription Text can't be blank.</p>
                   </div>
                 </div>
               </div>
+
               <!--  -->
 
               <div class="col-12 col-xl-3 col-md-4">
@@ -290,7 +301,7 @@
                     optionLabel="name"
                     placeholder="Select Collections"
                     defaultLabel="Select Collections"
-                    [(ngModel)]="blog.categoryIds"
+                    [(ngModel)]="blog.Category"
                     [ngModelOptions]="{ standalone: true }"
                     (click)="keyUp()"
                   ></p-multiSelect>
@@ -314,7 +325,7 @@
                     #parentcollection="ngModel"
                     [options]="sam"
                     placeholder="Select Product"
-                    [(ngModel)]="blog.higlight"
+                    [(ngModel)]="blog.highlightCategory"
                     optionLabel="name"
                     optionValue="name"
                   >
@@ -402,9 +413,21 @@
     </div>
   </div>
 </div>
-<!-- <p-multiSelect
-  [options]="Category"
-  [(ngModel)]="selectedCities"
-  optionLabel="name"
-  (click)="keyUp()"
-></p-multiSelect> -->
+
+<!-- <editor
+class="editor"
+sapiKey="1yhozs0hrw3i9zqw9cmu6di07mq1jw3is5eitxyet2mpg23k"
+                    [init]="{ height: 500 }"
+                    name="FullDiscription"
+                    #fullDiscription="ngModel"
+                    [(ngModel)]="blog.fullDiscription"
+                    required
+                  ></editor> -->
+
+<!-- <editor
+apiKey="1yhozs0hrw3i9zqw9cmu6di07mq1jw3is5eitxyet2mpg23k"
+name="bigtext"
+#bigtext="ngModel"
+[(ngModel)]="blog.bigtext"
+></editor> -->
+<!-- [ngxSummernote]="config" -->

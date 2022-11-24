@@ -9,6 +9,11 @@ export class PlaceService {
   private getAllPlaceUrl = environment.url + '/api/place/get_all_place';
   private deletePlaceUrl = environment.url + '/api/place/remove_place/';
   private getPlaceUrl = environment.url + '/api/place/get_place/';
+  private addPlaceFeatureUrl =
+    environment.url + '/api/place/add_featured_places';
+
+  private getAllFeaturedPlaceUrl =
+    environment.url + '/api/place/get_featured_places';
   constructor(private http: HttpClient) {}
   getHeader(): HttpHeaders {
     let headers = new HttpHeaders({
@@ -36,6 +41,18 @@ export class PlaceService {
   }
   deletePlace(id) {
     return this.http.delete(this.deletePlaceUrl + id, {
+      headers: this.getHeader(),
+    });
+  }
+  addToFeature(data: any) {
+    console.log(data);
+    return this.http.put(this.addPlaceFeatureUrl, data, {
+      headers: this.getHeader(),
+    });
+  }
+
+  getAllFeaturedPlace() {
+    return this.http.get(this.getAllFeaturedPlaceUrl, {
       headers: this.getHeader(),
     });
   }

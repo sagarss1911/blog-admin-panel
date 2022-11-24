@@ -8,9 +8,9 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { NgxSummernoteModule } from 'ngx-summernote';
 import { BlogManagementComponent } from './blog-management/blog-management.component';
-
+import { EditorModule } from '@tinymce/tinymce-angular';
 import { BlogsRoutingModule } from './blogs-routing.module';
 import { BlogComponent } from './blog/blog.component';
 
@@ -25,6 +25,8 @@ import { BlogComponent } from './blog/blog.component';
     NgxLoadingModule,
     SharedPaginationModule,
     SharedModule,
+    EditorModule,
+    NgxSummernoteModule,
   ],
   providers: [BlogComponent],
 })
