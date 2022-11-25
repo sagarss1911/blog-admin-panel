@@ -1,46 +1,24 @@
 <div class="container-fluid management-tab">
-  <ngx-loading
-    [show]="loading"
-    [config]="{
-      backdropBorderRadius: '14px',
-      fullScreenBackdrop: true,
-      backdropBackgroundColour: 'rgba(255,255,255, 0.01)',
-      primaryColour: '#005eff',
-      secondaryColour: '#005eff',
-      tertiaryColour: '#005eff'
-    }"
-  >
+  <ngx-loading [show]="loading"
+    [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
   </ngx-loading>
   <div class="row section-box">
     <div class="col-12">
       {{ type | titlecase }} place
-      <div></div>
+      <div>
+      </div>
       <div class="row">
         <div class="col-12">
           <form #f="ngForm" novalidate autocomplete="off">
             <div class="row">
+
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="placeName"
-                    >Place Name <span class="c-red">*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="fname"
-                    placeholder="Enter Place Name"
-                    name="placeName"
-                    #placeName="ngModel"
-                    [(ngModel)]="place.placeName"
-                    required
-                    [class.is-invalid]="f.submitted && placeName.invalid"
-                  />
-                  <div
-                    class="alert alert-danger"
-                    *ngIf="
-                      (placeName.touched || f.submitted) && placeName.invalid
-                    "
-                  >
+                  <label for="placeName">Place Name <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="fname" placeholder="Enter Place Name" name="placeName"
+                    #placeName="ngModel" [(ngModel)]="place.placeName" required
+                    [class.is-invalid]="f.submitted && placeName.invalid">
+                  <div class="alert alert-danger" *ngIf="(placeName.touched || f.submitted) && placeName.invalid">
                     <p>Place Name can't be blank.</p>
                   </div>
                 </div>
@@ -48,118 +26,47 @@
 
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectionname"
-                    >SEO Title <span class="c-red">*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="seoTitle"
-                    placeholder="Enter SEO Title"
-                    name="seoTitle"
-                    #seoTitle="ngModel"
-                    [(ngModel)]="place.seoTitle"
-                    required
-                    [class.is-invalid]="f.submitted && seoTitle.invalid"
-                  />
-                  <div
-                    class="alert alert-danger"
-                    *ngIf="
-                      (seoTitle.touched || f.submitted) && seoTitle.invalid
-                    "
-                  >
+                  <label for="collectionname">SEO Title <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="seoTitle" placeholder="Enter SEO Title" name="seoTitle"
+                    #seoTitle="ngModel" [(ngModel)]="place.seoTitle" required
+                    [class.is-invalid]="f.submitted && seoTitle.invalid">
+                  <div class="alert alert-danger" *ngIf="(seoTitle.touched || f.submitted) && seoTitle.invalid">
                     <p>SEO Title can't be blank.</p>
                   </div>
                 </div>
               </div>
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectionname"
-                    >SEO Description <span class="c-red">*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="seoDescription"
-                    placeholder="Enter SEO Description"
-                    name="seoDescription"
-                    #seoDescription="ngModel"
-                    [(ngModel)]="place.seoDescription"
-                    required
-                    [class.is-invalid]="f.submitted && seoDescription.invalid"
-                  />
-                  <div
-                    class="alert alert-danger"
-                    *ngIf="
-                      (seoDescription.touched || f.submitted) &&
-                      seoDescription.invalid
-                    "
-                  >
+                  <label for="collectionname">SEO Description <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="seoDescription" placeholder="Enter SEO Description"
+                    name="seoDescription" #seoDescription="ngModel" [(ngModel)]="place.seoDescription" required
+                    [class.is-invalid]="f.submitted && seoDescription.invalid">
+                  <div class="alert alert-danger"
+                    *ngIf="(seoDescription.touched || f.submitted) && seoDescription.invalid">
                     <p>SEO Description can't be blank.</p>
                   </div>
                 </div>
               </div>
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectiontext"
-                    >SEO Keywords <span class="c-red">*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="seoKeyword"
-                    placeholder="Enter Keywords"
-                    name="seoKeyword"
-                    #seoKeyword="ngModel"
-                    [(ngModel)]="place.seoKeyword"
-                    required
-                    [class.is-invalid]="f.submitted && seoKeyword.invalid"
-                  />
-                  <div
-                    class="alert alert-danger"
-                    *ngIf="
-                      (seoKeyword.touched || f.submitted) && seoKeyword.invalid
-                    "
-                  >
+                  <label for="collectiontext">SEO Keywords <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="seoKeyword" placeholder="Enter Keywords" name="seoKeyword"
+                    #seoKeyword="ngModel" [(ngModel)]="place.seoKeyword" required
+                    [class.is-invalid]="f.submitted && seoKeyword.invalid">
+                  <div class="alert alert-danger" *ngIf="(seoKeyword.touched || f.submitted) && seoKeyword.invalid">
                     <p>Keywords Text can't be blank.</p>
                   </div>
                 </div>
               </div>
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
-                  <label for="collectiontext"
-                    >Active<span class="c-red">*</span></label
-                  >
-                  <p-inputSwitch
-                    [(ngModel)]="place.active"
-                    class="input-switch"
-                    [ngModelOptions]="{ standalone: true }"
-                  >
-                  </p-inputSwitch>
-                </div>
-              </div>
-              <div class="col-12 col-xl-3 col-md-4">
-                <div class="form-group">
-                  <label for="collectiontext"
-                    >Feature<span class="c-red">*</span></label
-                  >
-                  <p-inputSwitch
-                    [(ngModel)]="place.feature"
-                    class="input-switch"
-                    [ngModelOptions]="{ standalone: true }"
-                  >
-                  </p-inputSwitch>
-                </div>
-              </div>
-              <div class="col-12 col-xl-3 col-md-4">
-                <div class="form-group">
-                  <label for="collectiontext">Feature<span class="c-red">*</span></label>
-                  <p-inputSwitch [(ngModel)]="place.feature" class="input-switch" [ngModelOptions]="{standalone: true}">
+                  <label for="collectiontext">Active<span class="c-red">*</span></label>
+                  <p-inputSwitch [(ngModel)]="place.active" class="input-switch" [ngModelOptions]="{standalone: true}">
                   </p-inputSwitch>
                 </div>
               </div>
 
-              <div class="col-12">
+              <div class="col-12 ">
                 <div class="form-group">
                   <div>
                     <label>Image<span class="c-red">*</span></label>
@@ -167,48 +74,29 @@
 
                   <div class="uploaded-file-block" *ngIf="place.placeImageUrl">
                     <div class="file-detail-wrap">
-                      <div class="uimage">
-                        <img width="100px" [src]="place.placeImageUrl" />
-                      </div>
-                      <div class="close-btn-wrapper" (click)="clearImageFile()">
-                        <i class="fa fa-times-circle" aria-hidden="true"></i>
-                      </div>
+                      <div class="uimage"><img width="100px" [src]="place.placeImageUrl" /></div>
+                      <div class="close-btn-wrapper" (click)="clearImageFile()"><i class="fa fa-times-circle"
+                          aria-hidden="true"></i></div>
                     </div>
                   </div>
-                  <div
-                    class="uploaded-file-block"
-                    *ngIf="place.image && !place.placeImageUrl"
-                  >
+                  <div class="uploaded-file-block" *ngIf="place.image && !place.placeImageUrl">
                     <div class="file-detail-wrap">
-                      <div class="uimage">
-                        <img
-                          width="100px"
-                          [src]="base_url + '/' + place.image"
-                        />
-                      </div>
+                      <div class="uimage"><img width="100px" [src]="base_url+'/'+place.image" /></div>
+
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    class="btn dark-blue-btn"
-                    (click)="placeImageFile.click()"
-                  >
+                  <button type="button" class="btn dark-blue-btn" (click)="placeImageFile.click()">
                     <div>
                       <i class="fa fa-plus" aria-hidden="true"></i>
                       Upload
                     </div>
-                    <input
-                      #placeImageFile
-                      type="file"
-                      (change)="onImageUpload($event)"
-                      accept="image/*"
-                      style="display: none"
-                    />
+                    <input #placeImageFile type="file" (change)="onImageUpload($event)" accept="image/*"
+                      style="display: none" />
                   </button>
                 </div>
               </div>
 
-              <div class="col-12">
+              <div class="col-12 ">
                 <div class="form-group">
                   <div>
                     <label>Map Image<span class="c-red">*</span></label>
@@ -216,82 +104,45 @@
 
                   <div class="uploaded-file-block" *ngIf="place.mapImageUrl">
                     <div class="file-detail-wrap">
-                      <div class="uimage">
-                        <img width="100px" [src]="place.mapImageUrl" />
-                      </div>
-                      <div class="close-btn-wrapper" (click)="clearMapFile()">
-                        <i class="fa fa-times-circle" aria-hidden="true"></i>
-                      </div>
+                      <div class="uimage"><img width="100px" [src]="place.mapImageUrl" /></div>
+                      <div class="close-btn-wrapper" (click)="clearMapFile()"><i class="fa fa-times-circle"
+                          aria-hidden="true"></i></div>
                     </div>
                   </div>
-                  <div
-                    class="uploaded-file-block"
-                    *ngIf="place.mapImage && !place.mapImageUrl"
-                  >
+                  <div class="uploaded-file-block" *ngIf="place.mapImage && !place.mapImageUrl">
                     <div class="file-detail-wrap">
-                      <div class="uimage">
-                        <img
-                          width="100px"
-                          [src]="base_url + '/' + place.mapImage"
-                        />
-                      </div>
+                      <div class="uimage"><img width="100px" [src]="base_url+'/'+place.mapImage" /></div>
+
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    class="btn dark-blue-btn"
-                    (click)="mapImageFile.click()"
-                  >
+                  <button type="button" class="btn dark-blue-btn" (click)="mapImageFile.click()">
                     <div>
                       <i class="fa fa-plus" aria-hidden="true"></i>
                       Upload
                     </div>
-                    <input
-                      #mapImageFile
-                      type="file"
-                      (change)="onMapUpload($event)"
-                      accept="image/*"
-                      style="display: none"
-                    />
+                    <input #mapImageFile type="file" (change)="onMapUpload($event)" accept="image/*"
+                      style="display: none" />
                   </button>
                 </div>
               </div>
+              
+
             </div>
             <div class="row mt-4 mb-4">
               <div class="col-12">
-                <button
-                  *ngIf="!place._id"
-                  [disabled]="f.invalid || !place.placeImageFile"
-                  type="submit"
-                  class="btn green-btn"
-                  (click)="onClickSave()"
-                >
-                  Save Place
-                </button>
-                <button
-                  *ngIf="place._id"
-                  [disabled]="f.invalid"
-                  type="submit"
-                  class="btn green-btn"
-                  (click)="onClickSave()"
-                >
-                  Update Place
-                </button>
-                <button
-                  type="button"
-                  class="btn gray-btn ml-4"
-                  (click)="onClickCancel()"
-                >
-                  Cancel
-                </button>
+                <button *ngIf="!place._id" [disabled]="f.invalid || !place.placeImageFile" type="submit"
+                  class="btn green-btn" (click)="onClickSave()">Save Place</button>
+                <button *ngIf="place._id" [disabled]="f.invalid" type="submit" class="btn green-btn"
+                  (click)="onClickSave()">Update Place</button>
+                <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
               </div>
             </div>
           </form>
-          <div></div>
+          <div>
+          </div>
           <app-footer></app-footer>
         </div>
         <!-- End of Footer -->
-      </div>
-    </div>
-  </div>
-</div>
+
+
+        

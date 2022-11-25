@@ -1,0 +1,46 @@
+
+	<h4>Settings</h4>
+    <p>You can change your account details and E-mail prefrences here.</p>
+
+   <form #f="ngForm" novalidate autocomplete="off" >
+    <div class="col-12 col-xl-3 col-md-4">
+      <div class="form-group">
+        <label for="email">E-mail <span class="c-red">*</span></label>
+        <input type="email" class="form-control" id="email" placeholder="Enter E-mail" name="email"
+          #email="ngModel" [(ngModel)]="user.email" disabled required
+          [class.is-invalid]="f.submitted && email.invalid">
+        <div class="alert alert-danger" *ngIf="(email.touched || f.submitted) && email.invalid">
+          <p>E-mail can't be blank.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-xl-3 col-md-4">
+      <div class="form-group">
+        <label for="oldPassword">Old Password <span class="c-red">*</span></label>
+        <input type="password" class="form-control" id="oldPassword" placeholder="Enter First Name" name="oldPassword" 
+          #oldPassword="ngModel" [(ngModel)]="user.oldPassword" [class.is-invalid]="f.submitted && oldPassword.invalid">
+          <div class="alert alert-danger" *ngIf="(oldPassword.touched || f.submitted) && oldPassword.invalid">
+            <p>password can't be blank.</p>
+          </div>
+      </div>
+    </div>
+    <div class="col-12 col-xl-3 col-md-4">
+      <div class="form-group">
+        <label for="newPassword">New Password<span class="c-red">*</span></label>
+        <input type="password" class="form-control" id="newPassword" placeholder="Enter First Name" name="newPassword" 
+          #newPassword="ngModel" [(ngModel)]="user.newPassword">
+          <div class="alert alert-danger" *ngIf="(newPassword.touched || f.submitted) && newPassword.invalid">
+          <p>password can't be blank.</p>
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="changePassword()" value="Submit">Save Changes</button>
+
+   </form>
+
+   <div>
+    <p class="mb-0">To delete your account <a href="/user/delete" class="text-black-50 fw-bold" >click here.</a>
+    </p>
+  </div>
+
+  

@@ -2,23 +2,39 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomepageRoutingModule } from './homepage-routing.module';
-import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxLoadingModule } from 'ngx-loading';
+import { SharedModule } from 'primeng/api';
+import { DropdownModule } from 'primeng/dropdown';
+import { SharedPaginationModule } from '../shared-components/shared-pagination/shared-pagination.module';
+import { HeaderDashboardComponent } from './header-dashboard/header-dashboard.component';
+import { FeaturedPlaceComponent } from './featured-place/featured-place.component';
 import { HomeCardComponent } from './home-card/home-card.component';
 import { HomeFooterComponent } from './home-footer/home-footer.component';
-import { HeaderComponent } from './header/header.component';
-import { FeaturedPlaceComponent } from './featured-place/featured-place.component';
-import { WebsitePlacesComponent } from './website-places/website-places.component';
-import { FutureBlogsComponent } from './future-blogs/future-blogs.component';
+import { HomeComponent } from './home/home.component';
+
 @NgModule({
   declarations: [
+    HeaderComponent,
+    HeaderDashboardComponent,
+    FeaturedPlaceComponent,
     HomeComponent,
     HomeCardComponent,
     HomeFooterComponent,
-    HeaderComponent,
-    FeaturedPlaceComponent,
-    WebsitePlacesComponent,
-    FutureBlogsComponent,
   ],
-  imports: [CommonModule, HomepageRoutingModule],
+  imports: [
+    CommonModule,
+
+    SharedModule,
+    HomepageRoutingModule,
+    SharedPaginationModule,
+    NgxLoadingModule,
+    FormsModule,
+    NgSelectModule,
+    DropdownModule,
+  ],
+  providers: [HeaderComponent],
 })
 export class HomepageModule {}

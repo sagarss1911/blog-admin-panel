@@ -111,7 +111,6 @@ export class AddPlaceComponent implements OnInit {
       seoDescription: this.place.seoDescription,
       seoKeyword: this.place.seoKeyword,
       active: this.place.active,
-      feature: this.place.feature,
     };
     data.append('body', JSON.stringify(params));
     this.loading = true;

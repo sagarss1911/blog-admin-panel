@@ -28,6 +28,10 @@ const routes: Routes = [
         component: WebsitePlacesComponent,
       },
       {
+        path: 'header',
+        component: HeaderComponent,
+      },
+      {
         path: 'login',
         loadChildren: () =>
           import('src/app/login/login.module').then((m) => m.LoginModule),
