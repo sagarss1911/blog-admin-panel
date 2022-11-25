@@ -59,8 +59,6 @@
                 Active
               </th>
               <th class="c-table-cell c-table-header-cell text-pull-right">Actions</th>
-              <th class="c-table-cell c-table-header-cell text-pull-right">Feature</th>
-
             </tr>
           </thead>
           <tbody class="c-table-body" *ngIf="table_data && table_data.length>0">
@@ -83,16 +81,8 @@
                   style="color: #ff5151">
                   <i class="fa fa-trash"></i>
                 </div>
-
               </td>
-              <td>
-                <div class="c-table-cell c-table-body-cell text-pull-right">
-                  <p-inputSwitch class="input-switch" [(ngModel)]="tab_data.feature"
-                    (click)="addToFeature(tab_data.feature,tab_data._id)">
-                  </p-inputSwitch>
 
-                </div>
-              </td>
             </tr>
           </tbody>
           <tbody class="c-table-body" *ngIf="(!table_data || table_data.length==0)">
@@ -111,6 +101,9 @@
       </div>
     </div>
   </div>
+  
   <!-- Footer -->
   <app-footer></app-footer>
   <!-- End of Footer -->
+
+  

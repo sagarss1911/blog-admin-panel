@@ -1,0 +1,243 @@
+
+<div class="container-fluid management-tab">
+    <ngx-loading [show]="loading"
+      [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
+    </ngx-loading>
+    <div class="row section-box">
+      <div class="col-12">
+        <!-- {{ type | titlecase }} user -->
+        <div>
+        </div>
+  
+        <div class="row">
+          <div class="col-12">
+            <form #f="ngForm" novalidate autocomplete="off">
+              <div class="row">
+  
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="firstName">First Name <span class="c-red">*</span></label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" name="firstName" 
+                      #firstName="ngModel" [(ngModel)]="user.firstName"
+                      [class.is-invalid]="f.submitted && firstName.invalid">
+                    <div class="alert alert-danger" *ngIf="(firstName.touched || f.submitted) && firstName.invalid">
+                      <p>User Name can't be blank.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-xl-3 col-md-4">
+                    <div class="form-group">
+                      <label for="lastName">Last Name <span class="c-red">*</span></label>
+                      <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" name="lastName"
+                        #lastName="ngModel" [(ngModel)]="user.lastName" required
+                        [class.is-invalid]="f.submitted && lastName.invalid">
+                      <div class="alert alert-danger" *ngIf="(lastName.touched || f.submitted) && lastName.invalid">
+                        <p>Last Name can't be blank.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-xl-3 col-md-4">
+                    <div class="form-group">
+                      <label for="email">E-mail <span class="c-red">*</span></label>
+                      <input type="email" class="form-control" id="email" placeholder="Enter E-mail" name="email"
+                        #email="ngModel" [(ngModel)]="user.email" disabled required
+                        [class.is-invalid]="f.submitted && email.invalid">
+                      <div class="alert alert-danger" *ngIf="(email.touched || f.submitted) && email.invalid">
+                        <p>E-mail can't be blank.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="col-12 col-xl-3 col-md-4">
+                    <div class="form-group">
+                      <label for="userName">User Name <span class="c-red">*</span></label>
+                      <input type="text" class="form-control" id="userName" placeholder="Enter User Name" name="userName"
+                        #userName="ngModel" [(ngModel)]="user.userName" required
+                        [class.is-invalid]="f.submitted && userName.invalid">
+                      <div class="alert alert-danger" *ngIf="(userName.touched || f.submitted) && userName.invalid">
+                        <p>User Name can't be blank.</p>
+                      </div>
+                    </div>
+                  </div>
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="collectionname">Short Bio <span class="c-red">*</span></label>
+                    <input type="text" class="form-control" id="shortBio" placeholder="Enter Short Bio"
+                      name="shortBio" #shortBio="ngModel" [(ngModel)]="user.shortBio" 
+                      [class.is-invalid]="f.submitted && shortBio.invalid">
+                    <div class="alert alert-danger"
+                      *ngIf="(shortBio.touched || f.submitted) && shortBio.invalid">
+                      <p>Short Bio can't be blank.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="collectiontext">Location <span class="c-red">*</span></label>
+                    <input type="text" class="form-control" id="location" placeholder="Enter Keywords" name="location"
+                      #location="ngModel" [(ngModel)]="user.location" required
+                      [class.is-invalid]="f.submitted && location.invalid">
+                    <div class="alert alert-danger" *ngIf="(location.touched || f.submitted) && location.invalid">
+                      <p>Location can't be blank.</p>
+                    </div>
+                  </div>
+                </div>
+               
+  
+                
+                <div class="col-12 ">
+                  <div class="form-group">
+                    <div>
+                      <label>Profile Image</label>
+                    </div>
+  
+                    <div class="uploaded-file-block" *ngIf="user.userImageUrl">
+                      <div class="file-detail-wrap">
+                        <div class="uimage"><img width="100px" [src]="user.userImageUrl" /></div>
+                        <div class="close-btn-wrapper" (click)="clearCLFile()"><i class="fa fa-times-circle"
+                            aria-hidden="true"></i></div>
+                      </div>
+                    </div>
+                    <div class="uploaded-file-block" *ngIf="user.profileImage && !user.userImageUrl">
+                      <div class="file-detail-wrap">
+                        <div class="uimage"><img width="100px" [src]="base_url+'/'+user.profileImage" /></div>
+  
+                      </div>
+                    </div>
+                    <button type="button" class="btn dark-blue-btn" (click)="userImageFile.click()">
+                      <div>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Upload
+                      </div>
+                      <input #userImageFile type="file" (change)="onCLUpload($event)" accept="image/*"
+                        style="display: none" />
+                    </button>
+                  </div>
+                </div>
+  
+  
+                <div class="col-12 ">
+                  <div class="form-group">
+                    <div>
+                      <label>Cover Image</label>
+                    </div>
+  
+                    <div class="uploaded-file-block" *ngIf="user.CoverImageUrl">
+                      <div class="file-detail-wrap">
+                        <div class="uimage"><img width="100px" [src]="user.CoverImageUrl" /></div>
+                        <div class="close-btn-wrapper" (click)="clearCoverCLFile()"><i class="fa fa-times-circle"
+                            aria-hidden="true"></i></div>
+                      </div>
+                    </div>
+                    <div class="uploaded-file-block" *ngIf="user.coverImage && !user.CoverImageUrl">
+                      <div class="file-detail-wrap">
+                        <div class="uimage"><img width="100px" [src]="base_url+'/'+user.coverImage" /></div>
+  
+                      </div>
+                    </div>
+                    <button type="button" class="btn dark-blue-btn" (click)="CoverImageFile.click()">
+                      <div>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Upload
+                      </div>
+                      <input #CoverImageFile type="file" (change)="onCoverCLUpload($event)" accept="image/*"
+                        style="display: none" />
+                    </button>
+                  </div>
+                </div>
+             
+          
+              </div>
+              <div class="row mt-4 mb-4">
+                <div class="col-12">
+                 
+                  <button type="submit"
+                    class="btn green-btn" (click)="onClickUpdate()"  >Update</button>
+                  <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
+                </div>
+              </div>
+            </form>
+            <div>
+            </div>
+  
+            <!-- <app-footer></app-footer> -->
+          </div>
+          <!-- End of Footer -->
+  
+  
+  
+          
+         
+<!-- ////////////////////////////////////////////////////////////////////////// -->
+
+
+<div class="row">
+  <div class="col-12">
+    <div class="c-table-wrapper table-responsive-small">
+      <table class="c-table">
+        <thead class="c-table-header">
+          <tr class="c-table-row c-table-row-header">
+            <div style="width: 5px;"></div>
+            <th class="c-table-cell c-table-header-cell text-pull-left">
+              Profile Image
+           </th>
+           <th class="c-table-cell c-table-header-cell text-pull-left">
+             Cover Image
+          </th>
+            <th class="c-table-cell c-table-header-cell text-pull-left">
+              First Name
+            </th>
+            <th class="c-table-cell c-table-header-cell text-pull-left">
+              Last Name
+            </th>
+            <th class="c-table-cell c-table-header-cell text-pull-left">
+              User Name
+            </th>
+            <th class="c-table-cell c-table-header-cell text-pull-left">
+              E-mail
+            </th>
+            <th class="c-table-cell c-table-header-cell text-pull-left">
+              Short Bio
+            </th>
+            <th class="c-table-cell c-table-header-cell text-pull-left">
+              Location
+            </th>
+            
+            <!-- <th class="c-table-cell c-table-header-cell text-pull-right">Actions</th> -->
+          </tr>
+        </thead>
+        <tbody class="c-table-body" *ngFor="let tab_data of table_data; let i=index;">
+          <tr class="c-table-row"*ngIf="table_data && table_data.length>0">
+            <div style="width: 5px;"></div>
+            
+            <td class="c-table-cell c-table-body-cell text-pull-left"><img height="100"
+              [src]="base_url +'/'+ tab_data.profileImage"></td>
+            <td class="c-table-cell c-table-body-cell text-pull-left"><img height="100"
+                [src]="base_url +'/'+ tab_data.coverImage"></td>
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.firstName)}}</td>
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.lastName)}}</td>
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.userName)}}</td>
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.email)}}</td>
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.shortBio)}}</td>
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.location)}}</td>
+            
+                      <!-- <td class="c-table-cell c-table-body-cell text-pull-right">
+              <div class="action-btn" title="Edit Slider" style="color: #3985fc">
+                <i class="fa fa-edit"></i>
+              </div> 
+              <!-- (click)="onClickEditImage(tab_data)"  -->
+              <!-- (click)="onClickDeletePlace(tab_data)" -->
+               <!-- <div class="action-btn" title="Delete Slider"
+                style="color: #ff5151">
+                <i class="fa fa-trash"></i>
+              </div> 
+             </td> --> 
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+  </div>
+</div> 
+ 
