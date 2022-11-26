@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   resetEmail: any;
   step: any = 'login';
   loading: boolean = false;
+
   constructor(
     private authService: AuthService,
     private commonHelper: CommonHelper,
@@ -49,9 +50,9 @@ export class LoginComponent implements OnInit {
           );
           localStorage.token = response.data.accessToken;
           localStorage.user_id = response.data.userId;
+          localStorage.userType = response.data.userType;
           this.authService.setIsAuth(true);
-          if (response.data.admin) {
-            console.log(response.data.admin);
+          if (response.data.admin && response.data.userType == 'isAdmin') {
             this.router.navigate(['/dashboard']);
           }
           if (response.data.user) {

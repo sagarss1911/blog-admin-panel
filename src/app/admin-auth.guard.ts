@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import {
-  CanActivateChild,
+  CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
-  Router,
 } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import Swal from 'sweetalert2';
 import { AuthService } from './services/auth.service';
+
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivateChild {
+export class AdminAuthGuard implements CanActivate {
   constructor(private authservice: AuthService, private router: Router) {}
-  canActivateChild(
+  canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ):
@@ -22,11 +22,14 @@ export class AuthGuard implements CanActivateChild {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (localStorage.getItem('token') != null) {
+    if (
+      localStorage.getItem('userType') == 'isAdmin' &&
+      localStorage.getItem('token') != null
+    ) {
       return true;
     }
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/homepage']);
     return false;
   }
 }

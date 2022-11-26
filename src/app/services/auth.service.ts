@@ -63,6 +63,8 @@ export class AuthService {
   getAuthDataFromStorage() {
     const token = localStorage.getItem('token');
     const userid = localStorage.getItem('userid');
+    const userType = localStorage.getItem('userType');
+
     if (!token) {
       return;
     }

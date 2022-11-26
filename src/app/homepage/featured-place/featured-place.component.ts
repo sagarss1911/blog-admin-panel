@@ -18,6 +18,9 @@ export class FeaturedPlaceComponent implements OnInit {
   public places: any = [];
   public modalRef: BsModalRef;
   base_url = environment.url;
+  data: any = [];
+  blogData: any = [];
+  bookmark: any = [];
 
   res: any = false;
   Category: any;
@@ -34,13 +37,15 @@ export class FeaturedPlaceComponent implements OnInit {
   public filters: any = {};
   public table_data: any[] = [];
   public table_data1: any[] = [];
-  public data: any[] = [];
+  // public data: any[] = [];
   storeBookmark: any[] = [];
   favblog: any[] = [];
   liked: any;
   clicked: boolean = false;
   ngOnInit(): void {
     this.getAllData();
+    this.getAllFav();
+    this.getAllBookmark();
     this.placeService.getAllFeaturedPlace().subscribe(
       (res: any) => {
         if (res.status == 200 && res.data.places) {
@@ -146,5 +151,21 @@ export class FeaturedPlaceComponent implements OnInit {
   category(item) {
     this.blogservice.headerClicked.next(item);
     this.router.navigate(['/search']);
+  }
+
+  getAllFav() {
+    let id = localStorage.getItem('user_id');
+    this.blogservice.getFav(id).subscribe((res: any) => {
+      this.data = JSON.parse(JSON.stringify(res.data.slides));
+      console.log(this.data, 'fav');
+    });
+  }
+
+  getAllBookmark() {
+    let id = localStorage.getItem('user_id');
+    this.blogservice.getBookMark(id).subscribe((res: any) => {
+      this.bookmark = JSON.parse(JSON.stringify(res.data.slider));
+      console.log(this.bookmark, 'bookmark');
+    });
   }
 }

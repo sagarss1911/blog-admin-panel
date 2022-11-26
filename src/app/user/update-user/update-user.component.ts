@@ -160,6 +160,9 @@ export class UpdateUserComponent implements OnInit {
           if (res.status == 200 && res.data.userList) {
             this.table_data = res.data.userList;
             this.user = res.data.userList[0];
+            console.log(this.user);
+            console.log(this.table_data);
+
             // this.table_data = JSON.parse(JSON.stringify(res.data.userList));
           } else if (res.status == 400) {
             this._toastMessageService.alert('error', res.data.msg);
