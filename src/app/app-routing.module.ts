@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SuggestionsComponent } from './suggestions/suggestions.component';
+import { AdminAuthGuard } from './admin-auth.guard';
 
 const routes: Routes = [
   {
@@ -12,12 +12,10 @@ const routes: Routes = [
       import('src/app/login/login.module').then((m) => m.LoginModule),
   },
 
-  { path: 'suggestions', component: SuggestionsComponent },
-
   {
     path: '',
     component: NavbarComponent,
-    canActivateChild: [AuthGuard],
+    canActivate: [AdminAuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
@@ -88,6 +86,13 @@ const routes: Routes = [
     path: 'user',
     loadChildren: () =>
       import('src/app/user/user.module').then((m) => m.UserModule),
+  },
+  {
+    path: 'suggestion',
+    loadChildren: () =>
+      import('src/app/favorites/favorites.module').then(
+        (m) => m.FavoritesModule
+      ),
   },
 
   { path: '**', component: NotfoundComponent },

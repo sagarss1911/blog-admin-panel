@@ -9,8 +9,9 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserModule } from './user.module';
 
 const routes: Routes = [
-  { path: '', component: UserRegisterComponent },
-  { path: 'user-login', component: UserLoginComponent },
+  // { path: '', component: UserRegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'user-register', component: UserRegisterComponent },
   // { path: '/', component: LoginComponent },
   {
     path: 'update',

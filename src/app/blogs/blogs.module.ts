@@ -10,7 +10,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { DropdownModule } from 'primeng/dropdown';
 
 import { BlogManagementComponent } from './blog-management/blog-management.component';
-
+import { NgxSummernoteModule } from 'ngx-summernote';
 import { BlogsRoutingModule } from './blogs-routing.module';
 import { BlogComponent } from './blog/blog.component';
 
@@ -25,6 +25,7 @@ import { BlogComponent } from './blog/blog.component';
     NgxLoadingModule,
     SharedPaginationModule,
     SharedModule,
+    NgxSummernoteModule,
   ],
   providers: [BlogComponent],
 })

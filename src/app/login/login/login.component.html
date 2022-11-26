@@ -42,7 +42,14 @@
                 <div class="text-center mt-3">
                   <a class="nav-lnk" (click)="changeStep('forgot-password')">Forgot password?</a>
                 </div>
+
+                <div class="text-center mt-3">
+                <p> Not a member? <a class="nav-lnk"  href="/user/user-register">Sign Up</a></p>
+                </div>
               </div>
+
+
+
 
               <div class="p-4 login-form-block" *ngIf="step == 'forgot-password'">
                 <div class="mb-4">
@@ -71,7 +78,7 @@
                   <a class="nav-lnk" (click)="changeStep('login')">Back to Login</a>
                 </div>
               </div>
-
+             
             </div>
           </div>
         </div>
