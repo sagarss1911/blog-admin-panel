@@ -1,0 +1,180 @@
+<div class="container-fluid management-tab">
+  <!--  -->
+
+  <div class="row section-box">
+    <div class="col-12">
+      <div></div>
+
+      <div class="row">
+        <div class="col-12">
+          <form
+            #f="ngForm"
+            (submit)="onClickSave(f)"
+            novalidate
+            autocomplete="off"
+          >
+            <div class="row">
+              <div class="col-12 col-md-7">
+                <div class="form-group">
+                  <label for="blogTitle"
+                    >Name <span class="c-red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="Name"
+                    placeholder="Enter your name"
+                    name="Name"
+                    #Name="ngModel"
+                    [(ngModel)]="blog.Name"
+                    required
+                    [class.is-invalid]="f.submitted && Name.invalid"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="(Name.touched || f.submitted) && Name.invalid"
+                  >
+                    <p>Name can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+              <div class="col-12 col-md-7">
+                <div class="form-group">
+                  <label for="productname"
+                    >Email <span class="c-red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="Email"
+                    placeholder="Enter blog Email"
+                    name="Email"
+                    #Email="ngModel"
+                    [(ngModel)]="blog.Email"
+                    required
+                    [class.is-invalid]="f.submitted && Email.invalid"
+                    s
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="(Email.touched || f.submitted) && Email.invalid"
+                  >
+                    <p>Email can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- s -->
+              <div class="col-12 col-md-7">
+                <div class="form-group">
+                  <label for="Blogname"
+                    >Instagram Link <span class="c-red">*</span></label
+                  >
+                  <!--  -->
+                  <input
+                    type="url"
+                    class="form-control"
+                    id="instagramLink"
+                    placeholder="Enter small Discription"
+                    name="instagramLink"
+                    #instagramLink="ngModel"
+                    [(ngModel)]="blog.instagramLink"
+                    required
+                    [class.is-invalid]="f.submitted && instagramLink.invalid"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      (instagramLink.touched || f.submitted) &&
+                      instagramLink.invalid
+                    "
+                  >
+                    <p>Instagram Link can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-7">
+                <div class="form-group">
+                  <label for="collectionname"
+                    >Message to the editors <span class="c-red">*</span></label
+                  >
+                  <p>
+                    Tell us a bit about yourself and why you would like to join
+                    the Maptia Contributor Community.
+                  </p>
+                  <textarea
+                    cols="30"
+                    rows="10"
+                    type="text"
+                    class="form-control"
+                    id="Message"
+                    name="Message"
+                    #Message="ngModel"
+                    [(ngModel)]="blog.Message"
+                    required
+                    [class.is-invalid]="f.submitted && Message.invalid"
+                  ></textarea>
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="(Message.touched || f.submitted) && Message.invalid"
+                  >
+                    <p>Massege can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+              <div class="col-12 col-md-7">
+                <div class="form-group">
+                  <label for="collectionname"
+                    >Link to additional works
+                    <span class="c-red">*</span></label
+                  >
+                  <textarea
+                    cols="30"
+                    rows="10"
+                    type="text"
+                    class="form-control"
+                    id="additional"
+                    name="additional"
+                    #additional="ngModel"
+                    [(ngModel)]="blog.additional"
+                    required
+                    [class.is-invalid]="f.submitted && additional.invalid"
+                  ></textarea>
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      (additional.touched || f.submitted) && additional.invalid
+                    "
+                  >
+                    <p>SEO Description can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4 mb-4">
+              <div class="col-12">
+                <button *ngIf="!blog._id" type="submit" class="btn green-btn">
+                  submit
+                </button>
+                <button *ngIf="blog._id" type="submit" class="btn green-btn">
+                  Update Product
+                </button>
+                <button
+                  type="button"
+                  class="btn gray-btn ml-4"
+                  (click)="onClickCancel()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </form>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

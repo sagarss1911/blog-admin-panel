@@ -140,7 +140,7 @@ export class BlogComponent implements OnInit {
       };
       this.subscriber.getAllSubscriber(params).subscribe(
         (res: any) => {
-          // console.log(res);
+         
           this.user = [];
           if (res.status == 200 && res.data.subscriberList) {
             this.user = JSON.parse(JSON.stringify(res.data.subscriberList));
@@ -174,7 +174,7 @@ export class BlogComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.blogsService.getBlog(this.blog._id).subscribe(
         (res: any) => {
-          console.log(res.data);
+         
 
           if (res.status == 200 && res.data) {
             this.blog = res.data;

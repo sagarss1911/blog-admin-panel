@@ -31,11 +31,6 @@ const routes: Routes = [
         path: 'header',
         component: HeaderComponent,
       },
-      // {
-      //   path: 'login',
-      //   loadChildren: () =>
-      //     import('src/app/login/login.module').then((m) => m.LoginModule),
-      // },
     ],
   },
 
@@ -44,6 +39,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('src/app/login/login.module').then((m) => m.LoginModule),
   },
+
   { path: '**', component: NotfoundComponent },
 ];
 

@@ -4,12 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FavoritesRoutingModule } from './favorites-routing.module';
 import { SuggestionsComponent } from './suggestions/suggestions.component';
 
-
 @NgModule({
   declarations: [SuggestionsComponent],
-  imports: [
-    CommonModule,
-    FavoritesRoutingModule
-  ]
+  imports: [CommonModule, FavoritesRoutingModule],
 })
-export class FavoritesModule { }
+export class FavoritesModule {}
