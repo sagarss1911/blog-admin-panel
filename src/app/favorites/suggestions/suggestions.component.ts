@@ -38,16 +38,16 @@ export class SuggestionsComponent implements OnInit {
   getAllFav() {
     let id = localStorage.getItem('user_id');
     this.blogservice.getFav(id).subscribe((res: any) => {
-      this.data = JSON.parse(JSON.stringify(res.data.slides));
-      console.log(this.data, 'fav');
+      console.log(res, 'fac');
+      this.data = JSON.parse(JSON.stringify(res.data.slides.blogId));
     });
   }
 
   getAllBookmark() {
     let id = localStorage.getItem('user_id');
     this.blogservice.getBookMark(id).subscribe((res: any) => {
-      this.bookmark = JSON.parse(JSON.stringify(res.data.slider));
-      console.log(this.bookmark, 'bookmark');
+      console.log(res, 'book');
+      this.bookmark = JSON.parse(JSON.stringify(res.data.slider.blogId));
     });
   }
 }
