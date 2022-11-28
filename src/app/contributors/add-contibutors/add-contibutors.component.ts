@@ -9,7 +9,6 @@ import { ContributorsService } from 'src/app/services/contributors.service';
 })
 export class AddContibutorsComponent implements OnInit {
   blog: any = { colors: [] };
-  // base_url = environment.url;
 
   constructor(private service: ContributorsService) {}
   // blog: any;
@@ -18,8 +17,6 @@ export class AddContibutorsComponent implements OnInit {
   onClickCancel() {}
 
   onClickSave(f: any) {
-   
-
     let params = {
       userId: localStorage.getItem('user_id'),
       Name: this.blog.Name,
@@ -28,7 +25,6 @@ export class AddContibutorsComponent implements OnInit {
       Message: this.blog.Message,
       additional: this.blog.additional,
     };
-   
 
     this.service.addContributor(params).subscribe((res: any) => {
       if (res.status == 200 && res.data) {

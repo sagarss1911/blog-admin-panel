@@ -8,17 +8,14 @@ import { ContributorsService } from '../services/contributors.service';
 })
 export class ContributorsComponent implements OnInit {
   blog: any = { colors: [] };
-  // base_url = environment.url;
 
   constructor(private service: ContributorsService) {}
-  // blog: any;
+
   ngOnInit(): void {}
 
   onClickCancel() {}
 
   onClickSave(f: any) {
-    console.log(f.value);
-
     let params = {
       userId: localStorage.getItem('user_id'),
       Name: this.blog.Name,
@@ -27,7 +24,7 @@ export class ContributorsComponent implements OnInit {
       Message: this.blog.Message,
       additional: this.blog.additional,
     };
-    console.log(params);
+
     this.service.addContributor(params).subscribe(() => {});
   }
 }
