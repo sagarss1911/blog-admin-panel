@@ -38,7 +38,6 @@ export class SuggestionsComponent implements OnInit {
   getAllFav() {
     let id = localStorage.getItem('user_id');
     this.blogservice.getFav(id).subscribe((res: any) => {
-      console.log(res, 'fac');
       this.data = JSON.parse(JSON.stringify(res.data.slides.blogId));
     });
   }
@@ -46,7 +45,6 @@ export class SuggestionsComponent implements OnInit {
   getAllBookmark() {
     let id = localStorage.getItem('user_id');
     this.blogservice.getBookMark(id).subscribe((res: any) => {
-      console.log(res, 'book');
       this.bookmark = JSON.parse(JSON.stringify(res.data.slider.blogId));
     });
   }

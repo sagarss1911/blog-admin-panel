@@ -18,7 +18,7 @@ export class AddContibutorsComponent implements OnInit {
   onClickCancel() {}
 
   onClickSave(f: any) {
-    console.log(f.value);
+   
 
     let params = {
       userId: localStorage.getItem('user_id'),
@@ -28,7 +28,7 @@ export class AddContibutorsComponent implements OnInit {
       Message: this.blog.Message,
       additional: this.blog.additional,
     };
-    console.log(params);
+   
 
     this.service.addContributor(params).subscribe((res: any) => {
       if (res.status == 200 && res.data) {

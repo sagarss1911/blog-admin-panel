@@ -18,33 +18,23 @@ export class ContributorRequestsComponent implements OnInit {
   gerContributtors() {
     this.service.getContributor().subscribe((res: any) => {
       this.data = JSON.parse(JSON.stringify(res.data));
-
-      console.log(this.data);
     });
   }
 
   accepRequest(item) {
-    console.log(item);
-    console.log('afreen');
     let params = {
       _id: item._id,
       string: 'accept',
     };
 
-    this.service.addContributor(params).subscribe((res) => {
-      console.log(res);
-    });
+    this.service.addContributor(params).subscribe((res) => {});
   }
   onClickDeleteBlog(item) {
-    console.log(item);
-    console.log('afreen');
     let params = {
       _id: item._id,
       string: 'delete',
     };
 
-    this.service.addContributor(params).subscribe((res) => {
-      console.log(res);
-    });
+    this.service.addContributor(params).subscribe((res) => {});
   }
 }
