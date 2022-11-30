@@ -55,11 +55,11 @@ export class FeaturedPlaceComponent implements OnInit {
         } else if (res.status == 400) {
           this._toastMessageService.alert('error', res.data.msg);
         }
-        // return resolve(true);
+  
       },
       (error) => {
         this.commonHelper.showError(error);
-        // return resolve(false);
+        ;
       }
     );
   }
@@ -158,7 +158,7 @@ export class FeaturedPlaceComponent implements OnInit {
     let id = localStorage.getItem('user_id');
     this.blogservice.getFav(id).subscribe((res: any) => {
       this.data = JSON.parse(JSON.stringify(res.data.slides));
-      console.log(this.data, 'fav');
+     
     });
   }
 
@@ -166,11 +166,27 @@ export class FeaturedPlaceComponent implements OnInit {
     let id = localStorage.getItem('user_id');
     this.blogservice.getBookMark(id).subscribe((res: any) => {
       this.bookmark = JSON.parse(JSON.stringify(res.data.slider));
-      console.log(this.bookmark, 'bookmark');
+      
     });
   }
 
   showBlog(blog) {
     this.router.navigate(['/blogs/showBlog/' + blog._id]);
+  }
+
+  getplaces() {
+    this.placeService.getAllFeaturedPlace().subscribe(
+      (res: any) => {
+        if (res.status == 200 && res.data.places) {
+          this.places = [];
+          this.places = JSON.parse(JSON.stringify(res.data.places));
+        } else if (res.status == 400) {
+          this._toastMessageService.alert('error', res.data.msg);
+        }
+      },
+      (error) => {
+        this.commonHelper.showError(error);
+      }
+    );
   }
 }

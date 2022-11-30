@@ -19,7 +19,7 @@ export class ContributorRequestsComponent implements OnInit {
   }
   gerContributtors() {
     this.service.getContributor().subscribe((res: any) => {
-      console.log(res);
+   
 
       this.data = JSON.parse(JSON.stringify(res.data.findAll));
 
@@ -28,7 +28,7 @@ export class ContributorRequestsComponent implements OnInit {
   }
 
   accepRequest(item: any) {
-    console.log('clicked');
+    
 
     let params = {
       _id: item._id,
@@ -37,7 +37,7 @@ export class ContributorRequestsComponent implements OnInit {
     };
 
     this.service.addContributor(params).subscribe((res: any) => {
-      console.log(res);
+    ;
     });
   }
   onClickDeleteBlog(item) {

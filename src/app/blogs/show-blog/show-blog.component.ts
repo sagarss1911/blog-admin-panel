@@ -41,26 +41,16 @@ export class ShowBlogComponent implements OnInit {
             this.table_data = [];
 
             this.table_data.push(JSON.parse(JSON.stringify(res.data)));
-            console.log(this.table_data);
           }
           this.loading = false;
           return resolve(true);
         },
         (error) => {
           this.loading = false;
-          // this.commonHelper.showError(error);
+
           return resolve(false);
         }
       );
     });
   }
 }
-
-// to get active route id
-// this.blog = this.activatedRoute.params.subscribe((params) => {
-//   if (params['id']) {
-//     console.log(params['id']);
-
-//   }
-// });
-// console.log(this.blog);

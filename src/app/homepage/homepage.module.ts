@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomepageRoutingModule } from './homepage-routing.module';
@@ -16,6 +16,7 @@ import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     HeaderComponent,
     HeaderDashboardComponent,

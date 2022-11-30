@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: '',
     component: NavbarComponent,
-    canActivate: [AdminAuthGuard],
+    // canActivate: [AdminAuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {

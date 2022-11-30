@@ -1,11 +1,15 @@
 <!-- <img class="placeimage" [src]="base_url +'/'+ item.mapImage" alt="" srcset=""> -->
 <div class="about_section">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row rows" *ngFor="let item of liked">
       <div class="col-sm-8">
-        <h1 class="headline">FEature blogs</h1>
+        <h1 class="headline">FEATURE BLOGS</h1>
         <div>
-          <img [src]="base_url + '/' + item.image" alt="" />
+          <img
+            (click)="showBlog(item)"
+            [src]="base_url + '/' + item.image"
+            alt=""
+          />
         </div>
       </div>
       <div class="col-sm-4">
@@ -27,7 +31,55 @@
   </div>
 </div>
 <body>
-  <!-- <app-future-blogs></app-future-blogs> -->
+  <div class="feature">
+    <section>
+      <h1 class="headline">FEATURE PLACES</h1>
+      <div class="container">
+        <div class="card" *ngFor="let item of places">
+          <div class="card-media">
+            <img [src]="base_url + '/' + item.mapImage" />
+          </div>
+          <div class="card-content">
+            <header class="card-header">
+              <span class="card-date">{{ item.createdAt }}</span>
+              <h3>
+                <a href="#">{{ item.placeName }}</a>
+              </h3>
+            </header>
+            <div class="card-desc">
+              <p>
+                {{ item.seoDescription }}
+              </p>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="read-more-link"
+                >Read more
+                <svg fill="none" viewBox="0 0 16 8">
+                  <path
+                    d="M15.354 4.354a.5.5 0 000-.708L12.172.464a.5.5 0 10-.708.708L14.293 4l-2.828 2.828a.5.5 0 10.707.708l3.182-3.182zM0 4.5h15v-1H0v1z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </a>
+            </footer>
+          </div>
+          <div class="card-border">
+            <span class="top"></span>
+            <span class="right"></span>
+            <span class="bottom"></span>
+            <span class="left"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="buttonContributor">
+    <button routerLink="/contributors/add" class="btn desktopitem">
+      REGISTER FOR CONTRIBUTOR ->
+    </button>
+  </div>
+  <!--  -->
   <section>
     <div class="row containers">
       <p class="headline">BLOGS</p>

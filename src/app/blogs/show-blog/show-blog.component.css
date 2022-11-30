@@ -11,3 +11,10 @@
        color: aliceblue;
        align-items: center;
 }
+
+.ppl-img {
+       margin-left: 30px;
+       border-radius: 50%;
+       width: 10.5vh;
+       height: 10.5vh;
+       }

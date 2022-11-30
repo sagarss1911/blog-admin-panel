@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit {
         (res: any) => {
           if (res.status == 200 && res.data) {
             this.icon = res.data;
-            // console.log(res.data, this.icon);
+           
           }
           this.loading = false;
           return resolve(true);
@@ -114,7 +114,7 @@ export class HeaderComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.UserRegisterService.getUser(this.isUserId).subscribe(
         (res: any) => {
-          console.log(res);
+        
           this.loading = false;
           if (res.status == 200 && res.data.userList) {
             this.table_data = res.data.userList;
