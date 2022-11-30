@@ -48,6 +48,8 @@ export class BlogManagementComponent implements OnInit {
       }
       this.blogservice.getAllBlogs(params).subscribe(
         (res: any) => {
+          console.log(res);
+
           if (res.status == 200 && res.data.slides) {
             this.table_data = [];
             this.table_data = JSON.parse(JSON.stringify(res.data.slides));

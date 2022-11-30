@@ -24,14 +24,6 @@ export class FeaturedPlaceComponent implements OnInit {
 
   res: any = false;
   Category: any;
-  constructor(
-    public placeService: PlaceService,
-    private commonHelper: CommonHelper,
-    private _toastMessageService: ToastMessageService,
-    private modalService: BsModalService,
-    private router: Router,
-    private blogservice: blogsService
-  ) {}
   public loading: boolean = false;
   public recordLimit: number = 10;
   public filters: any = {};
@@ -42,6 +34,15 @@ export class FeaturedPlaceComponent implements OnInit {
   favblog: any[] = [];
   liked: any;
   clicked: boolean = false;
+  constructor(
+    public placeService: PlaceService,
+    private commonHelper: CommonHelper,
+    private _toastMessageService: ToastMessageService,
+    private modalService: BsModalService,
+    private router: Router,
+    private blogservice: blogsService
+  ) {}
+ 
   ngOnInit(): void {
     this.getAllData();
     this.getAllFav();
