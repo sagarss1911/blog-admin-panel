@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonHelper } from 'src/app/helpers/common.helper';
 import { FeaturedPlaceComponent } from 'src/app/homepage/featured-place/featured-place.component';
 import { blogsService } from 'src/app/services/blog.service';
@@ -22,7 +23,8 @@ export class BlogSearchComponent implements OnInit {
   constructor(
     public blogservice: blogsService,
     private _toastMessageService: ToastMessageService,
-    private commonHelper: CommonHelper
+    private commonHelper: CommonHelper,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -62,5 +64,9 @@ export class BlogSearchComponent implements OnInit {
         }
       );
     });
+  }
+
+  showBlog(blog) {
+    this.router.navigate(['/blogs/showBlog/' + blog._id]);
   }
 }

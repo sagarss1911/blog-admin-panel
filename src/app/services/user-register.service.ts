@@ -40,7 +40,7 @@ export class UserRegisterService {
     });
   }
 
-  getAllUser() {
+  getAllUser(data) {
     return this.http.post(this.getAllUserUrl, {
       headers: this.getHeader(),
     });

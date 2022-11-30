@@ -35,7 +35,6 @@ export class BlogManagementComponent implements OnInit {
   }
 
   getAllData(event) {
-    // this.loading = true;
     return new Promise((resolve, reject) => {
       let params = {
         filters: {},
