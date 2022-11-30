@@ -1,71 +1,75 @@
+<!-- <div class="col">
+  <div class="col-sm-11"></div>
+  <div class="col-sm-1"></div>
+</div> -->
 
 <div class="fullpage">
-    <h1>suggestions</h1>
-    <div class="row">
-      <div class="col-md-9">
-        <div class="row container">
-          <p class="header">favrates</p>
-          <div class="col-sm-6" *ngFor="let item of data">
-            <div class="blogs">
-              <div class="img">
-                <img [src]="base_url + '/' + item.image" alt="" />
-              </div>
-              <div class="question">
-                <button class="transparent classic">
-                  <span>INDIA INDIA INDIA INDIA</span>
-                </button>
-                <button class="transparent1 classic">
-                  <span>INDIA</span>
-                </button>
-              </div>
-              <h3 class="title">{{ item.title }}</h3>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis ratione molestiae rem ab perferendis architecto, in
-                soluta vel ipsa sed debitis facilis est voluptatem deleniti,
-                quaerat aliquid voluptate enim non!
-              </p>
+  <h1>suggestions</h1>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="row container">
+        <p class="header">favrates</p>
+        <div class="col-sm-6" *ngFor="let item of data">
+          <div class="blogs">
+            <div class="img">
+              <img [src]="base_url + '/' + item.image" alt="" />
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 container">
-        <p class="header">favorites</p>
-        <div class="row ppl" *ngFor="let item of data">
-          <div class="col-4">
-            <img
-              class="ppl-img"
-              [src]="base_url + '/' + item.blogId[0].image"
-              alt=""
-            />
-          </div>
-          <div class="col-8">
-            <h5>{{ item.blogId.length ? item.blogId[0].title : "" }}</h5>
-            <br />
-            <p>{{ item.blogId.length ? item.blogId[0].createdAt : "" }}</p>
-          </div>
-        </div>
-        <br />
-        <br />
-        <p class="header">BookMarks</p>
-        <div class="row ppl" *ngFor="let item of bookmark">
-          <div class="col-4">
-            <img
-              class="ppl-img"
-              [src]="base_url + '/' + item.blogId[0].image"
-              alt=""
-            />
-          </div>
-          <div class="col-8">
-            <div class="col-8">
-              <h5>{{ item.blogId.length ? item.blogId[0].title : "" }}</h5>
-              <br />
-              <p>{{ item.blogId.length ? item.blogId[0].createdAt : "" }}</p>
+            <div class="question">
+              <button class="transparent classic">
+                <span>INDIA INDIA INDIA INDIA</span>
+              </button>
+              <button class="transparent1 classic">
+                <span>INDIA</span>
+              </button>
             </div>
+            <h3 class="title">{{ item.title }}</h3>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Veritatis ratione molestiae rem ab perferendis architecto, in
+              soluta vel ipsa sed debitis facilis est voluptatem deleniti,
+              quaerat aliquid voluptate enim non!
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="col-md-3 container">
+      <p class="header">favorites</p>
+      <div class="row ppl" *ngFor="let item of data">
+        <div class="col-4">
+          <img
+            class="ppl-img"
+            [src]="base_url + '/' + item.image"
+            alt=""
+            alt=""
+          />
+        </div>
+        <div class="col-8">
+          <h5>{{ item.title }}</h5>
+          <br />
+          <p>{{ item.createdAt }}</p>
+        </div>
+      </div>
+      <br />
+      <br />
+      <p class="header">BookMarks</p>
+      <div class="row ppl" *ngFor="let item of bookmark">
+        <div class="col-4">
+          <img
+            class="ppl-img"
+            [src]="base_url + '/' + item.image"
+            alt=""
+            alt=""
+          />
+        </div>
 
-  
+        <div class="col-8">
+          <h5>{{ item.title }}</h5>
+          <br />
+          <p>{{ item.createdAt }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

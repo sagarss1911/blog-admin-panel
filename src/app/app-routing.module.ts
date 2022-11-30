@@ -95,6 +95,14 @@ const routes: Routes = [
       ),
   },
 
+  {
+    path: 'contributors',
+    loadChildren: () =>
+      import('src/app/contributors/contributors.module').then(
+        (m) => m.ContributorsModule
+      ),
+  },
+
   { path: '**', component: NotfoundComponent },
 ];
 
