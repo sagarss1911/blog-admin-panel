@@ -143,7 +143,7 @@ export class BlogComponent implements OnInit {
       };
       this.userService.getAllUser(params).subscribe(
         (res: any) => {
-          console.log(res);
+          // console.log(res);
 
           this.user = [];
           if (res.status == 200 && res.data.userList) {
@@ -178,6 +178,8 @@ export class BlogComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.blogsService.getBlog(this.blog._id).subscribe(
         (res: any) => {
+          console.log(res);
+          this.blog = [];
           if (res.status == 200 && res.data) {
             this.blog = res.data;
 
@@ -189,13 +191,30 @@ export class BlogComponent implements OnInit {
             this.sam = this.sam.map((a) => {
               return { name: a };
             });
-            this.blog.higlight = res.data.highlightCategory;
+
             this.blog.Category = JSON.parse(
               JSON.stringify(res.data.categoryIds)
             );
             this.blog.Category = this.blog.Category.map((a) => {
               return { _id: a._id, name: a.categoryName };
             });
+            //
+
+            // this.blog.createdBy = JSON.parse(
+            //   JSON.stringify()
+            // );
+
+            this.blog.createdBy = res.data.createdBy.map((a) => {
+              return { name: a.firstName };
+            });
+
+            this.blog.imageBy = res.data.imageBy.map((a) => {
+              return { name: a.firstName };
+            });
+            this.blog.Category = JSON.parse(
+              JSON.stringify(this.blog.createdBy)
+            );
+            console.log(this.blog.Category);
           }
           this.loading = false;
           return resolve(true);
