@@ -1,0 +1,111 @@
+<div class="container-fluid" *ngFor="let item of table_data">
+  <div class="row header">
+    <div class="col-sm-8">
+      <h1>{{ item.title }}</h1>
+      <div class="question">
+        <button
+          class="transparent classic"
+          (click)="category(item.highlightCategory)"
+        >
+          <span>{{ item.highlightCategory }}</span>
+        </button>
+        <button class="transparent1 classic">
+          <span>INDIA</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p>{{ item.smallDiscription }}</p>
+    </div>
+  </div>
+  <!--  -->
+  <br />
+  <br />
+  <div class="img row">
+    <div class="col-12">
+      <img [src]="base_url + '/' + item.image" alt="" />
+    </div>
+  </div>
+  <div [innerHTML]="item.fullDiscription"></div>
+  <!--  -->
+  <div class="row">
+    <div class="row col-4">
+      <div class="col-4">
+        <img
+          class="ppl-img"
+          [src]="base_url + '/' + item.createdBy[0].profileImage"
+          alt=""
+        />
+      </div>
+      <div class="col-8">
+        <h5>
+          {{
+            item.createdBy.length
+              ? item.createdBy[0].firstName + " " + item.createdBy[0].lastName
+              : ""
+          }}
+        </h5>
+        <p>PUBLISHED BY</p>
+      </div>
+    </div>
+    <div class="row col-4">
+      <div class="col-4">
+        <img
+          class="ppl-img"
+          [src]="base_url + '/' + item.imageBy[0].profileImage"
+          alt=""
+        />
+      </div>
+      <div class="col-8">
+        <h5>
+          {{
+            item.imageBy.length
+              ? item.imageBy[0].firstName + " " + item.imageBy[0].lastName
+              : ""
+          }}
+        </h5>
+        <p>IMAGES BY</p>
+      </div>
+    </div>
+    <div class="row col-4">
+      <div class="col-4">
+        <img
+          class="ppl-img"
+          [src]="base_url + '/' + item.wordsBy[0].profileImage"
+          alt=""
+        />
+      </div>
+      <div class="col-8">
+        <h5>
+          {{
+            item.wordsBy.length
+              ? item.wordsBy[0].firstName + " " + item.wordsBy[0].lastName
+              : ""
+          }}
+        </h5>
+        <p>WRITEN BY</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+<br />
+
+<!-- 
+  <!-- <tr class="c-table-row" *ngFor="let item of user_list">
+  <div style="width: 5px"></div>
+
+  <td class="c-table-cell c-table-body-cell text-pull-left">
+    {{item.name}}
+  </td>
+  <td class="c-table-cell c-table-body-cell text-pull-left">
+    {{item.email}}
+  </td>
+  <td class="c-table-cell c-table-body-cell text-pull-left">
+    {{item.userName}}
+  </td>
+  <td class="c-table-cell c-table-body-cell text-pull-left">
+    {{item.creator.length ? item.creator[0].name : "" }}
+  </td> -->
+-->

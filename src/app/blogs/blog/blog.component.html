@@ -1,3 +1,4 @@
+<!-- blogs -->
 <div class="container-fluid management-tab">
   <ngx-loading
     [show]="loading"
@@ -248,7 +249,7 @@
               <div class="col-12 col-xl-3 col-md-4">
                 <div class="form-group">
                   <label for="collectiontext"
-                    >Active<span class="c-red">*</span></label
+                    >Add To Featured Blogs<span class="c-red">*</span></label
                   >
                   <p-inputSwitch
                     [(ngModel)]="blog.feature"
@@ -358,7 +359,7 @@
                   >
                   <p-dropdown
                     name="imageBy"
-                    #parentcollection="ngModel"
+                    #imageBy="ngModel"
                     [options]="user"
                     placeholder="Select user"
                     [(ngModel)]="blog.imageBy"
@@ -431,4 +432,3 @@ name="bigtext"
 [(ngModel)]="blog.bigtext"
 ></editor> -->
 <!-- [ngxSummernote]="config" -->
-
