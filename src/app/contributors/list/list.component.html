@@ -1,1 +1,24 @@
-<p>list works!</p>
+<h1>Contributors</h1>
+
+<div class="col-md-8 container">
+  <div class="row ppl" *ngFor="let item of data">
+    <div *ngIf="item.contributor">
+      <div class="col-4">
+        <div class="img">
+          <img
+            [src]="base_url + '/' + item.profileImage[0].profileImage"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="col-8">
+        <p>{{ item.Name }}</p>
+        <p>{{ item.Email }}</p>
+        <p>{{ item.Message }}</p>
+        <p>{{ item.additional }}</p>
+        <p>{{ item.createdAt | date }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+

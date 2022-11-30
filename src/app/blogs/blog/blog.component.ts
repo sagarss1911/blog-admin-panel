@@ -11,6 +11,7 @@ import { blogsService } from 'src/app/services/blog.service';
 
 import { SubscriberService } from 'src/app/services/subscriber.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { UserRegisterService } from 'src/app/services/user-register.service';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -49,6 +50,7 @@ export class BlogComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private commonHelper: CommonHelper,
     private subscriber: SubscriberService,
+    private userService: UserRegisterService,
     private category: CategoryService
   ) {}
 
@@ -138,14 +140,13 @@ export class BlogComponent implements OnInit {
         page: 1,
         limit: 100,
       };
-      this.subscriber.getAllSubscriber(params).subscribe(
+      this.userService.getAllUser(params).subscribe(
         (res: any) => {
-         
           this.user = [];
-          if (res.status == 200 && res.data.subscriberList) {
-            this.user = JSON.parse(JSON.stringify(res.data.subscriberList));
+          if (res.status == 200 && res.data.userList) {
+            this.user = JSON.parse(JSON.stringify(res.data.userList));
             this.user = this.user.map((a) => {
-              return { _id: a._id, name: a.subscriberName };
+              return { _id: a._id, name: a.firstName + '' + a.lastName };
             });
           }
           this.loading = false;
@@ -174,8 +175,6 @@ export class BlogComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.blogsService.getBlog(this.blog._id).subscribe(
         (res: any) => {
-         
-
           if (res.status == 200 && res.data) {
             this.blog = res.data;
 

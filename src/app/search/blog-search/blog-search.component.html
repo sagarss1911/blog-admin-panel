@@ -23,7 +23,11 @@
         <div class="col-sm-6" *ngFor="let item of table_data">
           <div class="blogs">
             <div class="img">
-              <img [src]="base_url + '/' + item.image" alt="" />
+              <img
+                (click)="showBlog(item)"
+                [src]="base_url + '/' + item.image"
+                alt=""
+              />
             </div>
             <div class="question">
               <button class="transparent classic">
