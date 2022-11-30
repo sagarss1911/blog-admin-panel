@@ -42,7 +42,7 @@ export class FeaturedPlaceComponent implements OnInit {
     private router: Router,
     private blogservice: blogsService
   ) {}
- 
+
   ngOnInit(): void {
     this.getAllData();
     this.getAllFav();
@@ -168,5 +168,9 @@ export class FeaturedPlaceComponent implements OnInit {
       this.bookmark = JSON.parse(JSON.stringify(res.data.slider));
       console.log(this.bookmark, 'bookmark');
     });
+  }
+
+  showBlog(blog) {
+    this.router.navigate(['/blogs/showBlog/' + blog._id]);
   }
 }

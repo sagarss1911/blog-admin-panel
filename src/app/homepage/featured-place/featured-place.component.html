@@ -35,7 +35,11 @@
       <div class="col-sm-6" *ngFor="let item of table_data">
         <div class="blogs">
           <div class="img">
-            <img [src]="base_url + '/' + item.image" alt="" />
+            <img
+              (click)="showBlog(item)"
+              [src]="base_url + '/' + item.image"
+              alt=""
+            />
           </div>
           <div class="question">
             <button
@@ -93,7 +97,8 @@
     </div>
   </section>
   <!-- suggesions -->
-<!-- <div class="col">
+  <!-- <div class="col">
   <div class="col-sm-11"></div>
   <div class="col-sm-1"></div>
 </div> -->
+</body>

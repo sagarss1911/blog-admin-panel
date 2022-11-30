@@ -13,9 +13,10 @@ import { BlogManagementComponent } from './blog-management/blog-management.compo
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { BlogsRoutingModule } from './blogs-routing.module';
 import { BlogComponent } from './blog/blog.component';
+import { ShowBlogComponent } from './show-blog/show-blog.component';
 
 @NgModule({
-  declarations: [BlogManagementComponent, BlogComponent],
+  declarations: [BlogManagementComponent, BlogComponent, ShowBlogComponent],
   imports: [
     CommonModule,
     BlogsRoutingModule,
