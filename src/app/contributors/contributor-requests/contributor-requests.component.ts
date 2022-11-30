@@ -12,13 +12,18 @@ export class ContributorRequestsComponent implements OnInit {
   constructor(private service: ContributorsService) {}
   base_url = environment.url;
   data: any = [];
+  data1: any = [];
+  requestCount: any;
   ngOnInit(): void {
     this.gerContributtors();
   }
   gerContributtors() {
     this.service.getContributor().subscribe((res: any) => {
-      this.data = JSON.parse(JSON.stringify(res.data));
-      // console.log(this.data);
+      console.log(res);
+
+      this.data = JSON.parse(JSON.stringify(res.data.findAll));
+
+      this.requestCount = JSON.parse(JSON.stringify(res.data.requestCount));
     });
   }
 

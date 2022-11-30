@@ -1,11 +1,23 @@
 <div class="container-fluid management-tab">
-  <ngx-loading [show]="loading"
-    [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
+  <ngx-loading
+    [show]="loading"
+    [config]="{
+      backdropBorderRadius: '14px',
+      fullScreenBackdrop: true,
+      backdropBackgroundColour: 'rgba(255,255,255, 0.01)',
+      primaryColour: '#005eff',
+      secondaryColour: '#005eff',
+      tertiaryColour: '#005eff'
+    }"
+  >
   </ngx-loading>
-  <div class="row" style="justify-content: space-between; margin: 0px; margin-bottom: 2rem">
+  <div
+    class="row"
+    style="justify-content: space-between; margin: 0px; margin-bottom: 2rem"
+  >
     <h1 class="h3 page-title">Blog</h1>
     <div>
-      <div class="btn green-btn" (click)="onClickAddBlog();">
+      <div class="btn green-btn" (click)="onClickAddBlog()">
         <span class="dib mr-2"><i class="fas fa-plus"></i></span>
         <div class="dib">Add Blog</div>
       </div>
@@ -14,18 +26,27 @@
   <div class="row mb-3">
     <div class="col-12 col-xl-3 col-md-6">
       <div class="form-group">
-        <input type="text" class="form-control" id="searchtext" name="searchtext" placeholder="Search by product name"
-          [(ngModel)]="filters.searchtext" />
+        <input
+          type="text"
+          class="form-control"
+          id="searchtext"
+          name="searchtext"
+          placeholder="Search by product name"
+          [(ngModel)]="filters.searchtext"
+        />
 
         <!-- #searchtext="ngModel" -->
       </div>
     </div>
     <div class="col-12 col-xl-6 col-md-6">
       <div class="form-group">
-        <div class="btn blue-btn" (click)="getAllData({'page':1});">
+        <div class="btn blue-btn" (click)="getAllData({ page: 1 })">
           <div class="dib">SEARCH</div>
         </div>
-        <div class="btn gray-btn ml-3" (click)="filters={};getAllData({'page':1});">
+        <div
+          class="btn gray-btn ml-3"
+          (click)="filters = {}; getAllData({ page: 1 })"
+        >
           <div class="dib">Reset</div>
         </div>
       </div>
@@ -62,51 +83,65 @@
               </th>
             </tr>
           </thead>
-          <tbody class="c-table-body" *ngIf="table_data && table_data.length>0">
-            <tr class="c-table-row" *ngFor="let tab_data of table_data; let i=index;">
+          <tbody
+            class="c-table-body"
+            *ngIf="table_data && table_data.length > 0"
+          >
+            <tr
+              class="c-table-row"
+              *ngFor="let tab_data of table_data; let i = index"
+            >
               <div style="width: 5px"></div>
               <td class="c-table-cell c-table-body-cell text-pull-left">
-                <img height="100" [src]="base_url +'/'+ tab_data.image" />
+                <img height="100" [src]="base_url + '/' + tab_data.image" />
               </td>
               <td class="c-table-cell c-table-body-cell text-pull-left">
-                {{(tab_data.title)}}
-              </td>
-              <!--  -->
-              <td class="c-table-cell c-table-body-cell text-pull-left">
-                {{(tab_data.smallDiscription
-                )}}
+                {{ tab_data.title }}
               </td>
               <!--  -->
               <td class="c-table-cell c-table-body-cell text-pull-left">
-                {{(tab_data.seoTitle
-                )}}
+                {{ tab_data.smallDiscription }}
+              </td>
+              <!--  -->
+              <td class="c-table-cell c-table-body-cell text-pull-left">
+                {{ tab_data.seoTitle }}
               </td>
               <td class="c-table-cell c-table-body-cell text-pull-left">
-                {{(tab_data.seoDescription
-
-                )}}
+                {{ tab_data.seoDescription }}
               </td>
               <td class="c-table-cell c-table-body-cell text-pull-left">
-                {{(tab_data.seoKeyword
-
-
-                )}}
+                {{ tab_data.seoKeyword }}
               </td>
               <td class="c-table-cell c-table-body-cell text-pull-right">
-                <div class="action-btn" title="Edit Slider" (click)="onClickEditBlog(tab_data)" style="color: #3985fc">
+                <div
+                  class="action-btn"
+                  title="Edit Slider"
+                  (click)="onClickEditBlog(tab_data)"
+                  style="color: #3985fc"
+                >
                   <i class="fa fa-edit"></i>
                 </div>
-                <div class="action-btn" title="Delete Slider" (click)="onClickDeleteBlog(tab_data)"
-                  style="color: #ff5151">
+                <div
+                  class="action-btn"
+                  title="Delete Slider"
+                  (click)="onClickDeleteBlog(tab_data)"
+                  style="color: #ff5151"
+                >
                   <i class="fa fa-trash"></i>
                 </div>
               </td>
             </tr>
           </tbody>
-          <tbody class="c-table-body" *ngIf="(!table_data || table_data.length==0)">
+          <tbody
+            class="c-table-body"
+            *ngIf="!table_data || table_data.length == 0"
+          >
             <tr class="c-table-row">
-              <td class="c-table-cell c-table-body-cell text-center" colspan="6">
-                {{loading ? "Fetching a Data" : "No Data Available"}}
+              <td
+                class="c-table-cell c-table-body-cell text-center"
+                colspan="6"
+              >
+                {{ loading ? "Fetching a Data" : "No Data Available" }}
               </td>
             </tr>
           </tbody>
@@ -114,7 +149,10 @@
       </div>
       <div>
         <div class="share-pagination">
-          <app-shared-pagination [paginationValues]="paginationValues" (onChange)="getAllData($event)">
+          <app-shared-pagination
+            [paginationValues]="paginationValues"
+            (onChange)="getAllData($event)"
+          >
           </app-shared-pagination>
         </div>
       </div>

@@ -157,43 +157,45 @@
 <!-- </div> -->
 <!-- </div> -->
 <div class="col-md-8 container">
-  <h4 class="header">{{ data.length }} Contributor requests</h4>
+  <h4 class="header">{{ requestCount }} Contributor requests</h4>
   <div class="row ppl" *ngFor="let item of data">
-    <div class="col-4">
-      <div class="img">
-        <img
-          [src]="base_url + '/' + item.profileImage[0].profileImage"
-          alt=""
-        />
+    <div *ngIf="!item.contributor">
+      <div class="col-4">
+        <div class="img">
+          <img
+            [src]="base_url + '/' + item.profileImage[0].profileImage"
+            alt=""
+          />
+        </div>
       </div>
-    </div>
-    <div class="col-8">
-      <p>{{ item.Name }}</p>
-      <p>{{ item.Email }}</p>
-      <p>{{ item.Message }}</p>
-      <p>{{ item.additional }}</p>
-      <p>{{ item.createdAt | date }}</p>
-    </div>
-    <div class="col-12">
-      <button
-        class="btn btn-primary"
-        class="action-btn"
-        title="accept"
-        (click)="accepRequest(item)"
-        style="color: #3985fc"
-      >
-        accept
-      </button>
+      <div class="col-8">
+        <p>{{ item.Name }}</p>
+        <p>{{ item.Email }}</p>
+        <p>{{ item.Message }}</p>
+        <p>{{ item.additional }}</p>
+        <p>{{ item.createdAt | date }}</p>
+      </div>
+      <div class="col-12">
+        <button
+          class="btn btn-primary"
+          class="action-btn"
+          title="accept"
+          (click)="accepRequest(item)"
+          style="color: #3985fc"
+        >
+          accept
+        </button>
 
-      <button
-        class="btn btn-danger"
-        class="action-btn"
-        title="delelte"
-        (click)="onClickDeleteBlog(item)"
-        style="color: #3985fc"
-      >
-        delelte
-      </button>
+        <button
+          class="btn btn-danger"
+          class="action-btn"
+          title="delelte"
+          (click)="onClickDeleteBlog(item)"
+          style="color: #3985fc"
+        >
+          delelte
+        </button>
+      </div>
     </div>
   </div>
 </div>
