@@ -1,0 +1,20 @@
+<div class="main-page-content">
+  <div class="setting-menu-bar">
+    <ul class="menu-ul">
+      <li>
+        <a routerLink="/websitefooter/websiteLinks" routerLinkActive="active" (click)="onClickLink(0)">Website Links</a>
+      </li>
+      <li>
+        <a routerLink="/websitefooter/footer-Headings" routerLinkActive="active" (click)="onClickLink(1)">Footer
+          Headings</a>
+      </li>
+      <!-- <li>
+        <a routerLink="/websitefooter/footer-Sub-Headings" routerLinkActive="active" (click)="onClickLink(2)">Footer
+          Sub-Headings</a>
+      </li> -->
+    </ul>
+  </div>
+  <div class="settings-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

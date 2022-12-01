@@ -65,6 +65,13 @@
                   </p-inputSwitch>
                 </div>
               </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Feature<span class="c-red">*</span></label>
+                  <p-inputSwitch [(ngModel)]="place.feature" class="input-switch" [ngModelOptions]="{standalone: true}">
+                  </p-inputSwitch>
+                </div>
+              </div>
 
               <div class="col-12 ">
                 <div class="form-group">
@@ -125,7 +132,6 @@
                   </button>
                 </div>
               </div>
-              
 
             </div>
             <div class="row mt-4 mb-4">
@@ -143,6 +149,3 @@
           <app-footer></app-footer>
         </div>
         <!-- End of Footer -->
-
-
-        

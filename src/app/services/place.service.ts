@@ -45,7 +45,6 @@ export class PlaceService {
     });
   }
   addToFeature(data: any) {
-    console.log(data);
     return this.http.put(this.addPlaceFeatureUrl, data, {
       headers: this.getHeader(),
     });

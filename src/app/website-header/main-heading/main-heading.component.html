@@ -1,0 +1,40 @@
+<div class="container-fluid management-tab">
+    <ngx-loading [show]="loading"
+      [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
+    </ngx-loading>
+    <div class="row section-box">
+      <div class="col-12">
+        {{ type | titlecase }} Header Main
+        <div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <form #f="ngForm" novalidate autocomplete="off">
+              <div class="row">
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="collectiontext">Heading<span class="c-red">*</span></label>
+                    <div [ngxSummernote]="config" id="heading" name="heading" #heading="ngModel"
+                      [(ngModel)]="mainHeading.heading" required [class.is-invalid]="f.submitted && heading.invalid">
+                    </div>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="(heading.touched || f.submitted) && heading.invalid">
+                    <p>Heading Text can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-4 mb-4">
+                <div class="col-12">
+                  <button *ngIf="!mainHeading._id" [disabled]="f.invalid " type="submit" class="btn green-btn"
+                    (click)="onClickSave()">Save Heading</button>
+                  <button *ngIf="mainHeading._id" [disabled]="f.invalid" type="submit" class="btn green-btn"
+                    (click)="onClickSave()">Update Heading</button>
+                  <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
+                </div>
+              </div>
+            </form>
+            <div>
+            </div>
+            <!-- <app-footer></app-footer> -->
+          </div>
+  

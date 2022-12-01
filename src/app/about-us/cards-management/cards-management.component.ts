@@ -77,8 +77,6 @@ export class CardsManagementComponent implements OnInit {
     this.router.navigate(['/aboutus/add-aboutUs-card']);
   }
   onClickEditAboutUsCards(aboutus) {
-    console.log(aboutus);
-
     this.router.navigate(['/aboutus/edit-aboutUs-card/' + aboutus._id]);
   }
   onClickDeleteAboutUsCards(aboutus) {

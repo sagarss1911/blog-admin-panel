@@ -62,7 +62,6 @@ export class AddCategoryComponent implements OnInit {
           if (res.status == 200 && res.data) {
             this.category = [];
             this.category = res.data[0];
-            console.log(res.data);
           }
 
           this.loading = false;

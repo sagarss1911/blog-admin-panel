@@ -11,11 +11,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('src/app/login/login.module').then((m) => m.LoginModule),
   },
-
   {
     path: '',
     component: NavbarComponent,
-    canActivate: [AdminAuthGuard],
+    // canActivate: [AdminAuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
@@ -69,30 +68,21 @@ const routes: Routes = [
         loadChildren: () =>
           import('src/app/journey/journey.module').then((m) => m.JourneyModule),
       },
+      {
+        path: 'websitefooter',
+        loadChildren: () =>
+          import('src/app/website-footer/website-footer.module').then(
+            (m) => m.WebsiteFooterModule
+          ),
+      },
+      {
+        path: 'websiteheader',
+        loadChildren: () =>
+          import('src/app/website-header/website-header.module').then(
+            (m) => m.WebsiteHeaderModule
+          ),
+      },
     ],
-  },
-  {
-    path: 'homepage',
-    loadChildren: () =>
-      import('src/app/homepage/homepage.module').then((m) => m.HomepageModule),
-  },
-
-  {
-    path: 'search',
-    loadChildren: () =>
-      import('src/app/search/search.module').then((m) => m.SearchModule),
-  },
-  {
-    path: 'user',
-    loadChildren: () =>
-      import('src/app/user/user.module').then((m) => m.UserModule),
-  },
-  {
-    path: 'suggestion',
-    loadChildren: () =>
-      import('src/app/favorites/favorites.module').then(
-        (m) => m.FavoritesModule
-      ),
   },
 
   {

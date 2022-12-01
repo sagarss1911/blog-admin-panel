@@ -84,7 +84,6 @@ export class JourneyIconManagementComponent implements OnInit {
   }
   onClickEditJourneyIcon(journey) {
     this.journey_obj = JSON.parse(JSON.stringify(journey));
-    console.log(this.journey_obj);
     this.dialogType = 'update';
     this.showAddJourneyIconModal();
   }
@@ -102,7 +101,6 @@ export class JourneyIconManagementComponent implements OnInit {
       () => {
         if (this.modalRef.content.decision === 'done') {
           if (this.dialogType == 'add') {
-            console.log(this.modalRef.content.dialogResult, 'adding');
             this.table_data.unshift(
               JSON.parse(JSON.stringify(this.modalRef.content.dialogResult))
             );

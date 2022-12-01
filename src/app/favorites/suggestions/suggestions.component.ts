@@ -38,14 +38,22 @@ export class SuggestionsComponent implements OnInit {
   getAllFav() {
     let id = localStorage.getItem('user_id');
     this.blogservice.getFav(id).subscribe((res: any) => {
+<<<<<<< HEAD
+      this.data = JSON.parse(JSON.stringify(res.data.slides));
+=======
       this.data = JSON.parse(JSON.stringify(res.data.slides.blogId));
+>>>>>>> 048b13cc6a5b278ecbdb66effe59d5a5c914d791
     });
   }
 
   getAllBookmark() {
     let id = localStorage.getItem('user_id');
     this.blogservice.getBookMark(id).subscribe((res: any) => {
+<<<<<<< HEAD
+      this.bookmark = JSON.parse(JSON.stringify(res.data.slider));
+=======
       this.bookmark = JSON.parse(JSON.stringify(res.data.slider.blogId));
+>>>>>>> 048b13cc6a5b278ecbdb66effe59d5a5c914d791
     });
   }
 }

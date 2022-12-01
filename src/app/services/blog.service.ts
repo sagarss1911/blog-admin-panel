@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
-import { FutureBlogsComponent } from '../homepage/future-blogs/future-blogs.component';
-import { FeaturedPlaceComponent } from '../homepage/featured-place/featured-place.component';
 
 @Injectable({
   providedIn: 'root',
@@ -30,8 +28,6 @@ export class blogsService {
   }
 
   getBlog(id) {
-    console.log(this.getProductUrl + id);
-
     return this.http.get(this.getProductUrl + id, {
       headers: this.getHeader(),
     });
@@ -53,40 +49,29 @@ export class blogsService {
     });
   }
   deleteBlogs(id) {
-    console.log(this.deleteProductUrl + id);
     return this.http.delete(this.deleteProductUrl + id, {
       headers: this.getHeader(),
     });
   }
 
   addToFav(data) {
-    console.log(this.addToFave, data);
     return this.http.post(this.addToFave, data, {
       headers: this.getHeader(),
     });
   }
   addbookMark(data) {
-    console.log(this.addbookMarkUrl, data);
     return this.http.post(this.addbookMarkUrl, data, {
       headers: this.getHeader(),
     });
   }
 
   getFav(id) {
-    console.log(id);
-
-    console.log(this.getFavUrl);
-
     return this.http.get(this.getFavUrl + id, {
       headers: this.getHeader(),
     });
   }
 
   getBookMark(id) {
-    console.log(id);
-
-    console.log(this.getBookMarkUrl);
-
     return this.http.get(this.getBookMarkUrl + id, {
       headers: this.getHeader(),
     });

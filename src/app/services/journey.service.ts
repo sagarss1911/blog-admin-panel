@@ -50,8 +50,6 @@ export class JourneyService {
     });
   }
   deleteJourneyIcon(id) {
-    console.log(id);
-
     return this.http.delete(this.deleteJourneyIconUrl + id, {
       headers: this.getHeader(),
     });
