@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FeaturedPlaceComponent } from 'src/app/homepage/featured-place/featured-place.component';
 import { blogsService } from 'src/app/services/blog.service';
 import { environment } from 'src/environments/environment';
 @Component({

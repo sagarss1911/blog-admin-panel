@@ -78,8 +78,6 @@ export class JourneyCardManagementComponent implements OnInit {
     this.router.navigate(['/journeys/add-journey-card']);
   }
   onClickEditJourneyCards(journey) {
-    console.log(journey);
-
     this.router.navigate(['/journeys/edit-journey-card/' + journey._id]);
   }
   onClickDeleteJourneyCards(journey) {

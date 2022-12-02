@@ -1,0 +1,138 @@
+<div class="container-fluid management-tab">
+  <ngx-loading [show]="loading"
+    [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
+  </ngx-loading>
+  <div class="row section-box">
+    <div class="col-12">
+      {{ type | titlecase }} Footer Heading
+      <div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form #f="ngForm" novalidate autocomplete="off">
+            <div class="row">
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Explore<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="explore" name="explore" #explore="ngModel"
+                    [(ngModel)]="footerHeading.explore" required [class.is-invalid]="f.submitted && explore.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="(explore.touched || f.submitted) && explore.invalid">
+                  <p>Explore Text can't be blank.</p>
+                </div>
+              </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Explore Short Description<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="exploreDescription" name="exploreDescription"
+                    #exploreDescription="ngModel" [(ngModel)]="footerHeading.exploreDescription" required
+                    [class.is-invalid]="f.submitted && exploreDescription.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="(exploreDescription.touched || f.submitted) && exploreDescription.invalid">
+                  <p>Explore Description Text can't be blank.</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Community<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="community" name="community" #community="ngModel"
+                    [(ngModel)]="footerHeading.community" required
+                    [class.is-invalid]="f.submitted && community.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="(community.touched || f.submitted) && community.invalid">
+                  <p>Community Text can't be blank.</p>
+                </div>
+              </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Community Decsription<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="communityDescription" name="communityDescription"
+                    #communityDescription="ngModel" [(ngModel)]="footerHeading.communityDescription" required
+                    [class.is-invalid]="f.submitted && communityDescription.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="(communityDescription.touched || f.submitted) && communityDescription.invalid">
+                  <p>Community Description Text can't be blank.</p>
+                </div>
+              </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">About<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="about" name="about" #about="ngModel"
+                    [(ngModel)]="footerHeading.about" required [class.is-invalid]="f.submitted && about.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="(about.touched || f.submitted) && about.invalid">
+                  <p>About Text can't be blank.</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">About Description<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="aboutDescription" name="aboutDescription"
+                    #aboutDescription="ngModel" [(ngModel)]="footerHeading.aboutDescription" required
+                    [class.is-invalid]="f.submitted && aboutDescription.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="(aboutDescription.touched || f.submitted) && aboutDescription.invalid">
+                  <p>About Description Text can't be blank.</p>
+                </div>
+              </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Store<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="store" name="store" #store="ngModel"
+                    [(ngModel)]="footerHeading.store" required [class.is-invalid]="f.submitted && store.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="(store.touched || f.submitted) && store.invalid">
+                  <p>Store Text can't be blank.</p>
+                </div>
+              </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Store Description<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="storeDescription" name="storeDescription"
+                    #storeDescription="ngModel" [(ngModel)]="footerHeading.storeDescription" required
+                    [class.is-invalid]="f.submitted && storeDescription.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="(storeDescription.touched || f.submitted) && storeDescription.invalid">
+                  <p>Store Description Text can't be blank.</p>
+                </div>
+              </div>
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Follow<span class="c-red">*</span></label>
+                  <div [ngxSummernote]="config" id="follow" name="follow" #follow="ngModel"
+                    [(ngModel)]="footerHeading.follow" required [class.is-invalid]="f.submitted && follow.invalid">
+                  </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="(follow.touched || f.submitted) && follow.invalid">
+                  <p>Follow Text can't be blank.</p>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4 mb-4">
+              <div class="col-12">
+                <button *ngIf="!footerHeading._id" [disabled]="f.invalid " type="submit" class="btn green-btn"
+                  (click)="onClickSave()">Save Heading</button>
+                <button *ngIf="footerHeading._id" [disabled]="f.invalid" type="submit" class="btn green-btn"
+                  (click)="onClickSave()">Update Heading</button>
+                <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
+              </div>
+            </div>
+          </form>
+          <div>
+          </div>
+          <app-footer></app-footer>
+        </div>

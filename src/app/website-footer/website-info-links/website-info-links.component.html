@@ -1,0 +1,53 @@
+<div class="container-fluid management-tab">
+  <div class="row section-box">
+    <div class="col-12">
+      {{ type | titlecase }} Links
+      <div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <form #f="ngForm" novalidate autocomplete="off">
+            <div class="row">
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="linkName">Link Name <span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="fname" placeholder="Enter Link Name" name="linkName"
+                    #linkName="ngModel" [(ngModel)]="website.linkName
+                  " required [class.is-invalid]="f.submitted && linkName.invalid">
+                  <div class="alert alert-danger" *ngIf="(linkName.touched || f.submitted) && linkName.invalid">
+                    <p>Link Name can't be blank.</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col-12 col-xl-3 col-md-4">
+                <div class="form-group">
+                  <label for="collectiontext">Link<span class="c-red">*</span></label>
+                  <input type="text" class="form-control" id="link" placeholder="Enter Link" name="link" #link="ngModel"
+                    [(ngModel)]="website.link" required [class.is-invalid]="f.submitted && link.invalid">
+                  <div class="alert alert-danger" *ngIf="(link.touched || f.submitted) && link.invalid">
+                    <p>Link Text can't be blank.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row mt-4 mb-4">
+              <div class="col-12">
+                <button *ngIf="!website._id" [disabled]="f.invalid" type="submit" class="btn green-btn"
+                  (click)="onClickSave()">Save Link</button>
+                <button *ngIf="website._id" [disabled]="f.invalid " type="submit" class="btn green-btn"
+                  (click)="onClickSave()">Update Link</button>
+                <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
+              </div>
+            </div>
+          </form>
+          <div>
+          </div>
+
+          <!-- <app-footer></app-footer> -->
+        </div>
+        <!-- End of Footer -->

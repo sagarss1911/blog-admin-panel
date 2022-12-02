@@ -41,9 +41,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(data).subscribe(
       (response: any) => {
         this.loading = false;
-        if (response.data && response.data.accessToken && response.data.userId)
-          console.log(response.data);
-        {
+        if (
+          response.data &&
+          response.data.accessToken &&
+          response.data.userId
+        ) {
           this._toastMessageService.alert(
             'Success',
             'Login Successfull, Please wait...'

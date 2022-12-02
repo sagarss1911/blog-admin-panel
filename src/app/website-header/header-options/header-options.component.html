@@ -1,0 +1,21 @@
+
+<div class="main-page-content">
+    <div class="setting-menu-bar">
+      <ul class="menu-ul">
+        <li>
+          <a routerLink="/websiteheader/header-HeadingManagement" routerLinkActive="active" (click)="onClickLink(0)">Main Heading</a>
+        </li>
+        <li>
+          <a routerLink="/websiteheader/header-Subheading-management" routerLinkActive="active" (click)="onClickLink(1)">Sub Heading</a>
+        </li>
+        <!-- <li>
+          <a routerLink="/websitefooter/footer-Sub-Headings" routerLinkActive="active" (click)="onClickLink(2)">Footer
+            Sub-Headings</a>
+        </li> -->
+      </ul>
+    </div>
+    <div class="settings-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  

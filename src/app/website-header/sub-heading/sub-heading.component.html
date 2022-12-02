@@ -1,0 +1,68 @@
+<div class="container-fluid management-tab">
+    <ngx-loading [show]="loading"
+      [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop:true,backdropBackgroundColour:'rgba(255,255,255, 0.01)',primaryColour:'#005eff',secondaryColour:'#005eff',tertiaryColour:'#005eff'}">
+    </ngx-loading>
+    <div class="row section-box">
+      <div class="col-12">
+        {{ type | titlecase }} Header SubHeading
+        <div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <form #f="ngForm" novalidate autocomplete="off">
+              <div class="row">
+                <div class="col-12 col-xl-3 col-md-4">
+                 <div class="form-group">
+                    <label for="productname">Main Heading <span class="c-red">*</span></label>
+                    <p-dropdown
+                      name="mainheading"
+                      #mainheading="ngModel"
+                      [options]="subData"
+                      placeholder="Select Main Heading" id="mainheading"
+                      [(ngModel)]="navSubHeading.mainheading">
+                    </p-dropdown>
+                </div> 
+                </div>
+
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="collectiontext">SubHeading<span class="c-red">*</span></label>
+                    <div [ngxSummernote]="config" id="subHeading" name="subHeading" #subHeading="ngModel"
+                      [(ngModel)]="navSubHeading.subHeading" required [class.is-invalid]="f.submitted && subHeading.invalid">
+                    </div>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="(subHeading.touched || f.submitted) && subHeading.invalid">
+                    <p>SubHeading Text can't be blank.</p>
+                  </div>
+                </div>
+          
+                <div class="col-12 col-xl-3 col-md-4">
+                  <div class="form-group">
+                    <label for="collectiontext">Description<span class="c-red">*</span></label>
+                    <div [ngxSummernote]="config" id="description" name="description" #description="ngModel"
+                      [(ngModel)]="navSubHeading.description" required
+                      [class.is-invalid]="f.submitted && description.invalid">
+                    </div>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="(description.touched || f.submitted) && description.invalid">
+                    <p>Description Text can't be blank.</p>
+                  </div>
+                </div>
+                
+            
+              </div>
+              <div class="row mt-4 mb-4">
+                <div class="col-12">
+                  <button *ngIf="!navSubHeading._id" [disabled]="f.invalid " type="submit" class="btn green-btn"
+                    (click)="onClickSave()">Save SubHeading</button>
+                  <button *ngIf="navSubHeading._id" [disabled]="f.invalid" type="submit" class="btn green-btn"
+                    (click)="onClickSave()">Update SubHeading</button>
+                  <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
+                </div>
+              </div>
+            </form>
+            <div>
+            </div>
+            <!-- <app-footer></app-footer> -->
+          </div>
+  
