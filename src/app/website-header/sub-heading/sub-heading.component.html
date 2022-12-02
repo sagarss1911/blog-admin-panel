@@ -11,8 +11,18 @@
           <div class="col-12">
             <form #f="ngForm" novalidate autocomplete="off">
               <div class="row">
-
-            
+                <div class="col-12 col-xl-3 col-md-4">
+                 <div class="form-group">
+                    <label for="productname">Main Heading <span class="c-red">*</span></label>
+                    <p-dropdown
+                      name="mainheading"
+                      #mainheading="ngModel"
+                      [options]="subData"
+                      placeholder="Select Main Heading" id="mainheading"
+                      [(ngModel)]="navSubHeading.mainheading">
+                    </p-dropdown>
+                </div> 
+                </div>
 
                 <div class="col-12 col-xl-3 col-md-4">
                   <div class="form-group">

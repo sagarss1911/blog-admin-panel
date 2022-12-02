@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
-// import { FutureBlogsComponent } from '../homepage/future-blogs/future-blogs.component';
-import { FeaturedPlaceComponent } from '../homepage/featured-place/featured-place.component';
 
 @Injectable({
   providedIn: 'root',

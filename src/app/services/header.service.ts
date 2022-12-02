@@ -65,11 +65,11 @@ export class HeaderService {
     });
   }
 
-  // getMainSubHeader() {
-  //   return this.http.get(this.getMainSubHeaderUrl, {
-  //     headers: this.getHeader(),
-  //   });
-  // }
+  getMainSubHeader() {
+    return this.http.get(this.getMainSubHeaderUrl, {
+      headers: this.getHeader(),
+    });
+  }
   //sub headings
   addHeaderSubheading(params) {
     return this.http.post(this.addHeadersubheadingUrl, params, {

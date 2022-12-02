@@ -28,6 +28,7 @@ export class SubHeadingComponent implements OnInit {
   files = [];
   type = 'add';
   err = false;
+
   config = {
     placeholder: '',
     tabsize: 2,
@@ -77,9 +78,9 @@ export class SubHeadingComponent implements OnInit {
       : '';
     if (this.navSubHeading._id) {
       this.type = 'edit';
-
       this.getWebsiteSubHeading();
     }
+    this.getAllMainHeading();
   }
 
   // Get footerHeading by _id
@@ -92,7 +93,6 @@ export class SubHeadingComponent implements OnInit {
             this.navSubHeading = [];
             this.navSubHeading = res.data[0];
           }
-
           this.loading = false;
           return resolve(true);
         },
@@ -139,6 +139,7 @@ export class SubHeadingComponent implements OnInit {
   onClickSave() {
     let data = {
       _id: this.navSubHeading._id,
+      mainheading: this.navSubHeading.mainheading,
       subHeading: this.navSubHeading.subHeading,
       description: this.navSubHeading.description,
     };
@@ -147,7 +148,6 @@ export class SubHeadingComponent implements OnInit {
     this.HeaderService.addHeaderSubheading(data).subscribe(
       (res: any) => {
         this.website_data = res.data.websitedata;
-
         this.loading = false;
         if (res.status == 200 && res.data) {
           this._toastMessageService.alert(
@@ -164,5 +164,28 @@ export class SubHeadingComponent implements OnInit {
     );
 
     this.loading = false;
+  }
+
+  getAllMainHeading() {
+    this.loading = true;
+    return new Promise((resolve, reject) => {
+      this.HeaderService.getMainSubHeader().subscribe(
+        (res: any) => {
+          if (res.status == 200 && res.data) {
+            this.heading = res.data;
+            this.heading.forEach((element) => {
+              this.subData.push(element.heading);
+            });
+          }
+          this.loading = false;
+          return resolve(true);
+        },
+        (error) => {
+          this.loading = false;
+          this.commonHelper.showError(error);
+          return resolve(false);
+        }
+      );
+    });
   }
 }

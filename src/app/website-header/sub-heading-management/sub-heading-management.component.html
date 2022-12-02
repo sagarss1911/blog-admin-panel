@@ -35,6 +35,9 @@
               <tr class="c-table-row c-table-row-header">
                 <div style="width: 5px;"></div>
                 <th class="c-table-cell c-table-header-cell text-pull-left">
+                  Main Heading
+                </th>
+                <th class="c-table-cell c-table-header-cell text-pull-left">
                   Sub Heading
                 </th>
                 <th class="c-table-cell c-table-header-cell text-pull-left">
@@ -46,6 +49,7 @@
             <tbody class="c-table-body" *ngIf="table_data && table_data.length>0">
               <tr class="c-table-row" *ngFor="let tab_data of table_data; let i=index;">
                 <div style="width: 5px;"></div>
+                <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.mainheading)}}</td>
                 <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.subHeading)}}</td>
                 <td class="c-table-cell c-table-body-cell text-pull-left">{{(tab_data.description)}}</td>
                 <td class="c-table-cell c-table-body-cell text-pull-right">

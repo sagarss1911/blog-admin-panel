@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonHelper } from 'src/app/helpers/common.helper';
-import { FeaturedPlaceComponent } from 'src/app/homepage/featured-place/featured-place.component';
 import { blogsService } from 'src/app/services/blog.service';
 import { ToastMessageService } from 'src/app/services/toast-message.service';
 import { environment } from 'src/environments/environment';
@@ -27,13 +26,7 @@ export class BlogSearchComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.blogservice.headerClicked.subscribe(
-      (searchtext: FeaturedPlaceComponent) => {
-        this.filters.searchtext = searchtext;
-      }
-    );
-  }
+  ngOnInit(): void {}
 
   search(form: any) {
     this.loading = true;
