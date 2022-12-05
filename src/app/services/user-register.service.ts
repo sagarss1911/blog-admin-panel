@@ -14,6 +14,8 @@ export class UserRegisterService {
     environment.url + '/api/user_register/update_password';
   private deleteUserUrl = environment.url + '/api/user_register/remove_user/';
 
+  private getAllContactUsUserUrl =
+    environment.url + '/api/user_register/get_all_contactususer';
   constructor(private http: HttpClient) {}
 
   getHeader(): HttpHeaders {
@@ -54,6 +56,13 @@ export class UserRegisterService {
 
   deleteUser(id) {
     return this.http.delete(this.deleteUserUrl + id, {
+      headers: this.getHeader(),
+    });
+  }
+
+  //user-contact-us
+  getContactUsDetail(data) {
+    return this.http.post(this.getAllContactUsUserUrl, data, {
       headers: this.getHeader(),
     });
   }

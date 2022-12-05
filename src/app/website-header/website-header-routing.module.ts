@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HeaderDashboardComponent } from './header-dashboard/header-dashboard.component';
 import { HeaderOptionsComponent } from './header-options/header-options.component';
 import { MainHeadingManagementComponent } from './main-heading-management/main-heading-management.component';
 import { MainHeadingComponent } from './main-heading/main-heading.component';
@@ -21,6 +22,12 @@ const routes: Routes = [
         path: 'header-HeadingManagement',
         component: MainHeadingManagementComponent,
       },
+      {
+        path: 'header-image-add',
+        component: HeaderDashboardComponent,
+      },
+      { path: 'edit-image/:id', component: HeaderDashboardComponent },
+
       { path: 'websiteMainHeading', component: MainHeadingComponent },
       { path: 'edit-header-main/:id', component: MainHeadingComponent },
       {
