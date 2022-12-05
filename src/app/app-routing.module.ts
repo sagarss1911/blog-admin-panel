@@ -82,6 +82,13 @@ const routes: Routes = [
             (m) => m.WebsiteHeaderModule
           ),
       },
+      {
+        path: 'contactus',
+        loadChildren: () =>
+          import('src/app/contact-us/contact-us.module').then(
+            (m) => m.ContactUsModule
+          ),
+      },
     ],
   },
 

@@ -14,9 +14,17 @@ import { SharedPaginationModule } from '../shared-components/shared-pagination/s
 import { MainHeadingManagementComponent } from './main-heading-management/main-heading-management.component';
 import { SubHeadingManagementComponent } from './sub-heading-management/sub-heading-management.component';
 import { SubHeadingComponent } from './sub-heading/sub-heading.component';
+import { HeaderDashboardComponent } from './header-dashboard/header-dashboard.component';
 
 @NgModule({
-  declarations: [MainHeadingComponent, HeaderOptionsComponent, MainHeadingManagementComponent, SubHeadingManagementComponent, SubHeadingComponent],
+  declarations: [
+    MainHeadingComponent,
+    HeaderOptionsComponent,
+    MainHeadingManagementComponent,
+    SubHeadingManagementComponent,
+    SubHeadingComponent,
+    HeaderDashboardComponent,
+  ],
   imports: [
     CommonModule,
     WebsiteHeaderRoutingModule,

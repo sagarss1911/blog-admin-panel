@@ -1,0 +1,130 @@
+
+
+<div class="row section-box">
+  <div class="col-12">
+    {{ type | titlecase }} Image
+    <div>
+    </div>
+
+  <div class="col-12 ">
+    <div class="form-group">
+      <div>
+        <label>Image<span class="c-red">*</span></label>
+      </div>
+
+      <div class="uploaded-file-block" *ngIf="icon.ImageUrl">
+        <div class="file-detail-wrap">
+          <div class="uimage"><img width="100px" [src]="icon.ImageUrl" /></div>
+          <div class="close-btn-wrapper" (click)="clearImageFile()"><i class="fa fa-times-circle"
+              aria-hidden="true"></i></div>
+        </div>
+      </div>
+      <div class="uploaded-file-block" *ngIf="icon.image && !icon.ImageUrl">
+        <div class="file-detail-wrap">
+          <div class="uimage"><img width="100px" [src]="base_url+'/'+icon.image" /></div>
+
+        </div>
+      </div>
+      <button type="button" class="btn dark-blue-btn" (click)="ImageFile.click()">
+        <div>
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Upload
+        </div>
+        <input #ImageFile type="file" (change)="onImageUpload($event)" accept="image/*"
+          style="display: none" />
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <form #f="ngForm" novalidate autocomplete="off">
+        <div class="row">
+<div class="col-12 ">
+  <div class="form-group">
+    <div>
+      <label>Upload Logo<span class="c-red">*</span></label>
+    </div>
+
+    <div class="uploaded-file-block" *ngIf="icon.logoImageUrl">
+      <div class="file-detail-wrap">
+        <div class="uimage"><img width="100px" [src]="icon.logoImageUrl" /></div>
+        <div class="close-btn-wrapper" (click)="clearLogoFile()"><i class="fa fa-times-circle"
+            aria-hidden="true"></i></div>
+      </div>
+    </div>
+    <div class="uploaded-file-block" *ngIf="icon.logoImage && !icon.logoImageUrl">
+      <div class="file-detail-wrap">
+        <div class="uimage"><img width="100px" [src]="base_url+'/'+icon.logoImage" /></div>
+
+      </div>
+    </div>
+    <button type="button" class="btn dark-blue-btn" (click)="logoImageFile.click()">
+      <div>
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Upload
+      </div>
+      <input #logoImageFile type="file" (change)="onLogoUpload($event)" accept="image/*"
+        style="display: none" />
+    </button>
+  </div>
+</div>
+
+</div>
+  <div class="row mt-4 mb-4">
+    <div class="col-12">
+      <button *ngIf="!icon._id" [disabled]="f.invalid || !icon.ImageFile" type="submit"
+        class="btn green-btn" (click)="onClickSave()">Save Image</button>
+      <button *ngIf="icon._id" [disabled]="f.invalid" type="submit" class="btn green-btn"
+        (click)="onClickSave()">Update Image</button>
+      <button type="button" class="btn gray-btn ml-4" (click)="onClickCancel()">Cancel</button>
+    </div>
+  </div>
+</form>
+<div>
+</div>
+</div>
+
+
+<!-- ////////////////////////////////////////////////////////////////////////// -->
+<div class="row">
+  <div class="col-12">
+    <div class="c-table-wrapper table-responsive-small">
+      <table class="c-table">
+        <thead class="c-table-header">
+          <tr class="c-table-row c-table-row-header">
+            <div style="width: 5px;"></div>
+            <th class="c-table-cell c-table-header-cell text-pull-left">
+              Logo Image
+            </th>
+            <th class="c-table-cell c-table-header-cell text-pull-left">
+               Image
+            </th>
+            <th class="c-table-cell c-table-header-cell text-pull-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="c-table-body" *ngIf="table_data && table_data.length>0">
+          <tr class="c-table-row" *ngFor="let tab_data of table_data; let i=index;">
+            <div style="width: 5px;"></div>
+            <td class="c-table-cell c-table-body-cell text-pull-left"><img height="100"
+              [src]="base_url +'/'+ tab_data.logoImage"></td>
+            <td class="c-table-cell c-table-body-cell text-pull-left"><img height="100"
+                [src]="base_url +'/'+ tab_data.image"></td>
+            
+                      <td class="c-table-cell c-table-body-cell text-pull-right">
+              <div class="action-btn" title="Edit Slider" (click)="onClickEditImage(tab_data)" style="color: #3985fc">
+                <i class="fa fa-edit"></i>
+              </div>
+              <!-- <div class="action-btn" title="Delete Slider" (click)="onClickDeletePlace(tab_data)"
+                style="color: #ff5151">
+                <i class="fa fa-trash"></i>
+              </div> -->
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+  </div>
+</div>
